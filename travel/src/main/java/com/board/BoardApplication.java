@@ -12,8 +12,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 
-// 테스트를 위함
-
 @SpringBootApplication
 @MapperScan(value = {"com.board.mapper"} )
 public class BoardApplication {
@@ -22,7 +20,7 @@ public class BoardApplication {
 		SpringApplication.run(BoardApplication.class, args);
 
 	}
-	
+	// ㅇㅁㄴㄻㄴㅇㄻㅇㄴㄻㄴㄹㅇㄴㅁㅇㄹㄹㅇㄴㅁ
 	@Bean
 	public  SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
