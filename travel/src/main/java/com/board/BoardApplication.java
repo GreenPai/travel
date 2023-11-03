@@ -11,14 +11,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
-     
+
+// 테스트를 위함
+
 @SpringBootApplication
 @MapperScan(value = {"com.board.mapper"} )
 public class BoardApplication {
           
 	public static void main(String[] args) {
 		SpringApplication.run(BoardApplication.class, args);
-		// 안녕하세요
+
 	}
 	
 	@Bean
