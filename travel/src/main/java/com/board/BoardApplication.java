@@ -19,7 +19,7 @@ public class BoardApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BoardApplication.class, args);
 	}
-	// 가나다라
+	
 	@Bean
 	public  SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
