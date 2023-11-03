@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.board.mapper.BoardMapper">
+
+  <insert  id="boardInsert">
+     INSERT INTO  BOARDBOOT (
+          BNO,
+          TITLE,
+          CONTENT,
+          WRITER
+     ) VALUES (
+          ( SELECT  NVL(MAX(BNO), 0)+1 FROM BOARDBOOT ),
+          #{title},
+          #{content},
+          #{writer}
+     )
+  </insert>
+  
+  <select id="boardList"
+          resultType="com.board.domain.BoardVo">
+  	 
+  	 SELECT    BNO, 
+  	           TITLE, 
+  	           WRITER,
+  	           TO_CHAR(REGDATE, 'YYYY-MM-DD') REGDATE,
+  	           HIT   
+  	  FROM     BOARDBOOT
+  	 ORDER BY  BNO DESC
+  
+  </select>
+  
+  <select  id         = "boardView"
+           resultType = "com.board.domain.BoardVo">
+  
+     SELECT    BNO,
+               TITLE,
+               WRITER,
+               CONTENT,
+               TO_CHAR(REGDATE, 'YYYY-MM-DD HH24:MI:SS') REGDATE,
+               HIT
+      FROM     BOARDBOOT
+      WHERE    BNO  = #{ bno }
+    
+  </select>
+  
+  <delete id="boardDelete">
+  
+  	DELETE   FROM   BOARDBOOT
+  	 WHERE   BNO   =  #{bno}
+  
+  </delete>
+  
+  <update id="boardUpdate">
+    
+    UPDATE  BOARDBOOT
+     SET    TITLE     = #{ title   }
+            , CONTENT = #{ content } 
+     WHERE  BNO = #{ bno}
+    
+  </update>
+  
+  <update id="boardHitUpdate">
+    
+    UPDATE  BOARDBOOT
+     SET    HIT     =  HIT + 1             
+     WHERE  BNO     = #{ bno}
+    
+  </update>
+ 
+  <select id="getWriter"
+          resultType="com.board.domain.BoardVo">
+  	  
+  	 SELECT  BNO,
+  	         TITLE,
+  	         WRITER,
+  	         CONTENT,
+  	         TO_CHAR(REGDATE, 'YYYY-MM-DD HH24:MI:SS') REGDATE,
+  	         HIT
+  	  FROM   BOARDBOOT
+  	  WHERE  WRITER LIKE '%' ||  #{ writer }  || '%'
+  	  ORDER  BY BNO DESC
+  
+  </select>
+  
+  <select  id = "commentList"
+           resultType="com.board.domain.CommentVo">
+      
+      SELECT  CNO,
+              WRITER,
+              TO_CHAR( WDATE, 'YYYY-MM-DD HH24:MI' ) WDATE ,
+              CONTENT,
+              BNO
+       FROM   COMMENTS
+       WHERE  BNO  = #{ bno }
+       ORDER  BY  CNO  ASC     
+             
+  </select>
+  
+  <insert id="commentAdd">
+  	
+  	INSERT INTO COMMENTS (  
+  	     CNO,
+         WRITER,  
+         CONTENT,   
+         BNO
+    )   VALUES  ( 
+         (SELECT NVL(MAX(CNO), 0)+1 FROM COMMENTS ),
+         #{ writer },  
+         #{ content },   
+         #{ bno  }
+     )
+  
+  </insert>
+              
+  <delete id="commentDelete">
+  
+  DELETE FROM COMMENTS 
+  WHERE  CNO = #{ cno }
+
+  </delete>
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
