@@ -14,6 +14,7 @@
    <a href="/test?str=제니">Test2</a><br>   
    <a href="/List">게시물 목록</a><br>
    <a href="/WriteForm">새 글 쓰기</a><br>
+   <a href="/WriteForm">새 글글글글글글글글글글글글글글글글글 쓰기</a><br>
   </div> 
 </body>
 </html>
