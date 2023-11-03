@@ -59,7 +59,7 @@ public class BoardController {
 		
 	}
 	
-	// /View?bno=3
+	// /View?bno=3 ㅇㄹㅇㄹ
 	@RequestMapping("/View")
 	public  ModelAndView   view(BoardVo vo) {
 		
