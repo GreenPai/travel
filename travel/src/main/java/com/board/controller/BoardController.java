@@ -43,7 +43,7 @@ public class BoardController {
 		mv.setViewName("write");		
 		return mv;
 	}
-	
+	// 보드컨트롤러 추가용
 	// 새글저장 /Write?title=새 글쓰기&writer=글쓰니&content=내욘
 	@RequestMapping("/Write")
 	public  ModelAndView  write(BoardVo vo) {
@@ -58,8 +58,8 @@ public class BoardController {
 		return mv;
 		
 	}
-	
-	// /View?bno=3 ㅇㄹㅇㄹ
+	  
+	// /View?bno=3 
 	@RequestMapping("/View")
 	public  ModelAndView   view(BoardVo vo) {
 		
