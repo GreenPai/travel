@@ -25,39 +25,46 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
+	<div class="main_image">
+		<img src="img/beach.jpg" width="100%" height="500px">
+		<div class="main_image_text">
+			<h1 style="font-size: 50px">공지사항</h1>
+			<p>특별하고 즐거움이 가득한 국내여행</p>
+		</div>
+	</div>
+    <br><br>
 	<div id="main">
-		<h2>게시물 쓰기</h2>	
+		<h2>게시물 쓰기</h2>
 
 		<form action="/Write" method="POST">
 			<div class="mb-3">
-				<label for="formTitle" class="form-label"><b style="color:red">*</b>제목</label>
-				<input type="text" class="form-control" name="title" 
-				id="formTitle" placeholder="글제목을 입력하세요">
+				<label for="formTitle" class="form-label"><b
+					style="color: red">*</b>제목</label> <input type="text" class="form-control"
+					name="title" id="formTitle" placeholder="글제목을 입력하세요">
 			</div>
 			<div class="mb-3">
-				<label for="formWriter" class="form-label"><b style="color:red">*</b>글쓴이</label>
-				<input type="text" class="form-control" name="writer" 
-				id="formWriter" placeholder="글쓴이를 입력하세요">
+				<label for="formWriter" class="form-label"><b
+					style="color: red">*</b>글쓴이</label> <input type="text" class="form-control"
+					name="writer" id="formWriter" placeholder="글쓴이를 입력하세요">
 			</div>
 			<div class="mb-3">
 				<label for="formContent" class="form-label">내용</label>
-				<textarea class="form-control" id="formContent"  name="content"  rows="5"></textarea>
+				<textarea class="form-control" id="formContent" name="content"
+					rows="5"></textarea>
 			</div>
 			<div class="mb-3">
-				<input type="submit" class="btn btn-dark"
-					id="formSubmit" value="가입" >
-				<input type="button" class="btn btn-dark"
-					id="formHome" value="Home" >
-				<button id="btnList" class="btn btn-dark" >목록</button>
+				<input type="submit" class="btn btn-dark" id="formSubmit" value="가입">
+				<input type="button" class="btn btn-dark" id="formHome" value="Home">
+				<button id="btnList" class="btn btn-dark">목록</button>
 			</div>
 
 		</form>
-		
+
 
 	</div>
 	<!-- div main end -->
-    
-    <script>
+
+	<script>
        // cliens validation
        // form tag 에 submit 이벤트가 발생하면 (input type="submit", <button>, input type="image")
        const  formEl = document.querySelector('form');

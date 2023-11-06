@@ -14,8 +14,17 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
+
+ <div class="main_image">
+  <img src="img/beach.jpg" width="100%" height="500px">
+  <div class="main_image_text">
+    <h1 style="font-size:50px">공지사항</h1>
+    <p>특별하고 즐거움이 가득한 국내여행</p>
+  </div>
+</div>
+  <br><br>
   <div id="main">
-    <h2>게시물 목록</h2>
+    <h2>공지사항</h2>
     <button id="btnWrite" class="btn btn-dark" style="float:right;margin-bottom:20px;">새글 쓰기</button>
     <table class="table">
   <thead class="thead-dark">
@@ -24,7 +33,7 @@
       <th scope="col">제목</th>
       <th scope="col">작성</th>
       <th scope="col">날짜</th>
-      <th scope="col">조회</th>
+      <th scope="col">조회수</th>
     </tr>
   </thead>
   <tbody>
