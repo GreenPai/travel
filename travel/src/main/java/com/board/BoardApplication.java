@@ -20,7 +20,7 @@ public class BoardApplication {
 		SpringApplication.run(BoardApplication.class, args);
 
 	}
-	// ㅇㅁㄴㄻㄴㅇㄻㅇㄴㄻㄴㄹㅇㄴㅁㅇㄹㄹㅇㄴㅁ   
+
 	@Bean
 	public  SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
