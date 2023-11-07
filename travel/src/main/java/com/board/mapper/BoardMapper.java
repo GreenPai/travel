@@ -23,6 +23,7 @@ public interface BoardMapper {
 	
 	public void commentDelete(CommentVo vo);
 	
+	
 }
 
 
