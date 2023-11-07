@@ -17,8 +17,7 @@
    <a href="/WriteForm">새 글 쓰기</a><br>
    <a href="/Login">로그인</a><br>
    <a href="/Logout">로그아웃</a>
-   
-   
+    
        <div class="header_login"> 
     <ul>
         <li>

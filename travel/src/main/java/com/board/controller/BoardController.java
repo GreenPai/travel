@@ -30,6 +30,7 @@ public class BoardController {
 	@Autowired
     private UserMapper  userMapper;
 	
+	
 	// 목록
 	@RequestMapping("/List")
 	public ModelAndView list() {
@@ -155,8 +156,6 @@ public class BoardController {
 
 		boardMapper.commentDelete(vo);
 	}
-
-	
 	
 	/*
 	@RequestMapping("/Login")
