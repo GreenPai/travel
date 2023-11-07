@@ -13,7 +13,7 @@
    #BusanNowtemp {
      color: #1243A5;
      font-weight: bold;
-   }
+   } 
    #BusanFeelstemp {
      color: #1243A5;
      font-weight: bold;

@@ -199,7 +199,7 @@
 		        // 로드뷰 도로 오버레이를 제거합니다
 		        toggleOverlay(false);
 		    }
-		}
+		} 
 		
 		// 로드뷰에서 X버튼을 눌렀을 때 로드뷰를 지도 뒤로 숨기는 함수입니다
 		function closeRoadview() {

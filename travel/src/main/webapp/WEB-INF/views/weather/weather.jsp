@@ -48,7 +48,7 @@ tr:nth-child(even) {
 th {
     background-color: #87A8FD;
     color: white;
-}
+} 
 </style> 
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
