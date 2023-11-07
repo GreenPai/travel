@@ -8,13 +8,9 @@
 <link rel="stylesheet" href="/css/main.css" />
 </head>
 <body>
-  <div id="main">
-   <h2>Home -  ${ irum } 홈페이지</h2>
-   <a href="/test">Test</a><br>
-   <a href="/test?str=제니">Test2</a><br>   
-   <a href="/List">게시물 목록</a><br>
-   <a href="/WriteForm">새 글 쓰기</a><br>
-  </div> 
+  <%@include file="/WEB-INF/views/map/loadmap.jsp" %>
+  <%@include file="/WEB-INF/views/weather/weatherpage.jsp" %>
+  <%@include file="/WEB-INF/views/weather/weather.jsp" %>
 </body>
 </html>
 
