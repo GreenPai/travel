@@ -1,5 +1,6 @@
 package com.board.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -154,6 +156,9 @@ public class BoardController {
 		boardMapper.commentDelete(vo);
 	}
 
+	
+	
+	/*
 	@RequestMapping("/Login")
 	public ModelAndView login() {
 
@@ -191,21 +196,18 @@ public class BoardController {
 		}
 	}
 
-	// 로그인폼에서 정보 들고오기
+	// 회원가입폼에서 정보 들고오기
 	@RequestMapping("/Login/Form")
-	public ModelAndView loginForm(UserVo vo) {
-		
+	public ModelAndView loginForm(@ModelAttribute UserVo vo, Model model) {
+		LocalDate indate = LocalDate.now();
+		vo.setIndate(indate.toString());
 		System.out.println(vo);
+		userMapper.loginForm(vo);
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("user/login");
+		mv.setViewName("redirect:/");
 		return mv;
 		
 	}
-	
-	
-	
-	
-	
 	
 	// 회원중복체크
 	
@@ -220,7 +222,7 @@ public class BoardController {
 		
 	}
 	
-	
+	*/
 	/*
 
 	// 닉네임중복체크

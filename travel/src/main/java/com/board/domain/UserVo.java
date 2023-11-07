@@ -16,11 +16,14 @@ import lombok.ToString;
 @RequiredArgsConstructor
 public class UserVo {
 	
-	private String userbirth;
-	private String email;
 	private String indate;
+	private String userbirth;
+    private String address;
+    private String address2;
+	
 	@NonNull // NOT NULL
 	
+	private String email;
 	private String userid;
 	private String passwd;
 	private String username;
