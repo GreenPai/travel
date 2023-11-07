@@ -112,19 +112,7 @@ public class UserController {
  	        session.setAttribute("username", uservo.getUsername()); // 유저이름
  	        session.setAttribute("useremail", uservo.getEmail()); // 이메일      
  	        session.setAttribute("nickname", uservo.getNickname()); // 닉네임
-       /* 	
- 	      String userId = (String) session.getAttribute("userid");
- 	      String userPw = (String) session.getAttribute("userpw");
- 	      String userName = (String) session.getAttribute("username");
- 	      String userEmail = (String) session.getAttribute("useremail");
- 	      String userNickname = (String) session.getAttribute("nickname");
 
- 	      System.out.println("UserID: " + userId);
- 	      System.out.println("UserPW: " + userPw);
- 	      System.out.println("UserName: " + userName);
- 	      System.out.println("UserEmail: " + userEmail);
- 	      System.out.println("UserNickname: " + userNickname);
-*/ 	            	
         	mv.setViewName("redirect:/");
     		return mv;
         }      
@@ -146,15 +134,15 @@ public class UserController {
 		return mv;
 
 	}
-
-	/*
-	 * 
-	 * // 닉네임중복체크
-	 * 
-	 * @RequestMapping("/User/NickDupCheck") public String nicDupCheck(UserVo vo,
-	 * Model model) { int cnt = userService.nickDupCheck(vo);
-	 * model.addAttribute("cnt", cnt); return "user/nickdupcheck"; }
-	 * 
-	 */
+	
+	@RequestMapping("/Logout")
+	public String logout(HttpServletRequest request) {
+	    HttpSession session = request.getSession();
+	    if (session != null) {
+	        session.invalidate(); // 세션 무효화
+	    }
+	    return "/home"; 
+	}	
+	
 
 }
