@@ -12,6 +12,10 @@ import com.board.domain.UserVo;
 public interface UserMapper {
 
 	int dupCheck(UserVo vo);
+
+	public  void loginForm(UserVo vo);
+
+	UserVo loginCheck(UserVo vo);
 	
 	
 }
