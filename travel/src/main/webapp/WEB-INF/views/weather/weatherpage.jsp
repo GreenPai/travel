@@ -9,7 +9,7 @@
      width:15%; 
      background: aliceblue;
      border-radius: 15px;
-   }
+   } 
    #BusanNowtemp {
      color: #1243A5;
      font-weight: bold;

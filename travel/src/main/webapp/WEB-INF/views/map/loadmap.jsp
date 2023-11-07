@@ -205,6 +205,6 @@
 		function closeRoadview() {
 		    var position = marker.getPosition();
 		    toggleMapWrapper(true, position);
-		}
+		} 
 	</script>
 </section>
