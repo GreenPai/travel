@@ -1,7 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>   
   <%@taglib  prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>       
-<section>	
+<section>
+<style>
+   #busanweather {
+	 border :  2px solid #ffffff;
+	 border-collapse: collapse;
+     width:15%; 
+     background: aliceblue;
+     border-radius: 15px;
+   } 
+   #BusanNowtemp {
+     color: #1243A5;
+     font-weight: bold;
+   } 
+   #BusanFeelstemp {
+     color: #1243A5;
+     font-weight: bold;
+   }
+   #BusanWindSpeed {
+     color: #1243A5;
+     font-weight: bold;
+   }
+</style>	
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://code.jquery.com/jquery.min.js"></script>
 <script>
@@ -44,16 +65,11 @@
 
 <span class="nowtime"></span>
 <span>현재날씨</span>
-        
-        <h3>부산</h3>
-        <h3 class="BusanIcon"></h3>
-        <h3 class="BusanNowtemp">현재기온:</h3>
-        <h3 class="BusanFeelstemp">체감온도:</h3>
-        <h3 class="BusanWindSpeed">풍속:</h3>
-        
+     <div id="busanweather">
+        <h3>오늘의 날씨</h3>
+        <p class="BusanIcon"></p>
+        <p id="BusanNowtemp"   class="BusanNowtemp">현재기온:</p>
+        <p id="BusanFeelstemp" class="BusanFeelstemp">체감온도:</p>
+        <p id="BusanWindSpeed" class="BusanWindSpeed">풍속:</p>
+     </div> 
 </section>
-
-
-
-
-
