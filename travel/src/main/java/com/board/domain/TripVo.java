@@ -1,4 +1,4 @@
-package com.trip.domain;
+package com.board.domain;
 
 public class TripVo {
 

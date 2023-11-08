@@ -1,4 +1,4 @@
-package com.rest.controller;
+package com.board.controller;
 
 
 	import java.io.BufferedReader;
@@ -21,11 +21,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 	//  @RestController = @Controller + @ResponseBody
 	//  @ResponseBody 는 return값이 json, xml 과 같은 문자열가능
 	@Controller 
-	public class RestController {
-		//  /deleteFile?file_num=12&sfile=flower_1.jpg"
-		
+	public class RestController {		
 
-		@RequestMapping(value   = "/travle",
+		@RequestMapping(
+				value   = "/travle",
 				method  = RequestMethod.GET,
 				headers = "Accept=application/json")	
 			public  void  travle(

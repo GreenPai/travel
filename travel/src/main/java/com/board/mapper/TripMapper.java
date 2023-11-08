@@ -1,8 +1,8 @@
-package com.trip.mapper;
+package com.board.mapper;
 
 import java.util.List;
 
-import com.trip.domain.TripVo;
+import com.board.domain.TripVo;
 
 public interface TripMapper {
 
