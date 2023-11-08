@@ -57,7 +57,7 @@
 	<!-- Bootstrap Bundle with Popper -->
 	<script>
 	/*
-	// 회원가입으로 넘어가는 버튼
+	// 회원가입으로 넘어가는  버튼
 	const LoginEl = document.querySelector('#btnLogin');
 	LoginEl.addEventListener('click',(e) => {
 		location.href='LoginCheck';
