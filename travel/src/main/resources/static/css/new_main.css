@@ -114,7 +114,31 @@ body {
 
 .submenu1 > li {
     line-height: 50px;
-    background-color: #CBEE99;
+    background-color: #fff;
+}
+
+.submenu1 > li > a {
+	color: black;
+    text-align: center;
+    font-size: 16px;
+}
+
+.submenu2 > li > a {
+	color: black;
+    text-align: center;
+    font-size: 16px;
+}
+
+.submenu3 > li > a {
+	color: black;
+    text-align: center;
+    font-size: 16px;
+}
+
+.submenu4 > li > a {
+	color: black;
+    text-align: center;
+    font-size: 16px;
 }
 
 
@@ -131,7 +155,7 @@ body {
 
 .submenu2 > li {
     line-height: 50px;
-    background-color: #CBEE99;
+    background-color: #fff;
 }
 
 .submenu2 {
@@ -152,7 +176,7 @@ body {
 
 .submenu3 > li {
     line-height: 50px;
-    background-color: #CBEE99;
+    background-color: #fff;
 }
 
 .submenu3 {
@@ -172,7 +196,7 @@ body {
 
 .submenu4 > li {
     line-height: 50px;
-    background-color: #CBEE99;
+    background-color: #fff;
 }
 
 

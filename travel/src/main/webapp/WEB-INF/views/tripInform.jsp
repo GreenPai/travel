@@ -7,6 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%@include file="/WEB-INF/views/include/header.jsp"%>
+	
+	<!-- 부산 명소 정보를 출럭 -->
+	
+	
 
-</body>
+
+</body> 
 </html>
