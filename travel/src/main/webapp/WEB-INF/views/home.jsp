@@ -45,7 +45,7 @@
 					<li><a href=#><h2>안내</h2></a>
 						<div>
 							<ul class="dep2_list">
-								<li><a href="#">공지사항</a></li>
+								<li><a href="/List">공지사항</a></li>
 								<br>
 								<li><a href="#">Q&A</a></li>
 							</ul>
