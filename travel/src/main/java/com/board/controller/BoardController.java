@@ -1,5 +1,6 @@
 package com.board.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,19 +10,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.board.domain.BoardVo;
 import com.board.domain.CommentVo;
 import com.board.mapper.BoardMapper;
-
 @Controller
 public class BoardController {
 	
 	@Autowired
-	private  BoardMapper   boardMapper;
-	
+	private  BoardMapper   boardMapper;	
+
 	// 목록
 	@RequestMapping("/List")
 	public  ModelAndView  list() {
@@ -33,6 +34,7 @@ public class BoardController {
 		mv.setViewName("list");
 		return mv;
 	}
+
 	
 	// 새글 쓰기
 	@RequestMapping("/WriteForm")
