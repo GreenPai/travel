@@ -29,5 +29,14 @@ public class TripController {
 		return mv;
 		
 	}
-
+	
+	// 여행지 정보
+	@RequestMapping("/TripInform")
+	public ModelAndView tripInform() {
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("tripInform");
+		return mv;
+	}
+	
 }

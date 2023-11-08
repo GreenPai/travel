@@ -9,69 +9,11 @@
 <link rel="stylesheet" href="/css/new_main.css" />
 </head>
 <body>
-	<header class="header" style="display: flex;">
-    
-        <div class="header_title">
-      <br>
-         <a href="/"><img src="/img/logo.png"   alt="logo" style="width: 300px; height: 60px;"></a>
-      </div> 
 
-         <div class="header_login">
-    <ul>
-        <li>
-            <c:choose>
-                <c:when test="${not empty sessionScope['loginMember']}">
-                    <div class="left-content">
-                        <img src="/img/user.jpg" alt="" class="left-image" width="40" height="40">
-                        <c:set var="userName" value="${sessionScope['loginMember']}" />
-                        <p>${userName}</p>
-                    </div>
-                    <a href="/logout" class="right-logout">로그아웃</a>
-                </c:when>
-                <c:otherwise>
-                    <!-- 세션이 없을 때, 로그인 링크 -->
-                    <a href="#">로그인</a>
-                    <li><a href="#">회원가입</a></li>
-                </c:otherwise>
-            </c:choose>
-        </li>
-    </ul>
-</div>
-               
-    </header>
-    
-    
-	
-		<ul class="menu">
-			<li><a href=#><h2>여행</h2></a>
-	
-				<ul class="submenu1">
-					<li><a href="/Trip">여행지</a></li>
-					<li><a href="#">추천여행10선</a></li>
-					<li><a href="#">추천여행지</a></li>
-				</ul></li>
-			<li><a href=#><h2>일정</h2></a>
-	
-				<ul class="submenu2">
-					<li><a href="#">추천일정</a></li>
-					<li><a href="#">테마일정</a></li>
-				</ul></li>
-				
-			<li><a href=#><h2>정보</h2></a>
-					<ul class="submenu3">
-						<li><a href="#">기상정보</a></li>
-						<li><a href="#">기타정보</a></li>
-					</ul>
-				</li>
-			<li><a href=#><h2>안내</h2></a>
+	<%@include file="/WEB-INF/views/include/header.jsp"%>
 
-					<ul class="submenu4">
-						<li><a href="#">공지사항</a></li>
-						<li><a href="#">Q&A</a></li>
-					</ul>
-</li>
-		</ul>
-	<!-- header end -->
+	<br>
+	<br>
 
 	<!-- body start -->
 	<div id="content">
@@ -90,21 +32,23 @@
 	<div class="container">
 		<div class="row">
 			<div class="page_num">
-				<p><strong>총 게시물</strong><span>${trip.many}</span>건</p>
-			<c:forEach items="${tripList}" var="recipe">
-				<div class="col-md-3 mb-4">
-					<div class="card h-100">
-						<a href="/Trip?idx=${trip.IDX }&tripTitle=${trip.RCP_NM}"> <img
-							src="${recipe.ATT_FILE_NO_MAIN}" class="card-img-top"
-							alt="${trip.RCP_NM}" style="width: 253px; height: 200px;">
-						</a>
-						<div class="card-body">
-							<h5 class="card-title" style="text-align: center;">${trip.RCP_NM}</h5>
-						</div>
+				<p>
+					<strong>총 게시물</strong><span>${trip.many}</span>건
+				</p>
+				<c:forEach items="${tripList}" var="recipe">
+					<div class="col-md-3 mb-4">
+						<div class="card h-100">
+							<a href="/Trip?idx=${trip.IDX }&tripTitle=${trip.RCP_NM}"> <img
+								src="${recipe.ATT_FILE_NO_MAIN}" class="card-img-top"
+								alt="${trip.RCP_NM}" style="width: 253px; height: 200px;">
+							</a>
+							<div class="card-body">
+								<h5 class="card-title" style="text-align: center;">${trip.RCP_NM}</h5>
+							</div>
 
+						</div>
 					</div>
-				</div>
-			</c:forEach>
+				</c:forEach>
 			</div>
 		</div>
 	</div>
