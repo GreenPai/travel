@@ -370,6 +370,14 @@
     showSlide();
 </script>
 
+
+
+  <%@include file="/WEB-INF/views/map/localmap.jsp" %>
+  <%@include file="/WEB-INF/views/weather/weatherpage.jsp" %>
+  <%@include file="/WEB-INF/views/weather/weather.jsp" %>
+
+
+
 </body>
 </html>
 
