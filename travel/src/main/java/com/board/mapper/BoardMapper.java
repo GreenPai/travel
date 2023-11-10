@@ -1,12 +1,12 @@
 package com.board.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
 import com.board.domain.BoardVo;
 import com.board.domain.CommentVo;
-import com.board.domain.UserVo;
 
 @Mapper
 public interface BoardMapper {
@@ -21,10 +21,10 @@ public interface BoardMapper {
 	
 	public  List<CommentVo>   commentList(CommentVo vo);
 	public  void              commentAdd(CommentVo vo);
-	
 	public void commentDelete(CommentVo vo);
-	
-
+	public int getBoardCount();
+	public List<BoardVo> pageBoardList(Map<String, Object> params);
+	public List<BoardVo> boardSearch(String keyword);
 	
 }
 

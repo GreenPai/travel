@@ -8,15 +8,36 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="/css/main.css" />
+<style>
+  .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .button-container button {
+    background-color: #ccc;
+    color: #fff;
+    padding: 5px 8px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 0 10px;
+  }
+  
+  #pageNumbers {
+    font-size: 20px;
+  }
+</style>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
-
+ <%@include file="/WEB-INF/views/include/header.jsp" %>
  <div class="main_image">
-  <img src="img/beach.jpg" width="100%" height="500px">
+  <img src="img/beach.jpg" width="100%" height="300px">
   <div class="main_image_text">
     <h1 style="font-size:50px">공지사항</h1>
     <p>특별하고 즐거움이 가득한 국내여행</p>
@@ -49,7 +70,21 @@
   </tbody>
 </table>
 
-    
+<div class="button-container">
+  <button id="prevButton">이전</button>
+  <span id="pageNumbers"></span>
+  <button id="nextButton">다음</button>
+</div>
+  
+    <form action="/search" method="get">
+        <input type="text" name="keyword" placeholder="검색어를 입력하세요">
+        <button type="submit">검색</button>
+    </form>
+  
+  
+  
+  
+  
   </div>
   
   <script>
@@ -60,7 +95,77 @@
   
   </script>
  
-  
+  <script>
+        $(document).ready(function() {
+            var currentPage = ${currentPage};
+            var totalPages = ${totalPages};
+            var pageSize = 10;
+         
+            function updatePageNumbers(start, end) {
+                var pageNumbers = '';
+                for (var i = start; i <= end; i++) {
+                    if (i === currentPage) {
+                        pageNumbers += '<strong>' + i + '</strong>';
+                    } else {
+                        pageNumbers += '<a href="/List?page=' + i + '">' + i + '</a>';
+                    }
+                    if (i < end) {
+                        pageNumbers += ', ';
+                    }
+                }
+                $('#pageNumbers').html(pageNumbers);
+            }
+          
+            function goToPage(page) {
+            	  window.location.href = '/List?page=' + page;
+            	}
+                      
+            function updatePagination() {
+                var start = Math.floor((currentPage - 1) / pageSize) * pageSize + 1;
+                var end = Math.min(start + pageSize - 1, totalPages);
+                updatePageNumbers(start, end);
+            }
+
+            // 초기 페이지 로딩 시 호출
+            updatePagination();
+
+            // 다음 버튼 클릭 시 호출
+            $('#nextButton').click(function() {
+                var start = Math.floor((currentPage - 1) / pageSize) * pageSize + pageSize + 1;
+                var end = Math.min(start + pageSize - 1, totalPages);
+                if ((start-end)<9){                	               	
+                	console.log(currentPage+1);
+                	console.log(start);
+                	goToPage(currentPage+1)      	
+                }                	
+
+                if (start <= totalPages) {
+                    currentPage = start;
+                    updatePagination();
+                    goToPage(start);
+                }
+
+            });
+
+            // 이전 버튼 클릭 시 호출
+            $('#prevButton').click(function() {
+                var start = Math.floor((currentPage - 1) / pageSize) * pageSize - pageSize + 1;
+                var end = Math.min(start + pageSize - 1, totalPages);
+                
+                if ((start-end)<9){                	               	
+                	console.log(currentPage+1);
+                	console.log(start);
+                	goToPage(currentPage-1)      	
+                }        
+                         
+                if (start >= 1) {
+                    currentPage = start;
+                    updatePagination();
+                    goToPage(start);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
 

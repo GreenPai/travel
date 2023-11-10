@@ -92,7 +92,7 @@
               BNO
        FROM   COMMENTS
        WHERE  BNO  = #{ bno }
-       ORDER  BY  CNO  ASC     
+       ORDER  BY  CNO  DESC     
              
   </select>
   
@@ -118,6 +118,42 @@
   WHERE  CNO = #{ cno }
 
   </delete>
+
+  <select id="getBoardCount"
+  resultType="int">
+  
+  SELECT COUNT(TITLE) AS totalCount
+  FROM BOARDBOOT
+  </select>
+
+
+  <select id="pageBoardList"
+  resultType="com.board.domain.BoardVo">
+  
+ SELECT * 
+ FROM (
+    SELECT
+        BOARDBOOT.*,
+        ROWNUM AS RN
+    FROM (
+        SELECT *
+        FROM BOARDBOOT
+        ORDER BY BNO DESC
+    ) BOARDBOOT
+)
+WHERE RN BETWEEN #{start} AND #{end}
+
+
+  </select>
+
+<select id="boardSearch" resultType="com.board.domain.BoardVo">
+    SELECT *
+    FROM BOARDBOOT
+    WHERE TITLE LIKE #{keyword}
+</select>
+
+
+
 
 
 

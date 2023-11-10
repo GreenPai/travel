@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/new_main.css" />
+
 </head>
 <body>
 	<header class="header" style="display: flex;">
@@ -32,8 +33,8 @@
 						</c:when>
 						<c:otherwise>
 							<!-- 세션이 없을 때, 로그인 링크 -->
-							<a href="#">로그인</a>
-							<li><a href="#">회원가입</a></li>
+							<a href="/Login">로그인</a>
+							<li><a href="/LoginAgree">회원가입</a></li>
 						</c:otherwise>
 					</c:choose></li>
 			</ul>
@@ -66,7 +67,7 @@
 		<li><a href=#><h2>안내</h2></a>
 
 			<ul class="submenu4">
-				<li><a href="#">공지사항</a></li>
+				<li><a href="/List">공지사항</a></li>
 				<li><a href="#">Q&A</a></li>
 			</ul></li>
 	</ul>
