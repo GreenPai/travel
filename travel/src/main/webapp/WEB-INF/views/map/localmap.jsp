@@ -147,7 +147,59 @@
 	    {
 	        content: '<div>감천문화마을<br><img src="/img/map/gamchen.jpg" sytle="width:352px; height:220px;"></div>',
 	        latlng: new kakao.maps.LatLng(35.098423, 129.010103)
-	    }
+	    },
+	    {
+	        content: '<div>책방골목<br><img src="/img/map/gamchen.jpg" sytle="width:352px; height:220px;"></div>',
+	        latlng: new kakao.maps.LatLng(35.098423, 129.010103)
+	    },
+	    {
+	        content: '<div>거제바람언덕<br><img src="/img/map/gamchen.jpg" sytle="width:352px; height:220px;"></div>',
+	        latlng: new kakao.maps.LatLng(34.745037, 128.663276)
+	    },
+	    {
+	        content: '<div>아홉산숲<br><img src="/img/map/gamchen.jpg" sytle="width:352px; height:220px;"></div>',
+	        latlng: new kakao.maps.LatLng(35.287064, 129.171512)
+	    },
+	    {
+	        content: '<div>남해독일마을<br><img src="/img/map/gamchen.jpg" sytle="width:352px; height:220px;"></div>',
+	        latlng: new kakao.maps.LatLng(34.800677, 128.038681)
+	    },
+	    {
+	        content: '<div>감천문화마을<br><img src="/img/map/gamchen.jpg" sytle="width:352px; height:220px;"></div>',
+	        latlng: new kakao.maps.LatLng(35.322650, 129.010103)
+	    },
+	    {
+	        content: '<div>더무빙-카라반<br><img src="/img/map/gamchen.jpg" sytle="width:352px; height:220px;"></div>',
+	        latlng: new kakao.maps.LatLng(35.098423, 129.270077)
+	    },
+	    {
+	        content: '<div>감천문화마을<br><img src="/img/map/gamchen.jpg" sytle="width:352px; height:220px;"></div>',
+	        latlng: new kakao.maps.LatLng(35.098423, 129.010103)
+	    },
+	    {
+	        content: '<div>다대포 꿈의 낙조분수<br><img src="/img/map/gamchen.jpg" sytle="width:352px; height:220px;"></div>',
+	        latlng: new kakao.maps.LatLng(35.047151, 128.967343)
+	    },
+	    {
+	        content: '<div>해운대 수목원<br><img src="/img/map/gamchen.jpg" sytle="width:352px; height:220px;"></div>',
+	        latlng: new kakao.maps.LatLng(35.230057, 129.132772)
+	    },
+	    {
+	        content: '<div>F1963<br><img src="/img/map/gamchen.jpg" sytle="width:352px; height:220px;"></div>',
+	        latlng: new kakao.maps.LatLng(35.176967, 129.114986)
+	    },
+	    {
+	        content: '<div>부산항힐링야영장<br><img src="/img/map/gamchen.jpg" sytle="width:352px; height:220px;"></div>',
+	        latlng: new kakao.maps.LatLng(35.112239, 129.050362)
+	    },
+	    {
+	        content: '<div>부산아시아드경기장<br><img src="/img/map/gamchen.jpg" sytle="width:352px; height:220px;"></div>',
+	        latlng: new kakao.maps.LatLng(35.190228, 129.058223)
+	    },
+	    {
+	        content: '<div>북천 야외전시관<br><img src="/img/map/gamchen.jpg" sytle="width:352px; height:220px;"></div>',
+	        latlng: new kakao.maps.LatLng(35.206902, 129.090666)
+	    },
 	];
 	
 	for (var i = 0; i < positions.length; i ++) {
