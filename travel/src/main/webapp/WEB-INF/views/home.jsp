@@ -60,18 +60,18 @@
 						<div class="child_box" tabindex="-1">
 							<div class="item_box">
 								<div class="photo">
-									<a href="#" style="width: 268px; height: 200px;"> <img
-										alt="광안리	" src="/img/busan.jpg"
+									<a href="https://www.visitbusan.net/index.do?menuCd=DOM_000000201001001000&uc_seq=261&lang_cd=ko" style="width: 268px; height: 200px;"> <img
+										alt="해동용궁사" src="/img/haedong.png"
 										style="width: 268px; height: 200px;">
 									</a>
 								</div>
 								<div class="info">
 									<p class="tit">
-										<a href="#"> <span class="flag flag01">인기</span> <span
-											class="sbj">명소 입력</span>
+										<a href="https://www.visitbusan.net/index.do?menuCd=DOM_000000201001001000&uc_seq=261&lang_cd=ko" > <span class="flag flag01">인기</span> <span
+											class="sbj">해동 용궁사</span>
 										</a>
 									</p>
-									<p class="location">지역 입력</p>
+									<p class="location">부산광역시 기장군 기장읍 용궁길 86(시랑리)</p>
 								</div>
 							</div>
 						</div>
@@ -79,18 +79,18 @@
 						<div class="child_box" tabindex="-1">
 							<div class="item_box">
 								<div class="photo">
-									<a href="#" style="width: 260px; height: 200px;"> <img
-										alt="광안리	" src="/img/busan.jpg"
+									<a href="https://www.visitbusan.net/index.do?menuCd=DOM_000000201001001000&uc_seq=365&lang_cd=ko" style="width: 260px; height: 200px;"> <img
+										alt="감천문화마을	" src="/img/gamchun.png"
 										style="width: 268px; height: 200px;">
 									</a>
 								</div>
 								<div class="info">
 									<p class="tit">
-										<a href="#"> <span class="flag flag01">인기</span> <span
-											class="sbj">명소 입력</span>
+										<a href="https://www.visitbusan.net/index.do?menuCd=DOM_000000201001001000&uc_seq=365&lang_cd=ko"> <span class="flag flag01">인기</span> <span
+											class="sbj">감천 문화마을</span>
 										</a>
 									</p>
-									<p class="location">지역 입력</p>
+									<p class="location">부산광역시 사하구 감천동</p>
 								</div>
 							</div>
 						</div>
@@ -98,55 +98,36 @@
 						<div class="child_box" tabindex="-1">
 							<div class="item_box">
 								<div class="photo">
-									<a href="#" style="width: 260px; height: 200px;"> <img
-										alt="광안리	" src="/img/busan.jpg"
+									<a href="https://www.visitbusan.net/index.do?menuCd=DOM_000000201001001000&uc_seq=402&lang_cd=ko" style="width: 260px; height: 200px;"> <img
+										alt="범어사	" src="/img/bum.png"
 										style="width: 268px; height: 200px;">
 									</a>
 								</div>
 								<div class="info">
 									<p class="tit">
-										<a href="#"> <span class="flag flag01">인기</span> <span
-											class="sbj">명소 입력</span>
+										<a href="https://www.visitbusan.net/index.do?menuCd=DOM_000000201001001000&uc_seq=402&lang_cd=ko"> <span class="flag flag01">인기</span> <span
+											class="sbj">범어사</span>
 										</a>
 									</p>
-									<p class="location">지역 입력</p>
+									<p class="location">부산광역시 금정구 범어사로 250</p>
 								</div>
 							</div>
 						</div>
 						<div class="child_box" tabindex="-1">
 							<div class="item_box">
 								<div class="photo">
-									<a href="#" style="width: 260px; height: 200px;"> <img
+									<a href="https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=377&lang_cd=ko" style="width: 260px; height: 200px;"> <img
 										alt="광안리	" src="/img/busan.jpg"
 										style="width: 268px; height: 200px;">
 									</a>
 								</div>
 								<div class="info">
 									<p class="tit">
-										<a href="#"> <span class="flag flag01">인기</span> <span
-											class="sbj">명소 입력</span>
+										<a href="https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=377&lang_cd=ko"> <span class="flag flag01">인기</span> <span
+											class="sbj">광안리</span>
 										</a>
 									</p>
-									<p class="location">지역 입력</p>
-								</div>
-							</div>
-						</div>
-
-						<div class="child_box" tabindex="-1">
-							<div class="item_box">
-								<div class="photo">
-									<a href="#" style="width: 260px; height: 200px;"> <img
-										alt="광안리	" src="/img/busan.jpg"
-										style="width: 268px; height: 200px;">
-									</a>
-								</div>
-								<div class="info">
-									<p class="tit">
-										<a href="#"> <span class="flag flag01">인기</span> <span
-											class="sbj">명소 입력</span>
-										</a>
-									</p>
-									<p class="location">지역 입력</p>
+									<p class="location">부산광역시 수영구 광안2동에 위치한 해수욕장</p>
 								</div>
 							</div>
 						</div>
@@ -154,18 +135,18 @@
 						<div class="child_box" tabindex="-1">
 							<div class="item_box">
 								<div class="photo">
-									<a href="#" style="width: 260px; height: 200px;"> <img
-										alt="광안리	" src="/img/busan.jpg"
+									<a href="https://www.visitbusan.net/index.do?menuCd=DOM_000000201001001000&uc_seq=255&lang_cd=ko" style="width: 260px; height: 200px;"> <img
+										alt="흰여울 문화마을	" src="/img/youngdo.png"
 										style="width: 268px; height: 200px;">
 									</a>
 								</div>
 								<div class="info">
 									<p class="tit">
-										<a href="#"> <span class="flag flag01">인기</span> <span
-											class="sbj">명소 입력</span>
+										<a href="https://www.visitbusan.net/index.do?menuCd=DOM_000000201001001000&uc_seq=255&lang_cd=ko"> <span class="flag flag01">인기</span> <span
+											class="sbj">흰여울 문화마을</span>
 										</a>
 									</p>
-									<p class="location">지역 입력</p>
+									<p class="location">부산광역시 영도구 영선동4가 1043</p>
 								</div>
 							</div>
 						</div>
@@ -173,18 +154,18 @@
 						<div class="child_box" tabindex="-1">
 							<div class="item_box">
 								<div class="photo">
-									<a href="#" style="width: 260px; height: 200px;"> <img
-										alt="광안리	" src="/img/busan.jpg"
+									<a href="https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201003001000&uc_seq=399&lang_cd=ko" style="width: 260px; height: 200px;"> <img
+										alt="국제시장	" src="/img/gukjae.png"
 										style="width: 268px; height: 200px;">
 									</a>
 								</div>
 								<div class="info">
 									<p class="tit">
-										<a href="#"> <span class="flag flag01">인기</span> <span
-											class="sbj">명소 입력</span>
+										<a href="https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201003001000&uc_seq=399&lang_cd=ko"> <span class="flag flag01">인기</span> <span
+											class="sbj">국제시장</span>
 										</a>
 									</p>
-									<p class="location">지역 입력</p>
+									<p class="location">부산광역시 중구 국제시장2길 25</p>
 								</div>
 							</div>
 						</div>
@@ -192,18 +173,37 @@
 						<div class="child_box" tabindex="-1">
 							<div class="item_box">
 								<div class="photo">
-									<a href="#" style="width: 268px; height: 200px;"> <img
-										alt="광안리	" src="/img/busan.jpg"
+									<a href="https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=373&lang_cd=ko" style="width: 260px; height: 200px;"> <img
+										alt="해운대" src="/img/haeundae.png"
 										style="width: 268px; height: 200px;">
 									</a>
 								</div>
 								<div class="info">
 									<p class="tit">
-										<a href="#"> <span class="flag flag01">인기</span> <span
-											class="sbj">명소 입력</span>
+										<a href="https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=373&lang_cd=ko"> <span class="flag flag01">인기</span> <span
+											class="sbj">해운대</span>
+										</a>
+									</p> 
+									<p class="location">부산광역시 해운대구</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="child_box" tabindex="-1">
+							<div class="item_box">
+								<div class="photo">
+									<a href="https://www.visitbusan.net/index.do?menuCd=DOM_000000201001001000&uc_seq=368&lang_cd=ko" style="width: 268px; height: 200px;"> <img
+										alt="용두산공원" src="/img/dragon.png"
+										style="width: 268px; height: 200px;">
+									</a>
+								</div>
+								<div class="info">
+									<p class="tit">
+										<a href="https://www.visitbusan.net/index.do?menuCd=DOM_000000201001001000&uc_seq=368&lang_cd=ko"> <span class="flag flag01">인기</span> <span
+											class="sbj">용두산공원</span>
 										</a>
 									</p>
-									<p class="location">지역 입력</p>
+									<p class="location">부산광역시 중구 용두산길 37-55</p>
 								</div>
 							</div>
 						</div>
@@ -309,11 +309,7 @@
 
 					</ul>
 				</div>
-				<div class="more_area">
-					<a
-						href="/kr/board/list.do?boardId=BBS_0000008&menuCd=DOM_000000204008000000"
-						class="sec_more" title="더보기">더보기</a>
-				</div>
+				
 			</div>
 
 		</section>

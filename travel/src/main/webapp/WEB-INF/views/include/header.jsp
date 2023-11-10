@@ -48,21 +48,23 @@
 		<li><a href=#><h2>여행</h2></a>
 
 			<ul class="submenu1">
-				<li><a href="/Trip">여행지</a></li>
-				<li><a href="#">추천여행10선</a></li>
+				<li><a href="/Trip">부산 여행 명소</a></li>
+				<li><a href="/Walk">부산 도보여행</a></li>
+				<li><a href="/Food">추천 맛집</a></li>
 				<li><a href="#">추천여행지</a></li>
 			</ul></li>
 		<li><a href=#><h2>일정</h2></a>
 
 			<ul class="submenu2">
-				<li><a href="#">추천일정</a></li>
-				<li><a href="#">테마일정</a></li>
+				<li><a href="/Recom">추천일정</a></li>
+				<li><a href="/Tema">테마일정</a></li>
 			</ul></li>
 
 		<li><a href=#><h2>정보</h2></a>
 			<ul class="submenu3">
+				<li><a href="/Festa">축제정보</a></li>
 				<li><a href="#">기상정보</a></li>
-				<li><a href="#">기타정보</a></li>
+				<li><a href="/Handi">편의시설 정보</a></li>
 			</ul></li>
 		<li><a href=#><h2>안내</h2></a>
 
@@ -72,6 +74,8 @@
 			</ul></li>
 	</ul>
 	<!-- header end -->
+	
+	
 
 </body>
 </html>
