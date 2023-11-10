@@ -19,11 +19,9 @@
   }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
   window.onload = function() {
-	 const  btnEl  = document.getElementById('getData');
-	 const  div1El = document.getElementById('div1');
-	 btnEl.addEventListener('click', function() {
 		 let url = '/travle';   // servlet 사용
 		// let url = 'https://openapi.foodsafetykorea.go.kr/api/70e153f2e8f64995941b/COOKRCP01/xml/1/50';
 		 axios( {
@@ -46,6 +44,7 @@
 			   console.log(arr);
 			   let  html  = '';
 			   arr.forEach( (item) => {	
+				  /*
 				   html += `<ul>`;
 				   html += `<li>페이지수   : ${item.pageNo}</li>`;
 				   html += `<li>전체페이지 : ${item.totalCount}</li>`;
@@ -55,6 +54,7 @@
 				   html += `<li>경도       : ${item.LNG}</li>`;
 				   html += `<li>여행지     : ${item.PLACE}</li>`;
 				   html += `</ul>`;
+				   */
 				   
 				  /*  html += item.pageNo + '&'
 				   html += item.totalCount + '&'
@@ -77,6 +77,14 @@
 				   html += item.MAIN_IMG_NORMAL + '&'
 				   html += item.MAIN_IMG_THUMB + '&'
 				   html += item.ITEMCNTNTS + '<br>' */
+				   
+				   
+				   html += item.totalCount + '&'
+				   html += item.UC_SEQ + '&'
+				   html += item.PLACE + '&'
+				   html += item.MAIN_TITLE + '&'
+				   html += item.ADDR1 + '&'
+				   html += item.MAIN_IMG_THUMB + '&'
 			   })			   
 			   alert(html)
 			   div1El.innerHTML = html; 
@@ -89,9 +97,6 @@
 </script>
 </head>
 <body>
-   <h2>여행정보 가져오기</h2>
-   <button id="getData">가져오기</button>
-   <div id="div1"></div>
 </body>
 </html>
 
