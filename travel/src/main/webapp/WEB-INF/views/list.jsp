@@ -6,8 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 <link rel="stylesheet" href="/css/main.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <style>
   .button-container {
     display: flex;
@@ -28,9 +32,6 @@
   #pageNumbers {
     font-size: 20px;
   }
-  
-  
-  
   
   
 /* 검색창에 대한 CSS 수정 */
@@ -60,7 +61,11 @@ form button[type="submit"] {
 }
   
   
-  
+#list {
+    background-color: #808080; /* 원하는 배경색으로 변경 */
+
+}
+    
   
   
 </style>
@@ -70,21 +75,30 @@ form button[type="submit"] {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
- <%@include file="/WEB-INF/views/include/header.jsp" %>
- <div class="main_image">
-  <img src="img/beach.jpg" width="100%" height="300px">
-  <div class="main_image_text">
-    <h1 style="font-size:50px">공지사항</h1>
-    <p>특별하고 즐거움이 가득한 국내여행</p>
-  </div>
-</div>
+<%@include file="/WEB-INF/views/include/header.jsp"%>
+
+	<br>
+	<br>
+ 
+	<!-- body start -->
+	<div id="content">
+		<div style="position: relative; width: 100%; height: 400px;">
+			<img alt="back_img" src="img/beach.jpg"
+				style="width: 100%; height: 100%;">
+			<div
+				style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+				<h1 style="color: #fff; font-size: 50px;">공지사항</h1>
+				<h2 style="color: black; font-size: 22px;">이벤트 및 공지사항을 확인하세요</h2>
+			</div>
+		</div>
+	</div>
   <br><br>
   <div id="main">
     <h2>공지사항</h2>
     <button id="btnWrite" class="btn btn-dark" style="float:right;margin-bottom:20px;">새글 쓰기</button>
     <table class="table">
   <thead class="thead-dark">
-    <tr>
+    <tr id="list">
       <th scope="col">번호</th>
       <th scope="col">제목</th>
       <th scope="col">작성</th>
