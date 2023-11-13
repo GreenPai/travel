@@ -28,6 +28,41 @@
   #pageNumbers {
     font-size: 20px;
   }
+  
+  
+  
+  
+  
+/* 검색창에 대한 CSS 수정 */
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px; /* 아래 여백 추가 */
+}
+
+form input[type="text"] {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 8px; /* 간격 조절 */
+}
+
+form button[type="submit"] {
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+  
+  
+  
+  
+  
 </style>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -75,11 +110,11 @@
   <span id="pageNumbers"></span>
   <button id="nextButton">다음</button>
 </div>
-  
-    <form action="/search" method="get">
-        <input type="text" name="keyword" placeholder="검색어를 입력하세요">
-        <button type="submit">검색</button>
-    </form>
+<br>
+<form action="/search" method="get">
+   <input type="text" name="keyword" placeholder="검색어를 입력하세요">
+   <button type="submit">검색</button>
+</form>
   
   
   

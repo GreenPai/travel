@@ -202,9 +202,9 @@
                      // js 에서 추가된 속성을 조작
                      // console.dir(this) : dataset 속성안에 저정된다.
                      // this.dataset.cno
-                     let cno = this.idx;
+                     let cno = this.dataset.idx;
+                     //let cno = this.idx;
                      alert(cno)
-                     
                      //서버에 가서 삭제한 후 돌아온다
                      axios.delete('/comment?cno='+ cno)
                         .then((res) => {

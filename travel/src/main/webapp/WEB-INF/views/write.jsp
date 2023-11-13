@@ -38,10 +38,11 @@
 </script>
 </head>
 <body>
+   <table id="table"> 
 	<div id="main">
 		<h2>게시물 쓰기</h2>	
 
-		<form action="/Write" method="POST">
+		<form action="/Write" method="POST"  enctype="multipart/form-data" >
 			<div class="mb-3">
 				<label for="formTitle" class="form-label"><b style="color:red">*</b>제목</label>
 				<input type="text" class="form-control" name="title" 
@@ -56,6 +57,12 @@
 				<label for="formContent" class="form-label">내용</label>
 				<textarea class="form-control" id="formContent"  name="content"  rows="5"></textarea>
 			</div>
+			
+			<div class="mb-3" id="tdfile">
+            <input type="button" id="btnAddFile" value="파일 추가(최대 100M Byte)" /><br> 
+            <input type="file"   name="upfile" class="upfile" /><br>
+            </div>
+                        
 			<div class="mb-3">
 				<input type="submit" class="btn btn-dark"
 					id="formSubmit" value="가입" >
@@ -66,9 +73,9 @@
 
 		</form>
 		
-
 	</div>
 	<!-- div main end -->
+    </table>
     
     <script>
        // cliens validation

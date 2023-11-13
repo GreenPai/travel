@@ -149,7 +149,7 @@ WHERE RN BETWEEN #{start} AND #{end}
 <select id="boardSearch" resultType="com.board.domain.BoardVo">
     SELECT *
     FROM BOARDBOOT
-    WHERE TITLE LIKE #{keyword}
+    WHERE TITLE LIKE '%' || #{keyword} || '%'
 </select>
 
 

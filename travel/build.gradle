@@ -33,7 +33,7 @@ dependencies {
 		
 	implementation 'org.mybatis:mybatis-spring'
 	implementation 'org.mybatis:mybatis'
-	
+	implementation 'commons-io:commons-io:2.11.0'
 	compileOnly 'org.projectlombok:lombok:1.18.30'
 }
 

@@ -1,19 +1,33 @@
 package com.board.controller;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.board.domain.BoardVo;
@@ -77,12 +91,27 @@ public class BoardController {
    
    // 새글저장 /Write?title=새 글쓰기&writer=글쓰니&content=내욘
    @RequestMapping("/Write")
-   public  ModelAndView  write(BoardVo vo) {
+   public  ModelAndView  write(MultipartHttpServletRequest request, BoardVo vo) {
    //public  ModelAndView  write(String GTitle, String writer, String content) {
+	  
+	   // 파일을 받기 위한 로직
+       MultipartFile file = request.getFile("upfile");
+
+       if (file != null && !file.isEmpty()) {
+           String fileName = saveFile(file); // 파일 저장 로직
+        //   vo.setFileName(fileName); // 파일명을 VO에 설정
+       }
+
+       // DB에 저장
+       boardMapper.boardInsert(vo);
       
+       // File정보저장
+      // FileVo filevo
+       
       // db 저장 (title, writer, content)
-      boardMapper.boardInsert(vo);
-      
+      //  boardMapper.boardInsert(vo);
+    
+      //
       // 저장후 이동할 페이지
       ModelAndView  mv = new ModelAndView();
       mv.setViewName("redirect:/List" );
@@ -90,7 +119,34 @@ public class BoardController {
       
    }
    
-   // /View?bno=3
+
+   // 파일 저장 로직
+   private String saveFile(MultipartFile file) {
+       try {
+           // 저장할 경로 설정 (D:\\dev\\data에 저장되도록 설정)
+           String uploadDir = "D:\\dev\\data";
+           File uploadPath = new File(uploadDir);
+
+           if (!uploadPath.exists()) {
+               uploadPath.mkdirs(); // 디렉토리가 없으면 생성
+           }
+
+           // 파일명 생성 (여기서는 원본 파일명을 그대로 사용)
+           String fileName = file.getOriginalFilename();
+           String filePath = uploadDir + File.separator + fileName;
+
+           // 파일 저장
+           File saveFile = new File(filePath);
+           file.transferTo(saveFile);
+
+           return fileName; // 파일명 반환
+       } catch (IOException e) {
+           e.printStackTrace();
+           return null;
+       }
+   }
+
+// /View?bno=3
    @RequestMapping("/View")
    public  ModelAndView   view(BoardVo vo) {
       
@@ -200,6 +256,72 @@ public class BoardController {
 	        return mv;
 	   }
 	
+	  	  	  
+	//---------------------------------------------------
+	   // 다운로드
+	   // type : external, internal
+	   // 정규식
+	   // {sfile}     - .jpg 와 같이 . 포함된 문자가 들어오면 문자를 무시 : .인식하지 않는다 : 사용금지
+	   // {sfile:.+}  - .+ : . 이 한 개 이상
+	   //               반드시 . 을 포함해야 한다
+	   @RequestMapping(value  = "/download/{type}/{sfile:.+}",
+	                 method = RequestMethod.GET )
+	   public   void   downloadFile(
+	         @PathVariable("type")   String type,
+	         @PathVariable("sfile")  String sfile,
+	         HttpServletResponse     response
+	         ) throws IOException {
+	      
+	      String     INTERNAL_FILE         =  sfile;
+	      String     EXTERNAL_FILE_PATH    =  "d:\\dev\\data\\" + sfile;
+	            
+	      File       file  =  null;
+	      if ( type.equalsIgnoreCase("internal")  ) {
+	         ClassLoader   classLoader = 
+	            Thread.currentThread().getContextClassLoader();
+	         file   = new File( classLoader.getResource(INTERNAL_FILE).getPath() ); 
+	      } else {
+	         file   = new File( EXTERNAL_FILE_PATH );
+	      }
+	      
+	      if( !file.exists()  ) {
+	         String errorMessage = "죄송합니다.파일이 없습니다";
+	         System.out.println( errorMessage );
+	         OutputStream  outputStream = response.getOutputStream();
+	         outputStream.write(  errorMessage.getBytes(Charset.forName("UTF-8")) );
+	         outputStream.close();
+	         return;
+	      }
+	      
+	      // 실제 다운로드
+	     // String  mimeType = URLConnection.guessContentTypeFromName(file.getName());
+	      String   mimeType   =  "application/octet-stream";   // 무조건 다운로드
+	      
+	      // 파일명의 한글처리 - 한글파일명이 깨지지 않도록 하기위해     
+	      String   fname   = new String( 
+	            file.getName().getBytes("UTF-8"), "ISO-8859-1" );
+	      
+	      response.setContentType( mimeType );
+	      response.setHeader("Content-Disposition",
+	          String.format("inline; filename=\"" + fname + "\"" ));
+	      
+	      response.setContentLength( (int) file.length() );
+	      
+	      InputStream   inputStream  = new BufferedInputStream(
+	         new FileInputStream( file )   );
+	      
+	      FileCopyUtils.copy( inputStream, response.getOutputStream() );
+	      
+	      inputStream.close();
+	      
+	      
+	   }
+	  
+	  
+	  
+	  
+	  
+	  
 	
 }
 
