@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.board.domain.BoardVo;
 import com.board.domain.CommentVo;
-import com.board.domain.UserVo;
 
 @Mapper
 public interface BoardMapper {
