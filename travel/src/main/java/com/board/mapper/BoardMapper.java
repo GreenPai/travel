@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.board.domain.BoardVo;
 import com.board.domain.CommentVo;
+import com.board.domain.FileVo;
 
 @Mapper
 public interface BoardMapper {
@@ -25,6 +26,10 @@ public interface BoardMapper {
 	public int getBoardCount();
 	public List<BoardVo> pageBoardList(Map<String, Object> params);
 	public List<BoardVo> boardSearch(String keyword);
+	public BoardVo getBno(BoardVo vo);
+	public void insertFile(FileVo fileVo);
+	public List<FileVo> boardFileList(BoardVo vo);
+
 	
 }
 

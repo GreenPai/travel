@@ -62,11 +62,10 @@ form button[type="submit"] {
   
   
 #list {
-    background-color: #808080; /* 원하는 배경색으로 변경 */
-
+    background-color: #808080; /* 원하는 배경색으로 변경 */	
 }
     
-  
+
   
 </style>
 

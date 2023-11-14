@@ -10,8 +10,6 @@
    href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
    crossorigin="anonymous">
-<link rel="stylesheet" href="/css/main.css" />
-
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
    crossorigin="anonymous"></script>
@@ -23,42 +21,70 @@
    src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
    crossorigin="anonymous"></script>
-   
+<link rel="stylesheet" href="/css/main.css" />
+<link rel="stylesheet" href="/css/new_main.css" />
+<style>
+.fileplus {
+  border: 1px solid #ced4da; /* 테두리 설정 */
+  border-radius: 5px; /* 테두리의 모서리를 둥글게 설정 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 설정 */
+  padding: 5px; /* 내부 여백 설정 */
+}
+
+  #main {
+        padding: 0 200px; /* 좌우 여백을 200px로 설정 */
+    }
+</style>
 </head>
 <body>
-   <div id="main">
-      <h2>내용보기</h2>
+   <%@include file="/WEB-INF/views/include/header.jsp" %>
 
-      <div class="mb-3">
-         <label for="formBno" class="form-label"><b style="color: red"></b>글번호</label>
-         <input type="text" class="form-control" readonly name="bno"
-            id="formBno" value="${ vo.bno }">
-      </div>
-      <div class="mb-3">
-         <label for="formTitle" class="form-label"><b
-            style="color: red"></b>제목</label> <input type="text" class="form-control"
-            readonly name="bno" id="formTitle" value="${ vo.title }">
-      </div>
-      <div class="mb-3">
-         <label for="formWriter" class="form-label"><b
-            style="color: red">*</b>글쓴이</label> <input type="text" class="form-control"
-            readonly name="writer" id="formWriter" value="${ vo.writer }">
-      </div>
-      <div class="mb-3">
-         <label for="formRegdate" class="form-label"><b
-            style="color: red">*</b>날짜</label> <input type="text" class="form-control"
-            readonly name="regdate" id="formRegdate" value="${ vo.regdate }">
-      </div>
-      <div class="mb-3">
-         <label for="formHit" class="form-label"><b style="color: red">*</b>조회수</label>
-         <input type="text" class="form-control" readonly name="hit"
-            id="formHit" value="${ vo.hit }">
-      </div>
-      <div class="mb-3">
-         <label for="formContent" class="form-label">내용</label>
-         <textarea class="form-control" id="formContent" name="content"
-            readonly rows="5">${ vo.content }</textarea>
-      </div>
+   <br>
+   <br>
+   <br>
+   <br>
+  <div id="main">
+  
+  
+<div class="mb-3" style="display: flex; gap: 20px; justify-content: space-between;">
+    <div style="flex: 1; margin-right: 10px;">
+        <label for="formHit" class="form-label"><b style="color: red"></b>조회수</label>
+        <input type="text" class="form-control" readonly name="hit" id="formHit" value="${ vo.hit }">
+    </div>
+    <div style="flex: 1;">
+        <label for="formBno" class="form-label"><b style="color: red"></b>글번호</label>
+        <input type="text" class="form-control" readonly name="bno" id="formBno" value="${ vo.bno }">
+    </div>
+    <div style="flex: 1;">
+        <label for="formWriter" class="form-label"><b style="color: red"></b>글쓴이</label>
+        <input type="text" class="form-control" readonly name="writer" id="formWriter" value="${ vo.writer }">
+    </div>
+    <div style="flex: 1;">
+        <label for="formRegdate" class="form-label"><b style="color: red"></b>날짜</label>
+        <input type="text" class="form-control" readonly name="regdate" id="formRegdate" value="${ vo.regdate }">
+    </div>
+</div>
+    <div class="mb-3">
+        <label for="formTitle" class="form-label"><b style="color: red"></b>제목</label>
+        <input type="text" class="form-control" readonly name="bno" id="formTitle" value="${ vo.title }">
+    </div>
+ 
+    <div class="mb-3">
+        <label for="formContent" class="form-label">내용</label>
+        <textarea class="form-control" id="formContent" name="content" readonly rows="5">${ vo.content }</textarea>
+    </div>
+    <div class="mb-3"> 
+        <label for="formContent" class="fileplus">첨부파일</label>
+        <td class="filelist" colspan="3">
+            <c:forEach var="file"  items="${ fileList }">
+                <div>
+                    <a href="/download/external/${ file.SFILENAME }">▶ ${ file.FILENAME }</a> 
+                </div>
+            </c:forEach>  
+        </td>  
+    </div>
+
+       
       <div class="mb-3">
          <input type="button" class="btn btn-dark" id="formUpdate"
             value="수정하기"> <input type="button" class="btn btn-dark"
@@ -87,6 +113,7 @@
       <hr>
       <div id="commentList">         
       </div>
+   </div>
    </div>
    <!-- div main end -->
 
