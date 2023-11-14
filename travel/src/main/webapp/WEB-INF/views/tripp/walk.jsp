@@ -38,7 +38,7 @@
 			   arr.forEach( (row) => {	
 				  // alert(JSON.stringify(row))
 				  console.log(row.MAIN_TITLE)
-				  const walkInformUrl = 'walk?UC_SEQ=' + row.UC_SEQ + '&MAIN_TITLE=' + row.MAIN_TITLE;
+				  const walkInformUrl = '/WalkView?UC_SEQ=' + row.UC_SEQ + '&MAIN_TITLE=' + row.MAIN_TITLE;
 				   /*html += '<ul>';				   
 				   html += '<li>썸네일이미지URL :' + row.MAIN_IMG_THUMB + '</li>';
 				   html += '<li>콘텐츠ID:        ' + row.UC_SEQ + '</li>';

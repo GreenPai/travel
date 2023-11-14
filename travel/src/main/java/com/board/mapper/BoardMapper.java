@@ -9,6 +9,7 @@ import com.board.domain.BoardVo;
 import com.board.domain.CommentVo;
 import com.board.domain.FileVo;
 
+
 @Mapper
 public interface BoardMapper {
 	

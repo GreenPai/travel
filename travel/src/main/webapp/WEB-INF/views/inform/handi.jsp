@@ -52,7 +52,7 @@
 				   html += '<p>구분:'          + row.gubun + '</p>'
 				   html += '<p>편의시설 종류:' + row.setValueNm + '</p>'
 				   html += '<p>상호명:'        + row.subject + '</p>'
-				   html += '<p>상세정보'      + row.contents + '</p>'
+				   html += '<p>상세정보'       + row.contents + '</p>'
 				   html += '</div>'
 				   html += '</div>';
 			   })			   
@@ -102,7 +102,7 @@
 				<hr>
 
 				<div class="col-md-3 mb-4" id="div1"
-					style="width: 1400px; display: flex; flex-wrap: wrap;"></div>
+					style="width: 1400px; display: flex; flex-direction: column;"></div>
 			</div>
 		</div>
 	</div>
