@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.todo.mapper.PlanMapper">
+
+    <sql id="planColumns">
+        p_idx, item, status
+    </sql>
+
+    <select id="selectPlanList" resultType="PlanVo">
+        SELECT <include refid="PlanColumns" />
+        FROM T_PLANER
+        order by p_idx desc
+    </select>
+
+    <insert id="insertPlanList" parameterType="PlanVo">
+        INSERT INTO T_PLANER (
+            <include refid="planColumns"/>
+        ) VALUES (
+            ( SELECT  NVL(MAX(P_IDX), 0)+1 FROM T_PLANER )
+            , #{item}
+            , 'N'
+        )
+    </insert>
+
+    <update id="updatePlanList" parameterType="PlanVo">
+        UPDATE T_PLANER
+        SET
+            status = 'Y'
+        WHERE p_idx = #{p_idx}
+    </update>
+
+    <delete id="deletePlanList" parameterType="long">
+        DELETE T_PLANER
+        where p_idx = #{p_idx}
+    </delete>
+    
+</mapper>
+    
