@@ -46,7 +46,6 @@
 					html += '지역: '    + row.GUGUN_NM +'<br>'
 					html += '주소: '    + row.ADDR1 + '<br>'
 					html += '연락처: '  + row.CNTCT_TEL + '<br>'
-					html += '홈페이지:' + row.HOMEPAGE_URL
 					html += '</div>'
 					html += '<div class="comment_1">'
 					html += '상세내용:' + row.ITEMCNTNTS

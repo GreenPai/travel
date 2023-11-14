@@ -29,15 +29,7 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="page_num">
-				<p>
-					<strong>총 게시물</strong><span></span>건
-				</p>
-				<hr>
-
-				<div class="col-md-3 mb-4" id="div1"
-					style="width: 1400px; display: flex; flex-direction: column;"></div>
-			</div>
+			
 		</div>
 	</div>
 
