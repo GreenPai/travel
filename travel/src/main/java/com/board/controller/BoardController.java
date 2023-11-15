@@ -12,7 +12,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,8 +48,10 @@ public class BoardController {
    // 목록
    //@RequestMapping("/List")
    @GetMapping("/List")
-   public  ModelAndView  list(@RequestParam(defaultValue="1") int page, Model model) {
+   public  ModelAndView  list(@RequestParam(defaultValue="1") int page, Model model, 
+		                      @RequestParam("menu_id") String menuid) {
       
+	   System.out.println(menuid);
 	   // 페이지 사이즈 
 	   int pageSize = 10;
        // page      -> 현재 페이지
@@ -56,7 +60,7 @@ public class BoardController {
 	   // totalPage -> 전체 페이지
 	   
       // 전체 게시물 수 조회
-      int totalCount = boardMapper.getBoardCount();
+      int totalCount = boardMapper.getBoardCount(menuid);
       
       // 총 페이지 수 계산
       int totalPage = (int) Math.ceil((double) totalCount/pageSize);
@@ -67,7 +71,8 @@ public class BoardController {
       Map<String, Object> params = new HashMap<>();
       params.put("start", start);
       params.put("end", page * pageSize);
-      System.out.println("스타트"+start);
+      params.put("menuid", menuid);
+      
       // 현재 페이지에 페이지에 해당하는 게시물 목록 조회
       List<BoardVo> boardList = boardMapper.pageBoardList(params);
       
@@ -94,11 +99,15 @@ public class BoardController {
    
    // 새글저장 /Write?title=새 글쓰기&writer=글쓰니&content=내욘
    @RequestMapping("/Write")
-   public  ModelAndView  write(MultipartHttpServletRequest request, BoardVo vo) {
+   public  ModelAndView  write(MultipartHttpServletRequest request, BoardVo vo, HttpServletRequest loginrequest) {
    //public  ModelAndView  write(String GTitle, String writer, String content) {
 	    
       //  System.out.println(boardVo.getBno());
-          
+	   HttpSession session = loginrequest.getSession();
+	   String username = (String) session.getAttribute("username");
+	   String userid = (String) session.getAttribute("userid");
+	   String nickname = (String) session.getAttribute("nickname");
+
 	   // DB에 저장
 	   boardMapper.boardInsert(vo);
 
@@ -112,6 +121,7 @@ public class BoardController {
     	   
     	   MultipartFile file = request.getFile("upfile" + i);
        
+       // 파일 저장
        if (file != null && !file.isEmpty()) {
            String fileName = saveFile(file); // 파일 저장 로직
        
@@ -126,12 +136,39 @@ public class BoardController {
            fileVo.setWRITER(writer);
            fileVo.setTITLE(title);
            fileVo.setIDX(idx);
+           fileVo.setWRITER(writer);
+           fileVo.setTITLE(title);
            boardMapper.insertFile(fileVo);
            
            }
        }
                
-
+      // 이미지파일 저장
+       for( int i = 0; i <=9; i++) {
+    	         
+       MultipartFile imgfile = request.getFile("imgupfile"+ i);
+       
+       // 이미지파일 저장
+       if (imgfile != null && !imgfile.isEmpty()) {
+           String fileName = saveImgFile(imgfile); // 파일 저장 로직
+       
+           // 확장자 추출
+           int lastIndex = fileName.lastIndexOf(".");
+           if (lastIndex != -1) {
+               String fileExtension = "."+ fileName.substring(lastIndex + 1);
+           fileVo.setFILEEXT(fileExtension);
+           }
+           fileVo.setFILENAME(fileName);
+           fileVo.setSFILENAME(fileName);
+           fileVo.setWRITER(writer);
+           fileVo.setTITLE(title);
+           fileVo.setIDX(idx);
+           fileVo.setWRITER(writer);
+           fileVo.setTITLE(title);
+           boardMapper.insertImgFile(fileVo);
+           
+           }
+       }
       // 저장후 이동할 페이지
       ModelAndView  mv = new ModelAndView();
       mv.setViewName("redirect:/List" );
@@ -166,22 +203,61 @@ public class BoardController {
        }
    }
 
+   // 이미지 파일 저장 로직
+   private String saveImgFile(MultipartFile imgfile) {
+	   try {
+		   // 저장할 경로 설정 (D:\\dev\\data에 저장되도록 설정)
+		   String uploadDir = "C:\\Users\\GGG\\git\\travel\\travel\\src\\main\\resources\\static\\download_img";
+		   File uploadPath = new File(uploadDir);
+		   
+		   if (!uploadPath.exists()) {
+			   uploadPath.mkdirs(); // 디렉토리가 없으면 생성
+		   }
+		   
+		   // 파일명 생성 (여기서는 원본 파일명을 그대로 사용)
+		   String fileName = imgfile.getOriginalFilename();
+		   String filePath = uploadDir + File.separator + fileName;
+		   
+		   // 파일 저장
+		   File saveFile = new File(filePath);
+		   imgfile.transferTo(saveFile);
+		   
+		   return fileName; // 파일명 반환
+	   } catch (IOException e) {
+		   e.printStackTrace();
+		   return null;
+	   }
+   }
+
 // /View?bno=3
    @RequestMapping("/View")
    public  ModelAndView   view(BoardVo vo) {
       
+	  
       // 조회수 증가 (hit = hit + 1)
       boardMapper.boardHitUpdate( vo );
       List<FileVo> filevoList = boardMapper.boardFileList(vo);
-      System.out.println(filevoList);
+      System.out.println(" 파일리스트 "+filevoList);
       // bno 으로  view.jsp 필요한 정보를 조회
       BoardVo       boardVo =  boardMapper.boardView( vo ); 
       
-      //System.out.println( boardVo );
+	  // 파일 이름 들고오기. PNG
+      List<FileVo> sfile = boardMapper.getFileName( vo );
+      System.out.println("sfile" +sfile);
+      // filename 이름 배열로 분리
+      List<String> filenames = new ArrayList<>();
+      for (FileVo filesVo : sfile) {
+          filenames.add(filesVo.getSFILENAME());
+      }
+      
+      System.out.println("filename:" + filenames);
+      
+
       
       ModelAndView  mv      =  new ModelAndView();
       mv.addObject("vo", boardVo);
       mv.addObject("fileList",filevoList);
+      mv.addObject("filepath",filenames);
       mv.setViewName("view");
       return mv;
    }

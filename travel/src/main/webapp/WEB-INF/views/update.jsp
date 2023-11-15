@@ -23,6 +23,13 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
+<style>
+
+  #main {
+        padding: 0 200px; /* 좌우 여백을 200px로 설정 */
+    }
+    
+</style>
 </head>
 <body>
 	<div id="main">

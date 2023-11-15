@@ -124,6 +124,7 @@
   
   SELECT COUNT(TITLE) AS totalCount
   FROM BOARDBOOT
+  WHERE MENU_ID = #{menuid}
   </select>
 
 
@@ -140,8 +141,9 @@
         FROM BOARDBOOT
         ORDER BY BNO DESC
     ) BOARDBOOT
+    WHERE MENU_ID = #{menuid}
 )
-WHERE RN BETWEEN #{start} AND #{end}
+WHERE RN BETWEEN #{start} AND #{end} 
 
 
   </select>
@@ -166,19 +168,51 @@ resultType="com.board.domain.BoardVo">
       IDX,
       FILENAME,
       FILEEXT,
-      SFILENAME
+      SFILENAME,
+      WRITER,
+      TITLE
    ) VALUES (
       bno_seq.NEXTVAL,
       #{IDX},
       #{FILENAME},
       #{FILEEXT},
-      #{SFILENAME}
+      #{SFILENAME},
+      #{WRITER},
+      #{TITLE}
+   )
+</insert>
+
+<insert id="insertImgFile">
+   INSERT INTO FILES (
+      FILE_NUM,
+      IDX,
+      FILENAME,
+      FILEEXT,
+      SFILENAME,
+      WRITER,
+      TITLE
+   ) VALUES (
+      bno_seq.NEXTVAL,
+      #{IDX},
+      #{FILENAME},
+      #{FILEEXT},
+      #{SFILENAME},
+      #{WRITER},
+      #{TITLE}
    )
 </insert>
 
 <select id="boardFileList" 
 resultType="com.board.domain.FileVo">
     SELECT *
+    FROM FILES
+    WHERE IDX = #{bno}
+</select>
+
+
+<select id="getFileName" 
+resultType="com.board.domain.FileVo">
+    SELECT SFILENAME
     FROM FILES
     WHERE IDX = #{bno}
 </select>

@@ -26,26 +26,50 @@
 <style>
 .fileplus {
   border: 1px solid #ced4da; /* 테두리 설정 */
-  border-radius: 5px; /* 테두리의 모서리를 둥글게 설정 */
+  border-radius: 10px; /* 테두리의 모서리를 둥글게 설정 */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 설정 */
   padding: 5px; /* 내부 여백 설정 */
 }
 
   #main {
         padding: 0 200px; /* 좌우 여백을 200px로 설정 */
+        background: #fff;
+        border: 3px solid #999999; /* 검정색 선 추가 */
+        border-radius: 20px; /* 모서리를 둥글게 설정 */
+        margin: 20px auto; /* 주변 여백 추가 및 가운데 정렬 */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 설정 */
+        width: 1400px; /* 가로 크기 설정 */
+        height: 2500px; /* 세로 크기 설정 */
     }
 </style>
 </head>
 <body>
    <%@include file="/WEB-INF/views/include/header.jsp" %>
-
+   <br>
+	<div id="content">
+		<div style="position: relative; width: 100%; height: 400px;">
+			<img alt="back_img" src="img/beach.jpg"
+				style="width: 100%; height: 100%;">
+			<div
+				style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+				<h1 style="color: #fff; font-size: 50px;">공지사항</h1>
+				<h2 style="color: black; font-size: 22px;">이벤트 및 공지사항을 확인하세요</h2>
+			</div>
+		</div>
+	</div>
+  <br><br>
    <br>
    <br>
    <br>
    <br>
+   
   <div id="main">
-  
-  
+
+<br><br>	  
+    <div class="mb-3">
+        <label for="formTitle" class="form-label"><b style="color: red"></b>제목</label>
+        <input type="text" class="form-control" readonly name="bno" id="formTitle" value="${ vo.title }">
+    </div>
 <div class="mb-3" style="display: flex; gap: 20px; justify-content: space-between;">
     <div style="flex: 1; margin-right: 10px;">
         <label for="formHit" class="form-label"><b style="color: red"></b>조회수</label>
@@ -64,14 +88,20 @@
         <input type="text" class="form-control" readonly name="regdate" id="formRegdate" value="${ vo.regdate }">
     </div>
 </div>
-    <div class="mb-3">
-        <label for="formTitle" class="form-label"><b style="color: red"></b>제목</label>
-        <input type="text" class="form-control" readonly name="bno" id="formTitle" value="${ vo.title }">
-    </div>
  
     <div class="mb-3">
         <label for="formContent" class="form-label">내용</label>
-        <textarea class="form-control" id="formContent" name="content" readonly rows="5">${ vo.content }</textarea>
+        <br>
+         <div style="text-align: center;">
+        <c:forEach items="${filepath}" var="file">
+          <c:if test="${file ne null}">
+          <img src="/download_img/${file}" alt="이미지" class="centered-image" width="600px" height="500px"><br>
+          </c:if>
+        </c:forEach>
+        </div>
+        <br>
+        <textarea class="form-control" id="formContent" name="content" readonly rows="20">${ vo.content }</textarea>
+        
     </div>
     <div class="mb-3"> 
         <label for="formContent" class="fileplus">첨부파일</label>
@@ -113,6 +143,7 @@
       <hr>
       <div id="commentList">         
       </div>
+
    </div>
    </div>
    <!-- div main end -->
@@ -151,8 +182,12 @@
           tag  +=  '<div class="mb-3">'
           tag  +=  '<div><b>' + comment.writer   +  '</b>:(' + comment.wdate + ')</div>'
           tag  +=  '<div>'    + comment.content  +  '</div>'
-          tag  +=  '<input type="button" class="btn btn-secondary btn-sm" data-idx="' + comment.cno + '" '
-          tag  +=  ' name="formCommentDelete" value="댓글 삭제"">'
+
+          tag += '<input type="button" class="btn btn-secondary btn-sm" data-idx="' + comment.cno + '" ';
+          tag += 'name="formCommentDelete" value="댓글 삭제" style="margin-right: 3px;">';
+          tag += '<input type="button" class="btn btn-secondary btn-sm" ';
+          tag += 'name="formCommentReply" value="댓글 달기" style="margin-left: 3px;">';
+
        }
        
        const  commentListEl = document.querySelector('#commentList');       
@@ -264,7 +299,7 @@
      
      //--------------------------
      
-   
+    // 대댓글
     </script>
 
 </body>

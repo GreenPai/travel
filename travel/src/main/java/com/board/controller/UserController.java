@@ -107,12 +107,13 @@ public class UserController {
         if(wd.equals(userwd)) {
         	
         	HttpSession session = request.getSession();
-        	session.setAttribute("userid", uservo.getUserid()); // 아이디
- 	        session.setAttribute("userpw", wd); // 비밀번호
+        	session.setAttribute("userid", uservo.getUserid());     // 아이디
+ 	        session.setAttribute("userpw", wd);                     // 비밀번호
  	        session.setAttribute("username", uservo.getUsername()); // 유저이름
- 	        session.setAttribute("useremail", uservo.getEmail()); // 이메일      
+ 	        session.setAttribute("useremail", uservo.getEmail());   // 이메일      
  	        session.setAttribute("nickname", uservo.getNickname()); // 닉네임
-
+            session.setAttribute("admin", uservo.getAdmin());       // 관리자권한
+                  
         	mv.setViewName("redirect:/");
     		return mv;
         }      

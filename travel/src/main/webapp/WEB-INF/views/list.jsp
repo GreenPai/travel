@@ -65,7 +65,9 @@ form button[type="submit"] {
     background-color: #808080; /* 원하는 배경색으로 변경 */	
 }
     
-
+ #main {
+        padding: 0 150px; /* 좌우 여백을 200px로 설정 */
+    }
   
 </style>
 
@@ -94,7 +96,16 @@ form button[type="submit"] {
   <br><br>
   <div id="main">
     <h2>공지사항</h2>
+
+   
+
+    <c:if test="${not empty sessionScope['admin']}">
     <button id="btnWrite" class="btn btn-dark" style="float:right;margin-bottom:20px;">새글 쓰기</button>
+    </c:if>
+         
+
+
+
     <table class="table">
   <thead class="thead-dark">
     <tr id="list">

@@ -20,6 +20,7 @@ public class UserVo {
 	private String userbirth;
     private String address;
     private String address2;
+    private String admin;
 	
 	@NonNull // NOT NULL
 	

@@ -22,14 +22,14 @@
 		<div class="header_login">
 			<ul>
 				<li><c:choose>
-						<c:when test="${not empty sessionScope['loginMember']}">
+						<c:when test="${not empty sessionScope['nickname']}">
 							<div class="left-content">
 								<img src="/img/user.jpg" alt="" class="left-image" width="40"
 									height="40">
-								<c:set var="userName" value="${sessionScope['loginMember']}" />
+								<c:set var="userName" value="${sessionScope['nickname']}" />
 								<p>${userName}</p>
 							</div>
-							<a href="/logout" class="right-logout">로그아웃</a>
+							<a href="/Logout" class="right-logout">로그아웃</a>
 						</c:when>
 						<c:otherwise>
 							<!-- 세션이 없을 때, 로그인 링크 -->
@@ -70,7 +70,8 @@
 		<li><a href=#><h2>안내</h2></a>
 
 			<ul class="submenu4">
-				<li><a href="/List">공지사항</a></li>
+				<li><a href="/List?menu_id=MENU01">공지사항</a></li>
+				<li><a href="/List?menu_id=MENU02">이벤트정보</a></li>
 				<li><a href="#">Q&A</a></li>
 			</ul></li>
 	</ul>

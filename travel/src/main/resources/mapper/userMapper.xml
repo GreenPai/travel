@@ -37,7 +37,8 @@
                USERID,
                PASSWD,
                USERNAME,
-               NICKNAME	         
+               NICKNAME,
+               ADMIN	         
   	  FROM     TRAVEL_USER
   	  WHERE    USERID = #{userid}
   

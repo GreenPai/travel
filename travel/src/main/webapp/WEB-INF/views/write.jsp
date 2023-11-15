@@ -35,9 +35,25 @@
 	   })
    })
 
+   $( function() {
+	   let num = 2;
+	   $('#btnAddImgFile').on('click', function() {		   
+		   let tag = '<input type="file" name="imgupfile' + num + '" class="upfile" /><br>';
+		   $('#imgfile').append( tag );
+		   num++;
+	   })
+   })
+
 </script>
+<style>
+
+  #main {
+        padding: 0 200px; /* 좌우 여백을 200px로 설정 */
+    }
+</style>
 </head>
 <body>
+   <br><br>
 		<form action="/Write" method="POST"  enctype="multipart/form-data" >
    <table id="table"> 
 	<div id="main">
@@ -61,6 +77,11 @@
 			<div class="mb-3" id="tdfile">
             <input type="button" id="btnAddFile" value="파일 추가(최대 100M Byte)" /><br> 
             <input type="file"   name="upfile1" class="upfile" /><br>
+            </div>
+
+			<div class="mb-3" id="imgfile">
+            <input type="button" id="btnAddImgFile" value="이미지 추가" /><br> 
+            <input type="file"   name="imgupfile1" class="upfile" /><br>
             </div>
                         
 			<div class="mb-3">
