@@ -91,8 +91,7 @@ body {
 }
 
 .menu a {
-    color: #000000;
-    text-decoration: none;
+    color: #fff;
 }
 
 
@@ -171,7 +170,7 @@ body {
 
 
 .menu > li:hover .submenu3 {
-    height: 200px;
+    height: 150px;
     transition-duration: 1s;
 }
 
@@ -380,4 +379,25 @@ body {
     border-bottom: 1px solid #d2d2d2;
     font-size: 16px;
     color: #545454;
+}
+
+.card {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 10px;
+  width: autox;
+  height: 350px;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.card-content p {
+  margin: 5px 0;
+  font-size: 15px;
 }

@@ -8,13 +8,13 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/main.css" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
   window.onload = function() {
 	 
-		 let url = '/travle';   // servlet 사용
+		 let url = '/tripView';   // servlet 사용
 		// let url = 'https://openapi.foodsafetykorea.go.kr/api/70e153f2e8f64995941b/COOKRCP01/xml/1/50';
 		 axios( {
 			 url    : url,
@@ -38,16 +38,15 @@
 			   arr.forEach( (row) => {	
 				  // alert(JSON.stringify(row))
 				  console.log(row.MAIN_TITLE)
-				  const tripInformUrl = 'trip?UC_SEQ=' + row.UC_SEQ + '&MAIN_TITLE=' + row.MAIN_TITLE;
-
+				  const tripInform = '/TripView?UC_SEQ=' + row.UC_SEQ;
+				   
+				   
 				   html += '<hr>'
 				   html += ' <div class="card">'
-				   html += '<a href="'    + tripInformUrl + '">'
+				   html += '<a href="'    + tripInform + '">'
 				   html += ' <img src=" ' + row.MAIN_IMG_THUMB  + ' " alt="썸네일 이미지">'
 				   html += '</a>'
 				   html += ' <div class="card-content">'
-				   html += '<p><b>콘텐츠ID</b>: ' + row.UC_SEQ + '</p>'
-				   html += '<p><b>콘텐츠명</b>: ' + row.MAIN_TITLE + '</p>'
 				   html += '<p><b>여행지</b>: '   + row.PLACE + '</p>'
 				   html += '<p><b>주소</b>: '     + row.ADDR1 + '</p>'
 				   html += '</div>'
@@ -96,7 +95,7 @@
 		<div class="row">
 			<div class="page_num">
 				<p>
-					<strong>총 게시물</strong><span></span>건
+					<strong>총 게시물</strong><span>${ row.MAIN_TITLE}</span>건
 				</p>
 				<hr>
 				

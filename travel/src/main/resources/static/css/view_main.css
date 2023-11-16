@@ -91,8 +91,7 @@ body {
 }
 
 .menu a {
-    color: #000000;
-    text-decoration: none;
+    color: #fff;
 }
 
 
@@ -380,4 +379,20 @@ body {
     border-bottom: 1px solid #d2d2d2;
     font-size: 16px;
     color: #545454;
+}
+
+.comment {
+    margin: 50px 0 0;
+    padding: 25px 35px;
+    border: 1px solid #ddd;
+}
+.comment_1 {
+    margin: 50px 0 0;
+    padding: 25px 35px;
+    border: 1px solid #ddd;
+}
+
+.title{
+	text-align: center;
+	margin: 30px;
 }

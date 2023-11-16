@@ -27,7 +27,7 @@
 	<script>
    
    $( function() {
-	   let num = 1;
+	   let num = 2;
 	   $('#btnAddFile').on('click', function() {		   
 		   let tag = '<input type="file" name="upfile' + num + '" class="upfile" /><br>';
 		   $('#tdfile').append( tag );
@@ -38,11 +38,11 @@
 </script>
 </head>
 <body>
+		<form action="/Write" method="POST"  enctype="multipart/form-data" >
    <table id="table"> 
 	<div id="main">
 		<h2>게시물 쓰기</h2>	
 
-		<form action="/Write" method="POST"  enctype="multipart/form-data" >
 			<div class="mb-3">
 				<label for="formTitle" class="form-label"><b style="color:red">*</b>제목</label>
 				<input type="text" class="form-control" name="title" 
@@ -60,7 +60,7 @@
 			
 			<div class="mb-3" id="tdfile">
             <input type="button" id="btnAddFile" value="파일 추가(최대 100M Byte)" /><br> 
-            <input type="file"   name="upfile" class="upfile" /><br>
+            <input type="file"   name="upfile1" class="upfile" /><br>
             </div>
                         
 			<div class="mb-3">
@@ -71,12 +71,12 @@
 				<button id="btnList" class="btn btn-dark" >목록</button>
 			</div>
 
-		</form>
 		
 	</div>
 	<!-- div main end -->
     </table>
     
+		</form>
     <script>
        // cliens validation
        // form tag 에 submit 이벤트가 발생하면 (input type="submit", <button>, input type="image")

@@ -8,9 +8,18 @@ import com.board.domain.PlanVo;
 
 	@Mapper
 	public interface PlanMapper {
-	    public List<PlanVo> selectPlanList();
-	    public int insertPlanList(PlanVo params);
-	    public int updatePlanList(PlanVo params);
-	    public int deletePlanList(Long p_idx);
+		public int addTodoList(String contents, String userid);
+
+		public List<PlanVo> getAllPlanList(String userid);
+
+		public List<PlanVo> getActivePlanList(String userid);
+
+		public List<PlanVo> getCompletedPlanList(String userid);
+
+		public int updateComYnOfTodoList(int idx);
+
+		public Object deletePlan(int idx, String userid);
+
+
 	}
 

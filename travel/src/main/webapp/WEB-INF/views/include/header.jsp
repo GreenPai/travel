@@ -65,6 +65,7 @@
 				<li><a href="/Festa">축제정보</a></li>
 				<li><a href="#">기상정보</a></li>
 				<li><a href="/Handi">편의시설 정보</a></li>
+				<li><a href="/Park">공영주차장 정보</a></li>
 			</ul></li>
 		<li><a href=#><h2>안내</h2></a>
 

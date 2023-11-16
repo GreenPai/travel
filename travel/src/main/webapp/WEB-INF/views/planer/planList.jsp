@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link href="static/css/css.css" rel="stylesheet" type="text/css">
+<link href="static/css/plan.css" rel="stylesheet" type="text/css">
 <script src="static/js/common.js"/></script>
 
 </head>
@@ -40,14 +40,14 @@
 		
 		<div class="list">
 			<c:choose>
-				<c:when test="${fn:length(todoList) == 0}">
+				<c:when test="${fn:length(planList) == 0}">
 					<span class="empty_notice">등록된 할 일이 없습니다.</span>
 				</c:when>
 				<c:otherwise>
-					<c:forEach var="item" items="${ todoList }">
+					<c:forEach var="item" items="${ planList }">
 						<li class="list${ item.idx } ${ item.complete_yn == 'Y' ? 'checked' : '' }">
 							<input type="checkbox" value="${ item.idx }" id="middle${ item.idx }" ${ item.complete_yn == 'Y' ? 'checked' : ''}><label for="middle${ item.idx }">${ item.contents }</label>
-							<button class="delBtn" onclick="deleteTodo(${ item.idx })" style="display: none;">삭제</button>
+							<button class="delBtn" onclick="deletePlan(${ item.idx })" style="display: none;">삭제</button>
 						</li>
 					</c:forEach>
 				</c:otherwise>

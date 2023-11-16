@@ -1,38 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.todo.mapper.PlanMapper">
+<mapper namespace="com.board.mapper.PlanMapper">
 
-    <sql id="planColumns">
-        p_idx, item, status
-    </sql>
-
-    <select id="selectPlanList" resultType="PlanVo">
-        SELECT <include refid="PlanColumns" />
-        FROM T_PLANER
-        order by p_idx desc
-    </select>
-
-    <insert id="insertPlanList" parameterType="PlanVo">
-        INSERT INTO T_PLANER (
-            <include refid="planColumns"/>
-        ) VALUES (
-            ( SELECT  NVL(MAX(P_IDX), 0)+1 FROM T_PLANER )
-            , #{item}
-            , 'N'
-        )
-    </insert>
-
-    <update id="updatePlanList" parameterType="PlanVo">
-        UPDATE T_PLANER
-        SET
-            status = 'Y'
-        WHERE p_idx = #{p_idx}
-    </update>
-
-    <delete id="deletePlanList" parameterType="long">
-        DELETE T_PLANER
-        where p_idx = #{p_idx}
-    </delete>
+	<select id="getAllPlanList" resultType="com.board.domain.PlanVo">
+    
+		SELECT * FROM TODO WHERE USERID=#{userid}
+	</select>
+    
+	<select id="getActivePlanList" resultType="com.board.domain.PlanVo">
+		SELECT * FROM TODO WHERE USERID=#{userid} AND complete_yn='N'
+	</select>
+    
+	<select id="getCompletedPlanList" resultType="com.board.domain.PlanVo">
+		SELECT * FROM TODO WHERE USERID=#{userid} AND complete_yn='Y'
+	</select>
+	
+	<insert id="addPlanList">
+		INSERT INTO TODO(
+		    IDX,
+			CONTENTS, 
+			USERID
+			) VALUES (
+			( SELECT NVL(MAX(IDX), 0)+1  FROM TODO),
+			#{contents}, 
+			#{userid}
+		)
+	</insert>
+	
+	<delete id="deletePlan">
+		DELETE FROM TODO WHERE IDX=#{idx} AND USERID=#{userid}
+	</delete>
+	
+	<update id="updateComYnOfPlanList">
+		{
+			CALL updateComYnOfPlanList( #{idx} )
+		}
+	</update>
     
 </mapper>
     

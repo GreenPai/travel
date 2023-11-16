@@ -7,8 +7,9 @@ import lombok.Setter;
 @Setter
 public class PlanVo {
 	
-	private int p_idx;
-	private String item;
-	private String status;	
+	private int idx;
+	private String contents;
+	private String complete_yn;	
+	private String userid;
 
 }

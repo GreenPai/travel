@@ -32,7 +32,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.board.domain.BoardVo;
 import com.board.domain.CommentVo;
+import com.board.domain.FileVo;
 import com.board.mapper.BoardMapper;
+
+import lombok.NonNull;
 
 @Controller
 public class BoardController {
@@ -93,25 +96,42 @@ public class BoardController {
    @RequestMapping("/Write")
    public  ModelAndView  write(MultipartHttpServletRequest request, BoardVo vo) {
    //public  ModelAndView  write(String GTitle, String writer, String content) {
-	  
-	   // 파일을 받기 위한 로직
-       MultipartFile file = request.getFile("upfile");
+	    
+      //  System.out.println(boardVo.getBno());
+          
+	   // DB에 저장
+	   boardMapper.boardInsert(vo);
 
+	   FileVo fileVo = new FileVo();
+	   String writer = vo.getWriter() ;
+	   String title  = vo.getTitle();
+	   BoardVo   boardVo = boardMapper.getBno(vo);
+	   int idx    = boardVo.getBno();
+	
+       for( int i = 0; i <=9; i++) {
+    	   
+    	   MultipartFile file = request.getFile("upfile" + i);
+       
        if (file != null && !file.isEmpty()) {
            String fileName = saveFile(file); // 파일 저장 로직
-        //   vo.setFileName(fileName); // 파일명을 VO에 설정
-       }
-
-       // DB에 저장
-       boardMapper.boardInsert(vo);
-      
-       // File정보저장
-      // FileVo filevo
        
-      // db 저장 (title, writer, content)
-      //  boardMapper.boardInsert(vo);
-    
-      //
+           // 확장자 추출
+           int lastIndex = fileName.lastIndexOf(".");
+           if (lastIndex != -1) {
+               String fileExtension = "."+ fileName.substring(lastIndex + 1);
+           fileVo.setFILEEXT(fileExtension);
+           }
+           fileVo.setFILENAME(fileName);
+           fileVo.setSFILENAME(fileName);
+           fileVo.setWRITER(writer);
+           fileVo.setTITLE(title);
+           fileVo.setIDX(idx);
+           boardMapper.insertFile(fileVo);
+           
+           }
+       }
+               
+
       // 저장후 이동할 페이지
       ModelAndView  mv = new ModelAndView();
       mv.setViewName("redirect:/List" );
@@ -152,7 +172,8 @@ public class BoardController {
       
       // 조회수 증가 (hit = hit + 1)
       boardMapper.boardHitUpdate( vo );
-      
+      List<FileVo> filevoList = boardMapper.boardFileList(vo);
+      System.out.println(filevoList);
       // bno 으로  view.jsp 필요한 정보를 조회
       BoardVo       boardVo =  boardMapper.boardView( vo ); 
       
@@ -160,6 +181,7 @@ public class BoardController {
       
       ModelAndView  mv      =  new ModelAndView();
       mv.addObject("vo", boardVo);
+      mv.addObject("fileList",filevoList);
       mv.setViewName("view");
       return mv;
    }

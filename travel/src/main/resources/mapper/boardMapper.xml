@@ -152,11 +152,36 @@ WHERE RN BETWEEN #{start} AND #{end}
     WHERE TITLE LIKE '%' || #{keyword} || '%'
 </select>
 
+<select id="getBno" 
+resultType="com.board.domain.BoardVo">
+    SELECT *
+    FROM BOARDBOOT
+    WHERE TITLE = #{title} AND WRITER = #{writer}
+</select>
 
 
+<insert id="insertFile">
+   INSERT INTO FILES (
+      FILE_NUM,
+      IDX,
+      FILENAME,
+      FILEEXT,
+      SFILENAME
+   ) VALUES (
+      bno_seq.NEXTVAL,
+      #{IDX},
+      #{FILENAME},
+      #{FILEEXT},
+      #{SFILENAME}
+   )
+</insert>
 
-
-
+<select id="boardFileList" 
+resultType="com.board.domain.FileVo">
+    SELECT *
+    FROM FILES
+    WHERE IDX = #{bno}
+</select>
 </mapper>
 
 
