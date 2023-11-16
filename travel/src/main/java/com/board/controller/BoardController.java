@@ -458,7 +458,13 @@ public class BoardController {
 	   }
 	  
 	  
-	  
+	   @RequestMapping("/QNA")
+	   public  ModelAndView   qna() {
+	      
+	      ModelAndView  mv  = new ModelAndView();      
+	      mv.setViewName("/board/qna");
+	      return mv;
+	   }
 	  
 	  
 	  

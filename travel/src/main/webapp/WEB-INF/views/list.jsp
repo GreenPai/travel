@@ -95,16 +95,26 @@ form button[type="submit"] {
 	</div>
   <br><br>
   <div id="main">
-    <h2>공지사항</h2>
-
-   
-
-    <c:if test="${not empty sessionScope['admin']}">
-    <button id="btnWrite" class="btn btn-dark" style="float:right;margin-bottom:20px;">새글 쓰기</button>
-    </c:if>
-         
-
-
+    <h2>${menuname}</h2>
+  
+   <br>
+  
+<c:choose>
+    <c:when test="${not empty sessionScope['admin']}">
+        <button id="btnWrite" class="btn btn-dark" style="float:right;margin-bottom:20px;">새글 쓰기</button>
+    </c:when>
+    <c:otherwise>
+        <c:choose>
+            <c:when test="${menuid eq 'MENU01'}">
+            </c:when>
+            <c:when test="${menuid eq 'MENU02'}">
+            </c:when>
+            <c:otherwise>
+            <button id="btnWrite" class="btn btn-dark" style="float:right;margin-bottom:20px;">새글 쓰기</button>
+            </c:otherwise>
+        </c:choose>
+    </c:otherwise>
+</c:choose>
 
     <table class="table">
   <thead class="thead-dark">
@@ -155,20 +165,30 @@ form button[type="submit"] {
     });
   
   </script>
- 
+
   <script>
         $(document).ready(function() {
             var currentPage = ${currentPage};
             var totalPages = ${totalPages};
             var pageSize = 10;
-         
+            var menuid = '${menuid}';
+
+            if (menuid === 'MENU01') {
+            menuid='MENU01'
+            } else if (menuid === 'MENU02') {
+            menuid='MENU02'
+            } else {
+            menuid='MENU03'
+            }
+            
             function updatePageNumbers(start, end) {
                 var pageNumbers = '';
+                
                 for (var i = start; i <= end; i++) {
                     if (i === currentPage) {
                         pageNumbers += '<strong>' + i + '</strong>';
                     } else {
-                        pageNumbers += '<a href="/List?page=' + i + '">' + i + '</a>';
+                        pageNumbers += '<a href="/List?page=' + i +  '&menu_id=' + menuid + '">' + i + '</a>';
                     }
                     if (i < end) {
                         pageNumbers += ', ';
@@ -178,7 +198,16 @@ form button[type="submit"] {
             }
           
             function goToPage(page) {
-            	  window.location.href = '/List?page=' + page ;
+            	  var menuid = '${menuid}';
+
+                  if (menuid === 'MENU01') {
+                  menuid='MENU01'
+                  } else if (menuid === 'MENU02') {
+                  menuid='MENU02'
+                  } else {
+                  menuid='MENU03'
+                  }
+            	  window.location.href = '/List?page=' + page + '&menu_id=' + menuid;
             	}
                       
             function updatePagination() {

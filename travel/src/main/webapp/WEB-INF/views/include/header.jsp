@@ -72,7 +72,7 @@
 			<ul class="submenu4">
 				<li><a href="/List?menu_id=MENU01">공지사항</a></li>
 				<li><a href="/List?menu_id=MENU02">이벤트정보</a></li>
-				<li><a href="#">Q&A</a></li>
+				<li><a href="/List?menu_id=MENU03">Q&A</a></li>
 			</ul></li>
 	</ul>
 	<!-- header end -->
