@@ -181,9 +181,9 @@ public class BoardController {
        }
       // 저장후 이동할 페이지
       ModelAndView  mv = new ModelAndView();
-      //mv.addObject("menu_id",menu_id);
-      //mv.setViewName("redirect:/List" );
-      mv.setViewName("redirect:/List?menu_id=" + menu_id);
+      mv.addObject("menu_id",menu_id);
+      mv.setViewName("redirect:/List" );
+      //mv.setViewName("redirect:/List?menu_id=" + menu_id);
       return mv;
       
    }
@@ -262,25 +262,29 @@ public class BoardController {
           filenames.add(filesVo.getSFILENAME());
       }
       
-      System.out.println("filename:" + filenames);
-      
+      String menuid=boardVo.getMenu_id();
 
       
       ModelAndView  mv      =  new ModelAndView();
       mv.addObject("vo", boardVo);
       mv.addObject("fileList",filevoList);
       mv.addObject("filepath",filenames);
+      mv.addObject("menuid",menuid);
       mv.setViewName("view");
       return mv;
    }
    
    @RequestMapping("/Delete/{bno}")
-   public  ModelAndView   delete(@PathVariable("bno") int bno  ) {
-      
+   public  ModelAndView   delete(@PathVariable("bno") int bno
+		   ) {
+
+	  String menu_id= boardMapper.getMenuid(bno);
       boardMapper.boardDelete( bno );
-      
       ModelAndView  mv  = new ModelAndView();
-      mv.setViewName("redirect:/List");
+      System.out.println("menuid" + menu_id);
+      mv.addObject("menuid", menu_id);
+      mv.setViewName("redirect:/List?menu_id=" + menu_id);
+      //mv.setViewName("redirect:/List");
       return  mv;      
    }
    

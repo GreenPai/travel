@@ -42,11 +42,11 @@
 
 
 		<div class="slideshow-container">
-			<img class="slide" src="img/img1.jpg" alt="이미지 1"> <img
-				class="slide" src="img/img2.jpg" alt="이미지 2"> <img
-				class="slide" src="img/img3.jpg" alt="이미지 3"> <img
-				class="slide" src="img/img4.jpg" alt="이미지 4"> <img
-				class="slide" src="img/img5.jpg" alt="이미지 5">
+			<a href="/View?bno=102"><img class="slide" src="img/img1.jpg" alt="이미지 1"></a> 
+			<a href="/View?bno=104"><img class="slide" src="img/img2.jpg" alt="이미지 2"></a> 
+			<a href="/View?bno=106"><img class="slide" src="img/img3.jpg" alt="이미지 3"></a>  
+			<a href="/View?bno=105"><img class="slide" src="img/img4.jpg" alt="이미지 4"></a>  
+			<a href="/View?bno=107"><img class="slide" src="img/img5.jpg" alt="이미지 5"></a> 
 		</div>
 
 

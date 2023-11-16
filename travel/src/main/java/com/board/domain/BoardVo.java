@@ -25,5 +25,6 @@ public class BoardVo {
 	private String  menu_id;
 	private String  regdate;
 	private int     hit;
+ 
 	
 }

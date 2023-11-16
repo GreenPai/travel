@@ -39,7 +39,8 @@
                WRITER,
                CONTENT,
                TO_CHAR(REGDATE, 'YYYY-MM-DD HH24:MI:SS') REGDATE,
-               HIT
+               HIT,
+               MENU_ID
       FROM     BOARDBOOT
       WHERE    BNO  = #{ bno }
     
@@ -168,6 +169,13 @@ resultType="String">
     SELECT MENU_NAME
     FROM TRAVEL_MENUS
     WHERE MENU_ID = #{menuid}
+</select>
+
+<select id="getMenuid" 
+resultType="String">
+    SELECT MENU_ID
+    FROM   BOARDBOOT
+    WHERE  BNO     = #{ bno}
 </select>
 
 <select id="getBoardText" 

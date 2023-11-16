@@ -92,11 +92,25 @@
     <div class="mb-3">
         <label for="formContent" class="form-label">내용</label>
         <br>
+        
          <div style="text-align: center;">
         <c:forEach items="${filepath}" var="file">
-          <c:if test="${file ne null}">
-          <img src="/download_img/${file}" alt="이미지" class="centered-image" width="600px" height="500px"><br>
-          </c:if>
+        <br>  
+          <c:choose>
+    <c:when test="${file ne null && menuid == 'MENU01'}">
+      <img src="/download_img/${file}" alt="이미지" class="centered-image" width="600px" height="700px"><br>
+    </c:when>
+    <c:when test="${file ne null && menuid == 'MENU02'}">
+      <img src="/download_img/${file}" alt="이미지" class="centered-image" width="1000px" height="1200px"><br>
+    </c:when>
+    <c:when test="${file ne null && menuid == 'MENU03'}">
+      <img src="/download_img/${file}" alt="이미지" class="centered-image" width="1200px" height="1800px"><br>
+    </c:when>
+
+    <c:otherwise>
+      <img src="/download_img/${file}" alt="이미지" class="centered-image" width="800px" height="1200px"><br>
+    </c:otherwise>
+  </c:choose>
         </c:forEach>
         </div>
         <br>

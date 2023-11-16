@@ -34,6 +34,7 @@ public interface BoardMapper {
 	public List<FileVo> getFileName(BoardVo vo);
 	public String getBoardName(String menuid);
 	public String getBoardText(String menuid);
+	public String getMenuid(int bno);
 
 	
 }
