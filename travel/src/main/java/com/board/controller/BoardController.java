@@ -51,7 +51,6 @@ public class BoardController {
    public  ModelAndView  list(@RequestParam(defaultValue="1") int page, Model model, 
 		                      @RequestParam("menu_id") String menuid) {
       
-	   System.out.println(menuid);
 	   // 페이지 사이즈 
 	   int pageSize = 10;
        // page      -> 현재 페이지
@@ -75,40 +74,51 @@ public class BoardController {
       
       // 현재 페이지에 페이지에 해당하는 게시물 목록 조회
       List<BoardVo> boardList = boardMapper.pageBoardList(params);
-      
+      // 현재 페이지 MENU번호에 따른 목차이름 
+      String menuname=boardMapper.getBoardName(menuid);
+      String menutext=boardMapper.getBoardText(menuid);
       //List<BoardVo>  boardList = boardMapper.boardList();      
       //System.out.println(boardList);
       
       ModelAndView mv = new ModelAndView();
+      mv.addObject("menuid",menuid);
       mv.addObject("brdList", boardList);
       mv.addObject("currentPage", page);
       mv.addObject("totalPages", totalPage);
+      mv.addObject("menuname", menuname);
+      mv.addObject("menutext", menutext);
       mv.setViewName("list");
       return mv;
    }
    
    // 새글 쓰기
    @RequestMapping("/WriteForm")
-   public  ModelAndView   writeForm() {
-      
+   public  ModelAndView   writeForm(@RequestParam("menu_id") String menuid) {
+      System.out.println(menuid);
       // write.jsp
       ModelAndView  mv  = new ModelAndView();
+      mv.addObject("menuid",menuid);
       mv.setViewName("write");      
       return mv;
    }
    
    // 새글저장 /Write?title=새 글쓰기&writer=글쓰니&content=내욘
    @RequestMapping("/Write")
-   public  ModelAndView  write(MultipartHttpServletRequest request, BoardVo vo, HttpServletRequest loginrequest) {
-   //public  ModelAndView  write(String GTitle, String writer, String content) {
-	    
-      //  System.out.println(boardVo.getBno());
+   public  ModelAndView  write(MultipartHttpServletRequest request, 
+		                       BoardVo vo, 	
+		                       HttpServletRequest loginrequest,
+		                       @RequestParam("menu_id") String menuid
+		                       ) {
 	   HttpSession session = loginrequest.getSession();
 	   String username = (String) session.getAttribute("username");
 	   String userid = (String) session.getAttribute("userid");
 	   String nickname = (String) session.getAttribute("nickname");
-
-	   // DB에 저장
+       String menu_id= menuid;
+       
+       vo.setMenu_id(menu_id);
+   //    System.out.println(vo.getMenu_id());
+	   
+       // DB에 저장
 	   boardMapper.boardInsert(vo);
 
 	   FileVo fileVo = new FileVo();
@@ -171,7 +181,9 @@ public class BoardController {
        }
       // 저장후 이동할 페이지
       ModelAndView  mv = new ModelAndView();
-      mv.setViewName("redirect:/List" );
+      //mv.addObject("menu_id",menu_id);
+      //mv.setViewName("redirect:/List" );
+      mv.setViewName("redirect:/List?menu_id=" + menu_id);
       return mv;
       
    }
@@ -351,6 +363,7 @@ public class BoardController {
 	        mv.addObject("currentPage", currentPage);
 	        mv.addObject("totalPages", totalPages);
 	        mv.setViewName("list");
+	        
 	        return mv;
 	   }
 	

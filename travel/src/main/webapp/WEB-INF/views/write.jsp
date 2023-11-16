@@ -54,7 +54,7 @@
 </head>
 <body>
    <br><br>
-		<form action="/Write" method="POST"  enctype="multipart/form-data" >
+		<form action="/Write?menu_id=${menuid}" method="POST"  enctype="multipart/form-data" >
    <table id="table"> 
 	<div id="main">
 		<h2>게시물 쓰기</h2>	

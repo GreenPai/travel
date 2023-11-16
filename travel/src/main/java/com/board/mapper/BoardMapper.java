@@ -32,6 +32,8 @@ public interface BoardMapper {
 	public List<FileVo> boardFileList(BoardVo vo);
 	public void insertImgFile(FileVo fileVo);
 	public List<FileVo> getFileName(BoardVo vo);
+	public String getBoardName(String menuid);
+	public String getBoardText(String menuid);
 
 	
 }

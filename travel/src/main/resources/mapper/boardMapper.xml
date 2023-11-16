@@ -7,12 +7,14 @@
           BNO,
           TITLE,
           CONTENT,
-          WRITER
+          WRITER,
+          MENU_ID
      ) VALUES (
           ( SELECT  NVL(MAX(BNO), 0)+1 FROM BOARDBOOT ),
           #{title},
           #{content},
-          #{writer}
+          #{writer},
+          #{menu_id}
      )
   </insert>
   
@@ -159,6 +161,20 @@ resultType="com.board.domain.BoardVo">
     SELECT *
     FROM BOARDBOOT
     WHERE TITLE = #{title} AND WRITER = #{writer}
+</select>
+
+<select id="getBoardName" 
+resultType="String">
+    SELECT MENU_NAME
+    FROM TRAVEL_MENUS
+    WHERE MENU_ID = #{menuid}
+</select>
+
+<select id="getBoardText" 
+resultType="String">
+    SELECT TEXT
+    FROM TRAVEL_MENUS
+    WHERE MENU_ID = #{menuid}
 </select>
 
 

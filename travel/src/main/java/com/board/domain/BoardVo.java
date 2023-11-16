@@ -22,6 +22,7 @@ public class BoardVo {
 	private String  content;
 	@NonNull
 	private String  writer;
+	private String  menu_id;
 	private String  regdate;
 	private int     hit;
 	

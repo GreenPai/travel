@@ -88,8 +88,8 @@ form button[type="submit"] {
 				style="width: 100%; height: 100%;">
 			<div
 				style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-				<h1 style="color: #fff; font-size: 50px;">공지사항</h1>
-				<h2 style="color: black; font-size: 22px;">이벤트 및 공지사항을 확인하세요</h2>
+				<h1 style="color: #fff; font-size: 50px;">${menuname}</h1>
+				<h2 style="color: black; font-size: 22px;">${menutext}</h2>
 			</div>
 		</div>
 	</div>
@@ -147,9 +147,11 @@ form button[type="submit"] {
   </div>
   
   <script>
+    
+    
     const btnWriteEl = document.querySelector('#btnWrite');
     btnWriteEl.addEventListener('click', function() {
-    	location.href = '/WriteForm'
+    	location.href = '/WriteForm?menu_id=${menuid}'
     });
   
   </script>
