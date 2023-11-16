@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/css/handi.css" />
+<link rel="stylesheet" href="/css/view_main.css" />
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -21,7 +20,7 @@
 <script>
   window.onload = function() {
 	 
-		 let url = '/handi';   // servlet 사용
+		 let url = '/leis';   // servlet 사용
 		// let url = 'https://openapi.foodsafetykorea.go.kr/api/70e153f2e8f64995941b/COOKRCP01/xml/1/50';
 		 axios( {
 			 url    : url,
@@ -39,25 +38,45 @@
 		   .then(( obj ) => {
 			   //alert(obj.data);
 			   console.dir( obj.data );  // getGalmaetGilInfo -> body -> items
-			   let  arr =  obj.data.getFcltsDsgstInfo.body.items.item;
+			   let  arr =  obj.data.gyeongnamtourleisurelist.body.items.item; 
 			   console.log(arr);
-			   let  html  = '';
-			   arr.forEach( (row) => {	
-				  // alert(JSON.stringify(row))
-				  console.log(row.MAIN_TITLE)
-				  //const handiInformUrl = 'handiInform?UC_SEQ=' + row.UC_SEQ + '&MAIN_TITLE=' + row.MAIN_TITLE;
-
-				   html += '<div class="card">'
-				   html += '<div class="card-content">'				   
-				   html += '<p>구분:'          + row.gubun + '</p>'
-				   html += '<p>편의시설 종류:' + row.setValueNm + '</p>'
-				   html += '<p>상호명:'        + row.subject + '</p>'
-				   html += '<p>상세정보'       + row.contents + '</p>'
-				   html += '</div>'
-				   html += '</div>';
-			   })			   
+			   let  html  = '';		
+			   
+				   if (arr.length > 0) {
+			            let row = arr[0];
+			            
+			            for (let i = 0; i < arr.length; i++) {
+			                if (arr[i].UC_SEQ === 'row.UC_SEQ') { // UC_SEQ가 '0'과 일치하는 경우에만 출력
+			                    row = arr[i];
+			                    break;
+			                }
+			            }
+					   
+				    html += '<h3 class="title">' + row.data_title + '</h3>';   
+					html += '<div class="main_body" id="div1">'
+					html += '<div class="photo">'
+					html += '<img src="' + row.fileurl1  + '" alt="여행명소 사진" style="width:1200px; height:540px;">'
+					html += '<hr>'
+					html += '</div>'
+					html += '<div class="comment">'
+					html += '레저구분: '    + row.category_name1 +'<br>'
+					html += '시군명: '      + row.category_name2 + '<br>'
+					html += '주소: '        + row.user_address + '<br>'
+					html += '연락처: '      + row.telno + '<br>'
+					html += '교통편:'     + row.traffic
+					
+					html += '</div>'
+					html += '<div class="comment_1">'
+					html += '게시글 내용:' + row.data_content
+					html += '</div>'
+					
+					
+			   }
+			   
+				  
+						   
 			   //alert(html)
-			   const  div1El = document.querySelector('#div1') 
+			   const  div1El = document.querySelector('#div1')
 			   div1El.innerHTML = html; 
 		   })
 		   .catch((error) => {
@@ -66,18 +85,11 @@
 	 
   }
 </script>
-
-<style>
-
-</style>
 </head>
 <body>
-
 	<%@include file="/WEB-INF/views/include/header.jsp"%>
-
 	<br>
 	<br>
-
 	<!-- body start -->
 	<div id="content">
 		<div style="position: relative; width: 100%; height: 400px;">
@@ -85,41 +97,29 @@
 				style="width: 100%; height: 100%;">
 			<div
 				style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-				<h1 style="color: #fff; font-size: 50px;">편의시설</h1>
-				<h2 style="color: black; font-size: 22px;">부산의 관광지 장애인 편의시설 보유
-					업소 정보</h2>
+				<h1 style="color: #fff; font-size: 50px;">부산의 명소</h1>
+				<h2 style="color: black; font-size: 22px;">부산 명소를 소개합니다.</h2>
 			</div>
 		</div>
 	</div>
 	<!-- body end -->
 
+	<!-- 부산 명소 정보를 출럭 -->
 	<div class="container">
-		<div class="row">
-			<div class="page_num">
-				<h2 style="text-align: center;">편의시설 정보</h2>
-				<hr>
 
-				<div class="col-md-3 mb-4" id="div1"
-					style="width: 1400px; display: flex; flex-direction: column;"></div>
-			</div>
-		</div>
+		<div class="main_body" id="div1"></div>
+
 	</div>
 
-	<%@include file="/WEB-INF/views/include/footer.jsp"%>
 
+
+
+
+
+
+
+
+
+	<%@include file="/WEB-INF/views/include/footer.jsp"%>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

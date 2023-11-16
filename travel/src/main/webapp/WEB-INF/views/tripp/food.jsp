@@ -99,9 +99,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="page_num">
-				<p>
-					<strong>총 게시물</strong><span></span>건
-				</p>
+				<h2 style="text-align: center;">부산 맛집 정보</h2>
 				<hr>
 				
 				<div class="col-md-3 mb-4" id="div1" style="width:1200px; display: flex; flex-wrap: wrap;">

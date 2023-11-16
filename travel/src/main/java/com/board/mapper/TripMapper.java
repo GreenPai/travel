@@ -14,5 +14,4 @@ public interface TripMapper {
     TripVo getTrip(TripVo vo);
 
 
-
 }

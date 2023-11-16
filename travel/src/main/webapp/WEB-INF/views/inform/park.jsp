@@ -38,29 +38,14 @@
 			   arr.forEach( (row) => {	
 				  // alert(JSON.stringify(row))
 				  // console.log(row.pkNam)
-				  // const festaInformUrl = 'festa?UC_SEQ=' + row.UC_SEQ + '&MAIN_TITLE=' + row.MAIN_TITLE;
+				  const parkInform = '/ParkView?';
+				  
 				   html += '<div class="card">'
 				   html += '<div class="card-content">'
-				   html += '<p><b>주차장명</b>: '              + row.pkNam          + '</p>'
-				   html += '<p><b>소재지도로명주소</b>: '      + row.jibunAddr      + '</p>'
-				   html += '<p><b>전화번호</b>: '              + row.tponNum        + '</p>'
-				   html += '<p><b>주차장구분</b>: '            + row.pkGubun        + '</p>'
-				   html += '<p><b>주차구획수</b>: '            + row.pkCnt          + '</p>'
-				   html += '<p><b>평일운영시작시각</b>: '      + row.svcSrtTe       + '</p>'
-				   html += '<p><b>평일운영종료시각</b>: '      + row.svcEndTe       + '</p>'
-				   html += '<p><b>공휴일운영시작시각</b>: '    + row.hldSrtTe       + '</p>'
-				   html += '<p><b>공휴일운영종료시각</b>: '    + row.hldEndTe       + '</p>'
-				   html += '<p><b>주차기본요금</b>: '          + row.tenMin         + '</p>'
-				   html += '<p><b>1일주차권요금</b>: '         + row.ftDay          + '</p>'
-				   html += '<p><b>월정기권요금</b>: '          + row.ftMon          + '</p>'
-				   html += '<p><b>운영요일</b>: '              + row.oprDay         + '</p>'
-				   html += '<p><b>요금정보</b>: '              + row.feeInfo        + '</p>'
-				   html += '<p><b>주차기본시간</b>: '          + row.pkBascTime     + '</p>'
-				   html += '<p><b>추가단위시간</b>: '          + row.pkAddTime      + '</p>'
-				   html += '<p><b>1일주차권요금적용시간</b>: ' + row.ftDayApplytime + '</p>'
-				   html += '<p><b>추가단위요금</b>: '          + row.feeAdd         + '</p>'
-				   html += '<p><b>결제방법</b>: '              + row.payMtd         + '</p>'
-				   html += '<p><b>특기사항</b>: '              + row.spclNote       + '</p>'
+				   html += '<a href="' + parkInform + '">'
+				   html += '<p><b>주차장명</b>: '    + row.pkNam   + '</p>'
+				   html += '</a>'
+				   html += '<p><b>주차장구분</b>: '  + row.pkGubun + '</p>'
 				   html += '</div>'
 				   html += '</div>';
 			   })			   
@@ -93,8 +78,8 @@
 				style="width: 100%; height: 100%;">
 			<div
 				style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-				<h1 style="color: #fff; font-size: 50px;">부산의 축제</h1>
-				<h2 style="color: black; font-size: 22px;">부산 축제에 오신것을 환영합니다.</h2>
+				<h1 style="color: #fff; font-size: 50px;">공영 주차장 정보</h1>
+				<h2 style="color: black; font-size: 22px;">편리한 정보를 제공해드립니다.</h2>
 			</div>
 		</div>
 	</div>
@@ -103,9 +88,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="page_num">
-				<p>
-					<strong>총 게시물</strong><span></span>건
-				</p>
+				<h2 style="text-align: center;">부산 공영주차장 정보</h2>
 				<hr>
 				
 				<div class="col-md-3 mb-4" id="div1" style="width:1400px; display: flex; flex-direction: column;">
