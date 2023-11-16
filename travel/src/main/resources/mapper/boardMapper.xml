@@ -151,11 +151,28 @@ WHERE RN BETWEEN #{start} AND #{end}
 
   </select>
 
-<select id="boardSearch" resultType="com.board.domain.BoardVo">
-    SELECT *
-    FROM BOARDBOOT
+<select id="boardSearch" resultType="com.board.domain.BoardVo"> 
+     SELECT * 
+ FROM (
+    SELECT
+        BOARDBOOT.*,
+        ROWNUM AS RN
+    FROM (
+        SELECT *
+        FROM BOARDBOOT
+        ORDER BY BNO DESC
+    ) BOARDBOOT
     WHERE TITLE LIKE '%' || #{keyword} || '%'
+)
+WHERE RN BETWEEN #{start} AND #{end} 
 </select>
+
+<select id="getSearchCount" resultType="int">
+  
+  SELECT COUNT(TITLE) AS totalCount
+  FROM  BOARDBOOT
+  WHERE TITLE LIKE '%' || #{keyword} || '%'
+ </select>
 
 <select id="getBno" 
 resultType="com.board.domain.BoardVo">

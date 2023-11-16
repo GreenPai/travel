@@ -355,17 +355,42 @@ public class BoardController {
    
 	  @GetMapping("/search")
 	  @ResponseBody
-	   public  ModelAndView  boardSearch(@RequestParam("keyword") String keyword, Model model) {
-	      
-		    System.out.println("1"+keyword);
-		    List<BoardVo> searchResult = boardMapper.boardSearch(keyword);
-	        System.out.println("2" + searchResult);
-	        int currentPage=1;
-	        int totalPages=1;
+	   public  ModelAndView  boardSearch(
+			   @RequestParam(defaultValue="1") int page, @RequestParam("keyword") String keyword, Model model) {
+	        
+		  // 페이지 사이즈 
+		   int pageSize = 10;
+	       // page      -> 현재 페이지
+		   // start     -> 현재 페이지의 BNO 시작 부분
+		   // end       -> 현재 페이지의 BNO 끝 부분
+		   // totalPage -> 전체 페이지
+		   
+	       // 검색 게시물 수 조회
+		    int totalCount = boardMapper.getSearchCount(keyword);
+
+		    // 총 페이지 수 계산
+		    int totalPage = (int) Math.ceil((double) totalCount/pageSize);
+		      
+		    // 현재 페이지의 시작 레코드 인덱스
+		    int start = (((page -1) * pageSize) +1) ;
+		      
+		    Map<String, Object> params = new HashMap<>();
+		    params.put("start", start);
+		    params.put("end", page * pageSize);
+		    params.put("keyword", keyword);
+		    
+		    List<BoardVo> searchResult = boardMapper.boardSearch(params);
+		    String menuname="검색 결과";
+		    String menutext="검색";		
+
 	        ModelAndView mv = new ModelAndView();
 	        mv.addObject("brdList", searchResult);
-	        mv.addObject("currentPage", currentPage);
-	        mv.addObject("totalPages", totalPages);
+	        mv.addObject("currentPage", page);
+	        mv.addObject("totalPages", totalPage);
+	        mv.addObject("menuname", menuname);
+	        mv.addObject("menutext", menutext);
+	   //     mv.addObject("currentPage", currentPage);
+	   //     mv.addObject("totalPages", totalPages);
 	        mv.setViewName("list");
 	        
 	        return mv;

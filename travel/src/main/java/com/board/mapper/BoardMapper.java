@@ -26,7 +26,7 @@ public interface BoardMapper {
 	public void commentDelete(CommentVo vo);
 	public int getBoardCount(String menuid);
 	public List<BoardVo> pageBoardList(Map<String, Object> params);
-	public List<BoardVo> boardSearch(String keyword);
+	public List<BoardVo> boardSearch(Map<String, Object> params);
 	public BoardVo getBno(BoardVo vo);
 	public void insertFile(FileVo fileVo);
 	public List<FileVo> boardFileList(BoardVo vo);
@@ -35,6 +35,7 @@ public interface BoardMapper {
 	public String getBoardName(String menuid);
 	public String getBoardText(String menuid);
 	public String getMenuid(int bno);
+	public int getSearchCount(String keyword);
 
 	
 }

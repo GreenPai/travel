@@ -135,7 +135,7 @@ form button[type="submit"] {
   <button id="nextButton">다음</button>
 </div>
 <br>
-<form action="/search" method="get">
+<form action="/search?menuid=${menuid}" method="get">
    <input type="text" name="keyword" placeholder="검색어를 입력하세요">
    <button type="submit">검색</button>
 </form>
@@ -178,7 +178,7 @@ form button[type="submit"] {
             }
           
             function goToPage(page) {
-            	  window.location.href = '/List?page=' + page;
+            	  window.location.href = '/List?page=' + page ;
             	}
                       
             function updatePagination() {
