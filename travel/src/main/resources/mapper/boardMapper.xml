@@ -92,7 +92,7 @@
               BNO
        FROM   COMMENTS
        WHERE  BNO  = #{ bno }
-       ORDER  BY  CNO  ASC     
+       ORDER  BY  CNO  DESC     
              
   </select>
   
@@ -119,8 +119,69 @@
 
   </delete>
 
+  <select id="getBoardCount"
+  resultType="int">
+  
+  SELECT COUNT(TITLE) AS totalCount
+  FROM BOARDBOOT
+  </select>
 
 
+  <select id="pageBoardList"
+  resultType="com.board.domain.BoardVo">
+  
+ SELECT * 
+ FROM (
+    SELECT
+        BOARDBOOT.*,
+        ROWNUM AS RN
+    FROM (
+        SELECT *
+        FROM BOARDBOOT
+        ORDER BY BNO DESC
+    ) BOARDBOOT
+)
+WHERE RN BETWEEN #{start} AND #{end}
+
+
+  </select>
+
+<select id="boardSearch" resultType="com.board.domain.BoardVo">
+    SELECT *
+    FROM BOARDBOOT
+    WHERE TITLE LIKE '%' || #{keyword} || '%'
+</select>
+
+<select id="getBno" 
+resultType="com.board.domain.BoardVo">
+    SELECT *
+    FROM BOARDBOOT
+    WHERE TITLE = #{title} AND WRITER = #{writer}
+</select>
+
+
+<insert id="insertFile">
+   INSERT INTO FILES (
+      FILE_NUM,
+      IDX,
+      FILENAME,
+      FILEEXT,
+      SFILENAME
+   ) VALUES (
+      bno_seq.NEXTVAL,
+      #{IDX},
+      #{FILENAME},
+      #{FILEEXT},
+      #{SFILENAME}
+   )
+</insert>
+
+<select id="boardFileList" 
+resultType="com.board.domain.FileVo">
+    SELECT *
+    FROM FILES
+    WHERE IDX = #{bno}
+</select>
 </mapper>
 
 

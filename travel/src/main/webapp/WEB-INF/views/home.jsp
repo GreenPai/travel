@@ -10,6 +10,7 @@
 
 </head>
 <body>
+
 	<%@include file="/WEB-INF/views/include/header.jsp" %>
 
 	<br>
@@ -365,6 +366,15 @@
 
     showSlide();
 </script>
+
+
+
+  <%@include file="/WEB-INF/views/map/localmap.jsp" %>
+  <%@include file="/WEB-INF/views/map/addressmap.jsp" %>
+  <%@include file="/WEB-INF/views/weather/weatherpage.jsp" %>
+  <%@include file="/WEB-INF/views/weather/weather.jsp" %>
+
+
 
 </body>
 </html>

@@ -36,7 +36,7 @@
 			   let  html  = '';		
 			   
 			   if (arr.length > 0) {
-		            let row = arr[1];
+		            let row = arr[0];
 		            
 		            for (let i = 0; i < arr.length; i++) {
 		                if (arr[i].UC_SEQ === 'row.UC_SEQ') { // UC_SEQ가 '0'과 일치하는 경우에만 출력
@@ -51,7 +51,7 @@
 				    html += '<h3 class="title">' + row.MAIN_TITLE + '</h3>';   
 					html += '<div class="main_body" id="div1">'
 					html += '<div class="photo">'
-					html += '<img src="' + row.MAIN_IMG_NORMAL  + '" alt="테마여행 사진">'
+					html += '<img src="' + row.MAIN_IMG_NORMAL  + '" alt="여행명소 사진">'
 					html += '<hr>'
 					html += '</div>'
 					html += '<div class="comment">'

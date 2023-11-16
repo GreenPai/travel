@@ -61,7 +61,6 @@
 				   html += '<p><b>추가단위요금</b>: '          + row.feeAdd         + '</p>'
 				   html += '<p><b>결제방법</b>: '              + row.payMtd         + '</p>'
 				   html += '<p><b>특기사항</b>: '              + row.spclNote       + '</p>'
-				   html += '<p><b>currava</b>: '               + row.실시간주차면수 + '</p>'
 				   html += '</div>'
 				   html += '</div>';
 			   })			   

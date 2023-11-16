@@ -138,4 +138,28 @@
 				mv.setViewName("inform/park");
 				return mv;
 			}
+			
+			// 부산 시장정보
+			@RequestMapping("/Recom")
+			public ModelAndView recom() {
+				
+				ModelAndView mv = new ModelAndView();
+				mv.setViewName("plan/recom");
+				return mv;
+			}
+			
+			// 부산 시장 상세정보
+			@RequestMapping("/RecomView")
+			public ModelAndView recomView(TripVo vo) {
+		
+				TripVo tripVo = tripMapper.getTrip(vo);
+		
+				ModelAndView mv = new ModelAndView();
+				mv.addObject("vo", tripVo);
+				mv.setViewName("tripInform/recomView");
+				return mv;
+			}
+		
+			
+			
 		}

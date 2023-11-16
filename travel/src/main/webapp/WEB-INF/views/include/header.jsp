@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/new_main.css" />
+
 </head>
 <body>
 	<header class="header" style="display: flex;">
@@ -32,8 +33,8 @@
 						</c:when>
 						<c:otherwise>
 							<!-- 세션이 없을 때, 로그인 링크 -->
-							<a href="#">로그인</a>
-							<li><a href="#">회원가입</a></li>
+							<a href="/Login">로그인</a>
+							<li><a href="/LoginAgree">회원가입</a></li>
 						</c:otherwise>
 					</c:choose></li>
 			</ul>
@@ -49,27 +50,26 @@
 			<ul class="submenu1">
 				<li><a href="/Trip">부산 여행 명소</a></li>
 				<li><a href="/Walk">부산 도보여행</a></li>
-				<li><a href="/Food">추천 맛집</a></li>
-				<li><a href="#">추천여행지</a></li>
+				<li><a href="/Food">부산 추천 맛집</a></li>
 			</ul></li>
 		<li><a href=#><h2>일정</h2></a>
 
 			<ul class="submenu2">
-				<li><a href="/Recom">추천일정</a></li>
-				<li><a href="/Tema">테마일정</a></li>
+				<li><a href="/Recom">부산 시장투어</a></li>
+				<li><a href="/Tema">부산 테마일정</a></li>
+				<li><a href="/Festa">부산 축제투어</a></li>
 			</ul></li>
 
 		<li><a href=#><h2>정보</h2></a>
 			<ul class="submenu3">
-				<li><a href="/Festa">축제정보</a></li>
-				<li><a href="#">기상정보</a></li>
-				<li><a href="/Handi">편의시설 정보</a></li>
-				<li><a href="/Park">공영주차장 정보</a></li>
+				<li><a href="#">부산 기상정보</a></li>
+				<li><a href="/Handi">부산 편의시설 정보</a></li>
+				<li><a href="/Park">부산 공영주차장 정보</a></li>
 			</ul></li>
 		<li><a href=#><h2>안내</h2></a>
 
 			<ul class="submenu4">
-				<li><a href="#">공지사항</a></li>
+				<li><a href="/List">공지사항</a></li>
 				<li><a href="#">Q&A</a></li>
 			</ul></li>
 	</ul>

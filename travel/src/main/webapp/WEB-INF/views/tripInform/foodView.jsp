@@ -34,7 +34,15 @@
 			   let  arr =  obj.data.getFoodKr.item;
 			   console.log(arr);
 			   let  html  = '';
-			   arr.forEach( (row) => {	
+			   if (arr.length > 0) {
+		            let row = arr[0];
+		            
+		            for (let i = 0; i < arr.length; i++) {
+		                if (arr[i].UC_SEQ === 'row.UC_SEQ') { // UC_SEQ가 '0'과 일치하는 경우에만 출력
+		                    row = arr[i];
+		                    break;
+		                }
+		            }	
 
 				    html += '<h3 class="title">' + row.MAIN_TITLE + '</h3>';   
 					html += '<div class="main_body" id="div1">'
@@ -52,7 +60,7 @@
 					html += '</div>'
 
 				  
-			   })			   
+			   }			   
 			   //alert(html)
 			   const  div1El = document.querySelector('#div1')
 			   div1El.innerHTML = html; 

@@ -92,11 +92,12 @@ body {
 
 .menu a {
     color: #000000;
+    text-decoration: none;
 }
 
 
 .menu > li:hover .submenu1 {
-    height: 200px;
+    height: 150px;
     transition-duration: 1s;
 }
 
@@ -164,13 +165,13 @@ body {
 }
 
 .menu > li:hover .submenu2 {
-    height: 100px;
+    height: 150px;
     transition-duration: 1s;
 }
 
 
 .menu > li:hover .submenu3 {
-    height: 200px;
+    height: 150px;
     transition-duration: 1s;
 }
 
