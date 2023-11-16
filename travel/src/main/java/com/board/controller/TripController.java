@@ -4,8 +4,8 @@
 		import org.springframework.stereotype.Controller;
 		import org.springframework.web.bind.annotation.RequestMapping;
 		import org.springframework.web.servlet.ModelAndView;
-		
-		import com.board.domain.TripVo;
+
+import com.board.domain.TripVo;
 		import com.board.mapper.TripMapper;
 		
 		@Controller
@@ -68,7 +68,8 @@
 				mv.setViewName("plan/tema");
 				return mv;
 			}
-		
+			
+			// 테마여행 상세정보		
 			@RequestMapping("/TemaView")
 			public ModelAndView temaView(TripVo vo) {
 		
@@ -130,7 +131,8 @@
 				mv.setViewName("tripInform/festaView");
 				return mv;
 			}
-		
+			
+			// 공영 주차장 정보		
 			@RequestMapping("/Park")
 			public ModelAndView park() {
 		
@@ -138,4 +140,54 @@
 				mv.setViewName("inform/park");
 				return mv;
 			}
+			
+			// 공영 주차장 상세정보
+			@RequestMapping("/ParkView")
+			public ModelAndView parkView() {
+		
+				ModelAndView mv = new ModelAndView();
+				mv.setViewName("tripInform/parkView");
+				return mv;
+			}
+			
+			// 부산 시장정보
+			@RequestMapping("/Recom")
+			public ModelAndView recom() {
+				
+				ModelAndView mv = new ModelAndView(); 
+				mv.setViewName("plan/recom");
+				return mv; 
+			}
+			
+			// 부산 시장 상세정보
+			@RequestMapping("/RecomView")
+			public ModelAndView recomView(TripVo vo) {
+		
+				TripVo tripVo = tripMapper.getTrip(vo);
+		
+				ModelAndView mv = new ModelAndView();
+				mv.addObject("vo", tripVo);
+				mv.setViewName("tripInform/recomView");
+				return mv;
+			}
+		
+			// 경상남도 레저 정보
+			@RequestMapping("/Leis")
+			public ModelAndView leis() {
+				
+				ModelAndView mv = new ModelAndView();
+				mv.setViewName("inform/leis");
+				return mv;
+			}
+			
+			// 경상남도 레저 상세정보
+			@RequestMapping("/LeisView")
+			public ModelAndView leisView() {
+				
+				ModelAndView mv = new ModelAndView();
+				mv.setViewName("tripInform/leisView");
+				return mv;
+			}
+			
+			
 		}

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/css/view_main.css" />
+<link rel="stylesheet" href="/css/park.css" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -13,7 +13,7 @@
 <script>
   window.onload = function() {
 	 
-		 let url = '/trip';   // servlet 사용
+		 let url = '/park';   // servlet 사용
 		// let url = 'https://openapi.foodsafetykorea.go.kr/api/70e153f2e8f64995941b/COOKRCP01/xml/1/50';
 		 axios( {
 			 url    : url,
@@ -31,41 +31,34 @@
 		   .then(( obj ) => {
 			   //alert(obj.data);
 			   console.dir( obj.data );  // getGalmaetGilInfo -> body -> items
-			   let  arr =  obj.data.getAttractionKr.item;
+			   let  arr =  obj.data.getPblcPrkngInfo.body.items.item;
 			   console.log(arr);
-			   let  html  = '';		  
-			   
-			   if (arr.length > 0) {
-		            let row = arr[0];
-		            
-		            for (let i = 0; i < arr.length; i++) {
-		                if (arr[i].UC_SEQ === 'row.UC_SEQ') { // UC_SEQ가 '0'과 일치하는 경우에만 출력
-		                    row = arr[i];
-		                    break;
-		                }
-		            }
-				   
-				   
-		            
-				  
-				    html += '<h3 class="title">' + row.MAIN_TITLE + '</h3>';   
-					html += '<div class="main_body" id="div1">'
-					html += '<div class="photo">'
-					html += '<img src="' + row.MAIN_IMG_NORMAL  + '" alt="여행명소 사진">'
-					html += '<hr>'
-					html += '</div>'
-					html += '<div class="comment">'
-					html += '지역: '    + row.GUGUN_NM +'<br>'
-					html += '주소: '    + row.ADDR1 + '<br>'
-					html += '연락처: '  + row.CNTCT_TEL + '<br>'
-					html += '홈페이지:' + row.HOMEPAGE_URL
-					html += '</div>'
-					html += '<div class="comment_1">'
-					html += '상세내용:' + row.ITEMCNTNTS
-					html += '</div>'
-					
-					
-			   }
+			   let  html  = '';	
+			   arr.forEach( (row) => {
+		            	   html += '<div class="card">'
+						   html += '<div class="card-content">'
+						   html += '<h4><b>주차장명</b>: '             + row.pkNam          + '</h4>'
+						   html += '<p><b>소재지도로명주소</b>: '      + row.jibunAddr      + '</p>'
+						   html += '<span><p><b>위도</b>: '            + row.xCdnt          + '</p></span>'
+						   html += '<p><b>경도</b>: '                  + row.yCdnt          + '</p>'
+						   html += '<p><b>전화번호</b>: '              + row.tponNum        + '</p>'
+						   html += '<p><b>주차장구분</b>: '            + row.pkGubun        + '</p>'
+						   html += '<p><b>주차구획수</b>: '            + row.pkCnt          + '</p>'
+						   html += '<p><b>평일운영시작시각</b>: '      + row.svcSrtTe       + '</p>'
+						   html += '<p><b>평일운영종료시각</b>: '      + row.svcEndTe       + '</p>'
+						   html += '<p><b>공휴일운영시작시각</b>: '    + row.hldSrtTe       + '</p>'
+						   html += '<p><b>공휴일운영종료시각</b>: '    + row.hldEndTe       + '</p>'
+						   html += '<p><b>주차기본요금</b>: '          + row.tenMin         + '</p>'
+						   html += '<p><b>1일주차권요금</b>: '         + row.ftDay          + '</p>'
+						   html += '<p><b>월정기권요금</b>: '          + row.ftMon          + '</p>'
+						   html += '<p><b>주차기본시간</b>: '          + row.pkBascTime     + '</p>'
+						   html += '<p><b>추가단위시간</b>: '          + row.pkAddTime      + '</p>'
+						   html += '<p><b>1일주차권요금적용시간</b>: ' + row.ftDayApplytime + '</p>'
+						   html += '<p><b>추가단위요금</b>: '          + row.feeAdd         + '</p>'						   
+						   html += '</div>'
+						   html += '</div>';
+ 
+			   })
 			   
 				  
 						   

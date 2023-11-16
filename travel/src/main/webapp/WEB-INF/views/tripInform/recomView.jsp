@@ -13,12 +13,12 @@
 <script>
   window.onload = function() {
 	 
-		 let url = '/trip';   // servlet 사용
+		 let url = '/recom';   // servlet 사용
 		// let url = 'https://openapi.foodsafetykorea.go.kr/api/70e153f2e8f64995941b/COOKRCP01/xml/1/50';
 		 axios( {
 			 url    : url,
 			 method : 'GET',
-			 params : {
+			 params : { 
 		//       encoding 서버스키는 cors 발생 - 자바를 이용해야한다
 				 serviceKey : 'X5Ow2Q7/1YLN6F2IGV2I9/1G9A5aZ2eNuiJnwQvTm8m7w/DEh2jJsBMatEA/FBy2dM5/oJASYTxYqsoEukRzvQ==',
 		//       decoding 서버스키는 cors 발생하지 않음
@@ -31,9 +31,9 @@
 		   .then(( obj ) => {
 			   //alert(obj.data);
 			   console.dir( obj.data );  // getGalmaetGilInfo -> body -> items
-			   let  arr =  obj.data.getAttractionKr.item;
+			   let  arr =  obj.data.getShoppingKr.item;
 			   console.log(arr);
-			   let  html  = '';		  
+			   let  html  = '';		
 			   
 			   if (arr.length > 0) {
 		            let row = arr[0];
@@ -51,17 +51,17 @@
 				    html += '<h3 class="title">' + row.MAIN_TITLE + '</h3>';   
 					html += '<div class="main_body" id="div1">'
 					html += '<div class="photo">'
-					html += '<img src="' + row.MAIN_IMG_NORMAL  + '" alt="여행명소 사진">'
+					html += '<img src="' + row.MAIN_IMG_NORMAL  + '" alt="쇼핑장소 사진">'
 					html += '<hr>'
 					html += '</div>'
 					html += '<div class="comment">'
 					html += '지역: '    + row.GUGUN_NM +'<br>'
 					html += '주소: '    + row.ADDR1 + '<br>'
 					html += '연락처: '  + row.CNTCT_TEL + '<br>'
-					html += '홈페이지:' + row.HOMEPAGE_URL
+					html += '홈페이지: ' + row.HOMEPAGE_URL
 					html += '</div>'
 					html += '<div class="comment_1">'
-					html += '상세내용:' + row.ITEMCNTNTS
+					html += '상세내용: ' + row.ITEMCNTNTS
 					html += '</div>'
 					
 					
@@ -90,8 +90,8 @@
 				style="width: 100%; height: 100%;">
 			<div
 				style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-				<h1 style="color: #fff; font-size: 50px;">부산의 명소</h1>
-				<h2 style="color: black; font-size: 22px;">부산 명소를 소개합니다.</h2>
+				<h1 style="color: #fff; font-size: 50px;">부산의 시장</h1>
+				<h2 style="color: black; font-size: 22px;">부산 시장을 소개합니다.</h2>
 			</div>
 		</div>
 	</div>

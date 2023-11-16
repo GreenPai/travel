@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Insert title here</title> 
 <link rel="stylesheet" href="/css/main.css" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
@@ -97,9 +97,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="page_num">
-				<p>
-					<strong>총 게시물</strong><span></span>건
-				</p>
+				<h2 style="text-align: center;">부산의 축제정보</h2>
 				<hr>
 				
 				<div class="col-md-3 mb-4" id="div1" style="width:1400px; display: flex; flex-wrap: wrap;">

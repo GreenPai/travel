@@ -14,8 +14,8 @@
 <script>
   window.onload = function() {
 	  
-		 let url = '/recom';   // servlet 사용
-		// let url = 'https://openapi.foodsafetykorea.go.kr/api/70e153f2e8f64995941b/COOKRCP01/xml/1/50'; 
+		 let url = '/leis';   // servlet 사용
+		// let url = 'https://openapi.foodsafetykorea.go.kr/api/70e153f2e8f64995941b/COOKRCP01/xml/1/50';
 		 axios( {
 			 url    : url,
 			 method : 'GET',
@@ -32,23 +32,23 @@
 		   .then(( obj ) => {
 			   //alert(obj.data);
 			   console.dir( obj.data );  // getGalmaetGilInfo -> body -> items
-			   let  arr =  obj.data.getShoppingKr.item; 
+			   let  arr =  obj.data.gyeongnamtourleisurelist.body.items.item; 
 			   console.log(arr);
 			   let  html  = '';
 			   arr.forEach( (row) => {	
 				  // alert(JSON.stringify(row))
 				  console.log(row.MAIN_TITLE)
-				  const recomInform = '/RecomView?UC_SEQ=' + row.UC_SEQ;
+				  const leisInform = '/LeisView?';
 				   
 				   
 				   html += '<hr>'
 				   html += ' <div class="card">'
-				   html += '<a href="'    + recomInform + '">'
-				   html += ' <img src=" ' + row.MAIN_IMG_THUMB  + ' " alt="썸네일 이미지">'
+				   html += '<a href="'    + leisInform + '">'
+				   html += ' <img src=" ' + row.fileurl2  + ' " alt="썸네일 이미지">'
 				   html += '</a>'
 				   html += ' <div class="card-content">'
-				   html += '<p><b>여행지</b>: '   + row.PLACE + '</p>'
-				   html += '<p><b>주소</b>: '     + row.ADDR1 + '</p>'
+				   html += '<p><b>게시글 제목</b>: ' + row.data_title + '</p>'
+				   html += '<p><b>주소</b>: '        + row.user_address + '</p>'
 				   html += '</div>'
 				   html += '</div>';
 			   })			   
@@ -83,8 +83,8 @@
 				style="width: 100%; height: 100%;">
 			<div
 				style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-				<h1 style="color: #fff; font-size: 50px;">부산 시장투어</h1>
-				<h2 style="color: black; font-size: 22px;">부산의 여러 시장들을 둘러보세요.</h2>
+				<h1 style="color: #fff; font-size: 50px;">부산 여행지</h1>
+				<h2 style="color: black; font-size: 22px;">부산의 여러 여행지를 소개합니다.</h2>
 			</div>
 		</div>
 	</div>
@@ -94,7 +94,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="page_num">
-				<h2 style="text-align: center;">부산 시장투어</h2>
+				<h2 style="text-align: center;">경남 레저 정보</h2>
 				<hr>
 				
 				<div class="col-md-3 mb-4" id="div1" style="width:1200px; display: flex; flex-wrap: wrap;">

@@ -408,7 +408,93 @@ import org.springframework.web.bind.annotation.RestController;
 			        //System.out.println(sb.toString());
 			        return sb.toString();
 			    }
+			
+			// 부산 시장투어
+			@RequestMapping(
+					value   = "/recom",
+					method  = RequestMethod.GET,
+					headers = "Accept=application/json")	 
+				public  String  recom(
+				@RequestParam  HashMap<String, Object> map,
+				HttpServletRequest request, HttpServletResponse response) throws IOException {
+				
+				String json = getRecom( request, response);
+				return json;
+				
 			}
+			private String getRecom(HttpServletRequest request, HttpServletResponse response) throws IOException {
+				StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/6260000/ShoppingService/getShoppingKr"); /*URL*/
+		        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=X5Ow2Q7%2F1YLN6F2IGV2I9%2F1G9A5aZ2eNuiJnwQvTm8m7w%2FDEh2jJsBMatEA%2FFBy2dM5%2FoJASYTxYqsoEukRzvQ%3D%3D"); /*Service Key*/
+		        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
+		        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("40", "UTF-8")); /*한 페이지 결과 수*/
+		        urlBuilder.append("&" + URLEncoder.encode("resultType","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); /*JSON방식으로 호출 시 파라미터 resultType=json 입력*/
+		        //urlBuilder.append("&" + URLEncoder.encode("UC_SEQ","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*콘텐츠 ID*/
+		        URL url = new URL(urlBuilder.toString());
+		        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		        conn.setRequestMethod("GET");
+		        conn.setRequestProperty("Content-type", "application/json");
+		        System.out.println("Response code: " + conn.getResponseCode());
+		        BufferedReader rd;
+		        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+		            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		        } else {
+		            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+		        }
+		        StringBuilder sb = new StringBuilder();
+		        String line;
+		        while ((line = rd.readLine()) != null) {
+		            sb.append(line);
+		        }
+		        rd.close();
+		        conn.disconnect();
+		        //System.out.println(sb.toString());
+		        return sb.toString();
+		    	}
+			
+			// 경상남도 레저 관광 정보
+			@RequestMapping(
+					value   = "/leis",
+					method  = RequestMethod.GET,
+					headers = "Accept=application/json")	 
+				public  String  leis(
+				@RequestParam  HashMap<String, Object> map,
+				HttpServletRequest request, HttpServletResponse response) throws IOException {
+				
+				String json = getLeis( request, response);
+				return json;
+				
+			}
+			private String getLeis(HttpServletRequest request, HttpServletResponse response) throws IOException {
+				StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/6480000/gyeongnamtourleisure/gyeongnamtourleisurelist"); /*URL*/
+		        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=X5Ow2Q7%2F1YLN6F2IGV2I9%2F1G9A5aZ2eNuiJnwQvTm8m7w%2FDEh2jJsBMatEA%2FFBy2dM5%2FoJASYTxYqsoEukRzvQ%3D%3D"); /*Service Key*/
+		        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
+		        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("40", "UTF-8")); /*한 페이지 결과 수*/
+		        urlBuilder.append("&" + URLEncoder.encode("resultType","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); /*JSON방식으로 호출 시 파라미터 resultType=json 입력*/
+		        URL url = new URL(urlBuilder.toString());
+		        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		        conn.setRequestMethod("GET");
+		        conn.setRequestProperty("Content-type", "application/json");
+		        System.out.println("Response code: " + conn.getResponseCode());
+		        BufferedReader rd;
+		        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+		            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		        } else {
+		            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+		        } 
+		        StringBuilder sb = new StringBuilder();
+		        String line;
+		        while ((line = rd.readLine()) != null) {
+		            sb.append(line);
+		        }
+		        rd.close();
+		        conn.disconnect();
+		        //System.out.println(sb.toString());
+		        return sb.toString();
+    		}
+		}
+			
+			
+			
 			
 			
 		

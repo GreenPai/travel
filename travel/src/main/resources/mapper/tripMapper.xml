@@ -28,7 +28,7 @@
 		WHERE   UC_SEQ = #{UC_SEQ}
 
 	</select>
-
+	
 
 
 </mapper>

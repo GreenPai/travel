@@ -1,19 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/view_main.css" />
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+	crossorigin="anonymous"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-  window.onload = function() {
+<script> 
+  window.onload = function() { 
 	 
-		 let url = '/trip';   // servlet 사용
+		 let url = '/leis';   // servlet 사용
 		// let url = 'https://openapi.foodsafetykorea.go.kr/api/70e153f2e8f64995941b/COOKRCP01/xml/1/50';
 		 axios( {
 			 url    : url,
@@ -31,37 +38,36 @@
 		   .then(( obj ) => {
 			   //alert(obj.data);
 			   console.dir( obj.data );  // getGalmaetGilInfo -> body -> items
-			   let  arr =  obj.data.getAttractionKr.item;
+			   let  arr =  obj.data.gyeongnamtourleisurelist.body.items.item; 
 			   console.log(arr);
-			   let  html  = '';		  
+			   let  html  = '';		
 			   
-			   if (arr.length > 0) {
-		            let row = arr[0];
-		            
-		            for (let i = 0; i < arr.length; i++) {
-		                if (arr[i].UC_SEQ === 'row.UC_SEQ') { // UC_SEQ가 '0'과 일치하는 경우에만 출력
-		                    row = arr[i];
-		                    break;
-		                }
-		            }
-				   
-				   
-		            
-				  
-				    html += '<h3 class="title">' + row.MAIN_TITLE + '</h3>';   
+				   if (arr.length > 0) {
+			            let row = arr[0];
+			            
+			            for (let i = 0; i < arr.length; i++) {
+			                if (arr[i].UC_SEQ === 'row.UC_SEQ') { // UC_SEQ가 '0'과 일치하는 경우에만 출력
+			                    row = arr[i];
+			                    break;
+			                }
+			            }
+					   
+				    html += '<h3 class="title">' + row.data_title + '</h3>';   
 					html += '<div class="main_body" id="div1">'
 					html += '<div class="photo">'
-					html += '<img src="' + row.MAIN_IMG_NORMAL  + '" alt="여행명소 사진">'
+					html += '<img src="' + row.fileurl1  + '" alt="여행명소 사진" style="width:1200px; height:540px;">'
 					html += '<hr>'
 					html += '</div>'
 					html += '<div class="comment">'
-					html += '지역: '    + row.GUGUN_NM +'<br>'
-					html += '주소: '    + row.ADDR1 + '<br>'
-					html += '연락처: '  + row.CNTCT_TEL + '<br>'
-					html += '홈페이지:' + row.HOMEPAGE_URL
+					html += '레저구분: '    + row.category_name1 +'<br>'
+					html += '시군명: '      + row.category_name2 + '<br>'
+					html += '주소: '        + row.user_address + '<br>'
+					html += '연락처: '      + row.telno + '<br>'
+					html += '교통편:'     + row.traffic
+					
 					html += '</div>'
 					html += '<div class="comment_1">'
-					html += '상세내용:' + row.ITEMCNTNTS
+					html += '게시글 내용:' + row.data_content
 					html += '</div>'
 					
 					
@@ -82,7 +88,8 @@
 </head>
 <body>
 	<%@include file="/WEB-INF/views/include/header.jsp"%>
-	<br><br>
+	<br>
+	<br>
 	<!-- body start -->
 	<div id="content">
 		<div style="position: relative; width: 100%; height: 400px;">
@@ -96,26 +103,23 @@
 		</div>
 	</div>
 	<!-- body end -->
-	
+
 	<!-- 부산 명소 정보를 출럭 -->
 	<div class="container">
-		
-		<div class="main_body" id="div1">
-			
-			 
-		</div>
-		
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
-<%@include file="/WEB-INF/views/include/footer.jsp"%>
-</body> 
+		<div class="main_body" id="div1"></div>
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+	<%@include file="/WEB-INF/views/include/footer.jsp"%>
+</body>
 </html>

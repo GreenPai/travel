@@ -13,7 +13,7 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
   window.onload = function() {
-	 
+	  
 		 let url = '/tema';   // servlet 사용
 		// let url = 'https://openapi.foodsafetykorea.go.kr/api/70e153f2e8f64995941b/COOKRCP01/xml/1/50';
 		 axios( {
@@ -97,9 +97,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="page_num">
-				<p>
-					<strong>총 게시물</strong><span></span>건
-				</p>
+				<h2 style="text-align: center;">부산 테마 정보</h2>
 				<hr>
 				
 				<div class="col-md-3 mb-4" id="div1" style="width:1200px; display: flex; flex-wrap: wrap;">
