@@ -17,7 +17,7 @@
 		// let url = 'https://openapi.foodsafetykorea.go.kr/api/70e153f2e8f64995941b/COOKRCP01/xml/1/50'; 
 		 axios( {
 			 url    : url,
-			 method : 'GET',
+			 method : 'GET', 
 			 params : {
 		//       encoding 서버스키는 cors 발생 - 자바를 이용해야한다
 				 serviceKey : 'X5Ow2Q7/1YLN6F2IGV2I9/1G9A5aZ2eNuiJnwQvTm8m7w/DEh2jJsBMatEA/FBy2dM5/oJASYTxYqsoEukRzvQ==',

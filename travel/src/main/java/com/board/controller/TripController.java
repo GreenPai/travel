@@ -154,9 +154,9 @@ import com.board.domain.TripVo;
 			@RequestMapping("/Recom")
 			public ModelAndView recom() {
 				
-				ModelAndView mv = new ModelAndView();
+				ModelAndView mv = new ModelAndView(); 
 				mv.setViewName("plan/recom");
-				return mv;
+				return mv; 
 			}
 			
 			// 부산 시장 상세정보

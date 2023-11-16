@@ -11,7 +11,7 @@
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
+<script> 
   window.onload = function() {
 	 
 		 let url = '/tripView';   // servlet 사용

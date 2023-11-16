@@ -33,7 +33,7 @@
 			   console.dir( obj.data );  // getGalmaetGilInfo -> body -> items
 			   let  arr =  obj.data.getAttractionKr.item;
 			   console.log(arr);
-			   let  html  = '';		
+			   let  html  = '';		  
 			   
 			   if (arr.length > 0) {
 		            let row = arr[0];

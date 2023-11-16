@@ -16,7 +16,7 @@
 		 let url = '/food';   // servlet 사용
 		// let url = 'https://openapi.foodsafetykorea.go.kr/api/70e153f2e8f64995941b/COOKRCP01/xml/1/50';
 		 axios( {
-			 url    : url,
+			 url    : url, 
 			 method : 'GET',
 			 params : {
 		//       encoding 서버스키는 cors 발생 - 자바를 이용해야한다

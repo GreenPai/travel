@@ -57,7 +57,7 @@
 						   html += '<p><b>추가단위요금</b>: '          + row.feeAdd         + '</p>'						   
 						   html += '</div>'
 						   html += '</div>';
-
+ 
 			   })
 			   
 				  

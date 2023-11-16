@@ -13,7 +13,7 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
   window.onload = function() {
-	 
+	  
 		 let url = '/leis';   // servlet 사용
 		// let url = 'https://openapi.foodsafetykorea.go.kr/api/70e153f2e8f64995941b/COOKRCP01/xml/1/50';
 		 axios( {

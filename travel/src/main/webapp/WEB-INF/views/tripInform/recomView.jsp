@@ -18,7 +18,7 @@
 		 axios( {
 			 url    : url,
 			 method : 'GET',
-			 params : {
+			 params : { 
 		//       encoding 서버스키는 cors 발생 - 자바를 이용해야한다
 				 serviceKey : 'X5Ow2Q7/1YLN6F2IGV2I9/1G9A5aZ2eNuiJnwQvTm8m7w/DEh2jJsBMatEA/FBy2dM5/oJASYTxYqsoEukRzvQ==',
 		//       decoding 서버스키는 cors 발생하지 않음

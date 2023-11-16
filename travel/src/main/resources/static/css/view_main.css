@@ -16,7 +16,7 @@ body {
 /* 가운데 정렬 */
 .header_login {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
     align-items: center;
     padding: 10px;
     background-color: #D6F3ED;

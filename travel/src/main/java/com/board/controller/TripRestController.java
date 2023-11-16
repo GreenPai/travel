@@ -480,7 +480,7 @@ import org.springframework.web.bind.annotation.RestController;
 		            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		        } else {
 		            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-		        }
+		        } 
 		        StringBuilder sb = new StringBuilder();
 		        String line;
 		        while ((line = rd.readLine()) != null) {
