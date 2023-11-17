@@ -64,7 +64,7 @@
 			<ul class="submenu3">
 				<li><a href="/Park">부산 공영주차장 정보</a></li>
 				<li><a href="/Handi">부산 편의시설 정보</a></li>
-				<li><a href="#">부산 기상정보</a></li>
+				<li><a href="/weatherView">부산 기상정보</a></li>
 				<li><a href="/Leis">경남 레저정보</a></li>				
 			</ul></li>
 		<li><a href=#><h2>안내</h2></a>
