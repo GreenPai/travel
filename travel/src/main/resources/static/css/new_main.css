@@ -164,7 +164,7 @@ body {
 }
 
 .menu > li:hover .submenu2 {
-    height: 150px;
+    height: 200px;
     transition-duration: 1s;
 }
 

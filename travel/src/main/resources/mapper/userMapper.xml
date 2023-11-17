@@ -45,7 +45,15 @@
   </select>
 
 
-
+<insert id="dailyInsert">
+		INSERT INTO TRAVEL_DAY(
+		    PLAN_DATE, 
+			USERID
+			) VALUES (
+			#{plan_date},
+			#{userid} 
+		)
+	</insert>
 
 
 

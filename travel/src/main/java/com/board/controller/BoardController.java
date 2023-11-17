@@ -34,6 +34,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.board.domain.BoardVo;
 import com.board.domain.CommentVo;
+import com.board.domain.DailyVo;
 import com.board.domain.FileVo;
 import com.board.mapper.BoardMapper;
 
@@ -467,8 +468,7 @@ public class BoardController {
 	   }
 	  
 	  
-	  
-	
+
 }
 
 

@@ -170,7 +170,7 @@
       btnEls.forEach( ( btn ) => {       // Array.from(tag).forEach()
        //  alert(btn.id);
          btn.addEventListener('click', () => {         
-            switch(btn.id) {
+            switch(btn.id) {	
             case "formUpdate": location.href = '/UpdateForm/${vo.bno}';  break;
             case "formDelete": location.href = '/Delete/${vo.bno}';  break;
             case "formWrite":  location.href = '/WriteForm';         break;

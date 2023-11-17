@@ -55,6 +55,7 @@
 		<li><a href=#><h2>일정</h2></a>
 
 			<ul class="submenu2"> 
+				<li><a href="/TravelPlan">일정 세우기</a></li>
 				<li><a href="/Recom">부산 시장투어</a></li>
 				<li><a href="/Tema">부산 테마일정</a></li>
 				<li><a href="/Festa">부산 축제투어</a></li>
