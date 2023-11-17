@@ -45,7 +45,7 @@
             }
             
             
-            
+               
           
           
           }
@@ -59,7 +59,7 @@
 <style>
 
   #main {
-        padding: 0 200px; /* 좌우 여백을 200px로 설정 */
+        padding: 0 200px; 
     }
     
     #calendar {
