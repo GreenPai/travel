@@ -55,8 +55,35 @@
 		)
 	</insert>
 
+<insert id="dailyListInsert">
+		INSERT INTO TRAVEL_DAY_FINAL(
+		    PLAN_DATE, 
+			USERID,
+			TODAY_DATE
+			) VALUES (
+			#{plan_date},
+			#{userid},
+			#{today_date} 
+		)
+	</insert>
 
 
+ <select id="dailyGet"
+          resultType="com.board.domain.DailyVo">
+  	 
+  	 SELECT  *
+     FROM TRAVEL_DAY
+     WHERE USERID = #{userid}
+  	 
+</select>
+
+ <delete id="dailyDelete">
+  
+  	DELETE   FROM   TRAVEL_DAY
+  	 WHERE   USERID = #{userid} 
+  
+  </delete>
+  
 </mapper>
 
 

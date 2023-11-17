@@ -1,5 +1,7 @@
 package com.board.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.board.domain.DailyVo;
@@ -15,6 +17,14 @@ public interface UserMapper {
 	UserVo loginCheck(UserVo vo);
 
 	void dailyInsert(DailyVo dailyVo);
+
+	List<DailyVo> dailyGet(DailyVo dailyVo);
+
+	void dailyDelete(String userid);
+
+	void dailyListInsert(List<DailyVo> dayList);
+
+	void dailyListInsert(DailyVo daily);
 	
 	
 }

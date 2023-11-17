@@ -82,7 +82,7 @@
     
     const btnWriteEl = document.querySelector('#btnWrite');
     btnWriteEl.addEventListener('click', function() {
-    	location.href = '/PlanWriteForm'
+    	location.href = '/P3'
     });
   
   </script>

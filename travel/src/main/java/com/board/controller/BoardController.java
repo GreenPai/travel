@@ -246,7 +246,6 @@ public class BoardController {
    @RequestMapping("/View")
    public  ModelAndView   view(BoardVo vo) {
       
-	  
       // 조회수 증가 (hit = hit + 1)
       boardMapper.boardHitUpdate( vo );
       List<FileVo> filevoList = boardMapper.boardFileList(vo);

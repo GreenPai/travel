@@ -14,6 +14,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
+
 public class FileVo {
 	private String WRITER;
 	private String TITLE;

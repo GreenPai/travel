@@ -65,16 +65,88 @@
     #calendar {
         width: 800px;
         height: 800px;
+        margin-left: 50px;
       }
-      
+
+    #dailytable {
+        width: 700px;
+        height: 400px;
+      }
+    
+  .grid-container {
+        display: grid;
+        grid-template-columns: 850px 500px;
+        gap: 100px; /* 간격 설정 */
+    } 
+    
+    
+    table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #343a40;
+    color: white;
+  }
+
+.btn-container {
+    display: flex;
+    justify-content: right; /* 버튼을 좌우 정렬 */
+    margin:5px;
+    margin-top: 20px; /* 원하는 여백 설정 */
+    width: 100%; /* 버튼을 전체 너비로 확장 */
+    gap: 3px;
+}
+  
 </style>
 </head>
 <body>
    <br><br>
 
-   
 
-<div id='calendar'></div>
+<div class="grid-container" >
+    <div id='calendar'></div>
+<div id='dailytable'>
+<table>
+  <thead class="thead-dark">
+    <div class="btn-container">
+      <a href="/" class="btn btn-dark" id="Detail">HOME</a>
+      <a href="/DeleteDaily" class="btn btn-dark" id="delete">날짜 초기화</a>
+      <a href="/DetailDaily" class="btn btn-dark" id="Detail">일정 세우기</a>
+    </div>            
+    <tr>
+      <th class="thead-dark" id="daytable">날짜</th>   
+    </tr>
+  </thead>
+  
+  <tbody id="infoTableBody">
+    <tr>
+      <td>
+        <table>
+          <tbody>
+            <c:forEach var="day" items="${dayList}" varStatus="status">
+              <tr onclick="showInfo(${status.index})">
+                <td>${day.plan_date}</td>
+              </tr>
+            </c:forEach>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+</div>
+
+
 
 </body>
 </html>
