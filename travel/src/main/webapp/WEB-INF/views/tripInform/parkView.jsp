@@ -88,6 +88,9 @@
 			</div>
 		</div>
 	</div>
+	
+	<%@include file="/WEB-INF/views/map/parkmap.jsp"%>
+	
 	<!-- body end -->
 	
 	<!-- 부산 명소 정보를 출럭 -->
