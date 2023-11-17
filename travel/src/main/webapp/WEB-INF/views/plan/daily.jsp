@@ -12,9 +12,9 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="/css/main.css" />
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" 
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" 
+    crossorigin="anonymous"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
 	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -25,33 +25,41 @@
 	crossorigin="anonymous"></script>
  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth',
-          dateClick: function(info) {
+   document.addEventListener('DOMContentLoaded', function() {
+	    var calendarEl = document.getElementById('calendar');
+	    var calendar = new FullCalendar.Calendar(calendarEl, {
+	        initialView: 'dayGridMonth',
+	        dateClick: function(info) {
+	            var date = info.dateStr; // 클릭한 날짜를 가져옵니다.
+	            var url = 'https://api.openweathermap.org/data/2.5/forecast/daily?q=busan&lang=kr&appid=32c9e2ef977a4ebfaedd69cc117bb42a&units=metric&cnt=7';
 
+	            $.getJSON(url, function(data) {
+	                var list = data.list;
+	                for (var i = 0; i < list.length; i++) {
+	                    var dt = new Date(list[i].dt * 1000);
+	                    var year = dt.getFullYear();
+	                    var month = dt.getMonth() + 1;
+	                    var day = dt.getDate();
+	                    var formattedDate = year + '-' + (month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day);
 
+	                    if (formattedDate === date) {
+	                        var temp = list[i].temp.day;
+	                        var description = list[i].weather[0].description;
+	                        alert('선택한 날짜: ' + date + ', 기온: ' + temp + ', 날씨: ' + description);
+	                        break;
+	                    }
+	                }
+	            });
 
-            if (info.dayEl.style.backgroundColor === 'yellow') {
-            	  // 이미 선택된 날짜의 색상이 변경된 경우, 원래대로 되돌림
-            	  info.dayEl.style.backgroundColor = '';
-                  alert('선택한 날짜: ' + info.dateStr);
-            } else {
-                  location.href = '/DailyUpdate?date=' + encodeURIComponent(info.dateStr);
-            	  // 선택한 날짜의 색상을 변경
-            	  info.dayEl.style.backgroundColor = 'yellow';
-                  alert('선택한 날짜: ' + info.dateStr);	
-            }
-            
-            
-               
-          
-          
-          }
-        });
-        calendar.render();
-      });
+	            if (info.dayEl.style.backgroundColor === 'yellow') {
+	                info.dayEl.style.backgroundColor = '';
+	            } else {
+	                info.dayEl.style.backgroundColor = 'yellow';
+	            }
+	        }
+	    });
+	    calendar.render();
+	});
       
    
     </script>  	
