@@ -31,7 +31,7 @@
 	        initialView: 'dayGridMonth',
 	        dateClick: function(info) {
 	            var date = info.dateStr; // 클릭한 날짜를 가져옵니다.
-	            var url = 'http://api.openweathermap.org/data/2.5/forecast/daily?lat=35.2100&lon=129.0689&lang=kr&cnt=7&appid=7d6ac7c9ae0a7f342c50c2620589a9ff&units=metric';
+	            var url = 'https://api.openweathermap.org/data/2.5/forecast?lat=35.1578&lon=129.0600&lang=kr&appid=32c9e2ef977a4ebfaedd69cc117bb42a';
 
 	            $.getJSON(url, function(data) {
 	                var list = data.list;
@@ -40,12 +40,14 @@
 	                    var year = dt.getFullYear();
 	                    var month = dt.getMonth() + 1;
 	                    var day = dt.getDate();
+	                    var hour = dt.getHours();
 	                    var formattedDate = year + '-' + (month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day);
 
-	                    if (formattedDate === date) {
-	                        var temp = list[i].temp.day;
-	                        var description = list[i].weather[0].description;
-	                        alert('선택한 날짜: ' + date + ', 기온: ' + temp + ', 날씨: ' + description);
+	                    if (formattedDate === date && hour === 12) {
+	                    	var tempMax = (Math.round(list[i].main.temp_max) - 273) + "˚C"; // 최대 기온
+	                    	var tempMin = (Math.round(list[i].main.temp_min) - 273) + "˚C"; // 최저 기온
+	                        var description = list[i].weather[0].description; // 날씨 설명
+	                        alert('선택한 날짜: ' + date + ', 최대 기온: ' + tempMax + ', 최저 기온: ' + tempMin + ', 날씨: ' + description);
 	                        break;
 	                    }
 	                }
