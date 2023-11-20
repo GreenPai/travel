@@ -6,7 +6,7 @@
    #busanweather {
 	 border :  2px solid #ffffff;
 	 border-collapse: collapse;
-     width:15%; 
+     width:30%; 
      background: aliceblue;
      border-radius: 15px;
    } 
