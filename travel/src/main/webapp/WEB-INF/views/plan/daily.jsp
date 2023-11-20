@@ -52,9 +52,14 @@
 	            });
 
 	            if (info.dayEl.style.backgroundColor === 'yellow') {
-	                info.dayEl.style.backgroundColor = '';
+	            	  // 이미 선택된 날짜의 색상이 변경된 경우, 원래대로 되돌림
+	            	  info.dayEl.style.backgroundColor = '';
+	                  alert('선택한 날짜: ' + info.dateStr);
 	            } else {
-	                info.dayEl.style.backgroundColor = 'yellow';
+	                  location.href = '/DailyUpdate?date=' + encodeURIComponent(info.dateStr);
+	            	  // 선택한 날짜의 색상을 변경
+	            	  info.dayEl.style.backgroundColor = 'yellow';
+	                  alert('선택한 날짜: ' + info.dateStr);	
 	            }
 	        }
 	    });
