@@ -1,5 +1,6 @@
 package com.board.controller;
 		
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -76,22 +77,46 @@ import com.board.mapper.UserMapper;
 			
 			// 테이블에서 유저가 고른 날짜를 보여주기 위해서 
 			// 테이블에 날짜를 저장하고 데이터를 들고오는것.
-			
+			// 같은 날짜를 눌렀을때 삭제
 			@RequestMapping(value = "/DailyUpdate", method = RequestMethod.GET)
 		    public ModelAndView handleDailyUpdate(@RequestParam("date") String date, HttpServletRequest request) {
 		        				
 				HttpSession session = request.getSession();
 		        DailyVo dailyVo = new DailyVo();
 		        String userid = (String) session.getAttribute("userid");
-		        System.out.println(userid);
+		    //    System.out.println(userid);
 		        dailyVo.setUserid(userid);
 		        dailyVo.setPlan_date(date);
 			        
 				session.setAttribute("selectedDate", date);
 
+				List<DailyVo> dayList = userMapper.dailyGet(dailyVo);
+				
+				// System.out.println(dayList);
+				 for (DailyVo daily : dayList) {
+				       
+					 String day = daily.getPlan_date();
+					 String[] parts = day.split(" "); // 공백을 기준으로 문자열 분할
+					 String datePart = parts[0]; // 날짜 부분
+					 String timePart = parts[1]; // 시간 부분
+
+					 if (date.equals(datePart)) {
+						 userMapper.dailyDateDelete(date);	
+						
+						 dayList = userMapper.dailyGet(dailyVo);
+						 
+						 ModelAndView mv = new ModelAndView();
+			             mv.addObject("date", date);
+			             mv.addObject("dayList", dayList);
+			             mv.setViewName("plan/daily");
+			             return mv;
+					 }
+
+				 }
 		        userMapper.dailyInsert(dailyVo);
-                List<DailyVo> dayList = userMapper.dailyGet(dailyVo);
-                System.out.println(dayList);
+		        
+		        dayList = userMapper.dailyGet(dailyVo);
+//                System.out.println(dayList);
                 
                 ModelAndView mv = new ModelAndView();
                 mv.addObject("date", date);
@@ -100,8 +125,12 @@ import com.board.mapper.UserMapper;
                 return mv;
 		    }
 			
+			
+			
+			// 임시 데일리 테이블의 일자를 최종 데일리 테이블로 옭기면서 임시는 지움
 			@RequestMapping("/DeleteDaily")
 			public ModelAndView DeleteDaily(HttpServletRequest request) {
+				
 				
 				HttpSession session = request.getSession();
 				String userid = (String) session.getAttribute("userid");
@@ -113,7 +142,7 @@ import com.board.mapper.UserMapper;
 
 			@RequestMapping("/DetailDaily")
 			public ModelAndView DetailDaily(HttpServletRequest request) {
-				
+               				
 				HttpSession session = request.getSession();
 		        DailyVo dailyVo = new DailyVo();
 		        String userid = (String) session.getAttribute("userid");

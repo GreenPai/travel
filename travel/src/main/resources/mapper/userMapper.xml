@@ -83,6 +83,13 @@
   	 WHERE   USERID = #{userid} 
   
   </delete>
+
+ <delete id="dailyDateDelete">
+  
+  	DELETE   FROM   TRAVEL_DAY
+  	 WHERE   PLAN_DATE = #{date} 
+  
+  </delete>
   
 </mapper>
 
