@@ -18,8 +18,21 @@
 	<%@include file="/WEB-INF/views/include/header.jsp"%>
 	<br><br>
 	<!-- body start -->
-	    <%@include file="/WEB-INF/views/weather/weatherpage.jsp" %>
-  		<%@include file="/WEB-INF/views/weather/weather.jsp" %>
+		<div id="content">
+		<div style="position: relative; width: 100%; height: 400px;">
+			<img alt="back_img" src="img/beach.jpg"
+				style="width: 100%; height: 100%;">
+			<div
+				style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+				<h1 style="color: #fff; font-size: 50px;">부산의 날씨</h1>
+				<h2 style="color: black; font-size: 22px;">기상정보를 확인하세요</h2>
+			</div>
+		</div>
+	</div>
+	<div>
+	    <div algin=right><%@include file="/WEB-INF/views/weather/weatherpage.jsp" %></div>
+  		<div algin=left><%@include file="/WEB-INF/views/weather/weather.jsp" %></div>
+	</div>
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
 </body> 
