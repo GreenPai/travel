@@ -33,7 +33,7 @@
         }
 
         $.ajax({
-            url:"http://api.openweathermap.org/data/2.5/forecast/daily?q=busan&lang=kr&appid=6420f5c6c9c24587b163f1d71f86daf9",
+            url:"http://api.openweathermap.org/data/2.5/forecast/daily?q=busan&lang=kr&appid=32c9e2ef977a4ebfaedd69cc117bb42a",
             dataType:"json",
             success:function(city){
                 $.each(city.list, function(key) {
