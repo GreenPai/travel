@@ -1,6 +1,7 @@
 package com.board.controller;
 		
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -91,36 +92,61 @@ import com.board.mapper.UserMapper;
 				session.setAttribute("selectedDate", date);
 
 				List<DailyVo> dayList = userMapper.dailyGet(dailyVo);
-				
-				// System.out.println(dayList);
-				 for (DailyVo daily : dayList) {
-				       
-					 String day = daily.getPlan_date();
-					 String[] parts = day.split(" "); // 공백을 기준으로 문자열 분할
-					 String datePart = parts[0]; // 날짜 부분
-					 String timePart = parts[1]; // 시간 부분
 
+				// dayList의 형태가 시, 분, 초가 나옴으로서 
+				// dateList에서 일까지 자름
+				List<String> dateList2 = new ArrayList<>(); // 새로운 배열을 저장할 리스트 생성
+				
+				String day= "";
+				String[] parts = null;
+				String datePart = "";
+				
+				 for (DailyVo daily : dayList) {
+				   					 			 
+					day = daily.getPlan_date();
+					parts = day.split(" "); // 공백을 기준으로 문자열 분할
+					datePart = parts[0]; // 날짜 부분
+					
 					 if (date.equals(datePart)) {
+						 System.out.println("1");
 						 userMapper.dailyDateDelete(date);	
 						
 						 dayList = userMapper.dailyGet(dailyVo);
+				
+						 for (DailyVo daily2 : dayList) {
+							 day = daily2.getPlan_date();
+							 parts = day.split(" "); // 공백을 기준으로 문자열 분할
+							 datePart = parts[0]; // 날짜 부분
+						
+							 dateList2.add(datePart); // 새로운 배열에 날짜 부분을 추가
+						 }
 						 
 						 ModelAndView mv = new ModelAndView();
 			             mv.addObject("date", date);
 			             mv.addObject("dayList", dayList);
+			             mv.addObject("dateList", dateList2);
 			             mv.setViewName("plan/daily");
 			             return mv;
 					 }
 
 				 }
+				 
 		        userMapper.dailyInsert(dailyVo);
 		        
 		        dayList = userMapper.dailyGet(dailyVo);
-//                System.out.println(dayList);
                 
+		        for (DailyVo daily2 : dayList) {
+					 day = daily2.getPlan_date();
+					 parts = day.split(" "); // 공백을 기준으로 문자열 분할
+					 datePart = parts[0]; // 날짜 부분
+				
+					 dateList2.add(datePart); // 새로운 배열에 날짜 부분을 추가
+				 }
+		        
                 ModelAndView mv = new ModelAndView();
                 mv.addObject("date", date);
                 mv.addObject("dayList", dayList);
+                mv.addObject("dateList", dateList2);
                 mv.setViewName("plan/daily");
                 return mv;
 		    }

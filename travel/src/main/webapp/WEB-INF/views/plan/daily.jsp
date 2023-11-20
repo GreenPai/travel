@@ -144,10 +144,10 @@
       <td>
         <table>
           <tbody>
-            <c:forEach var="day" items="${dayList}" varStatus="status">
-              <tr onclick="showInfo(${status.index})">
-                <td>${day.plan_date}</td>
-              </tr>
+            <c:forEach var="day" items="${dateList}" varStatus="status">
+            <tr onclick="showInfo(${status.index})">
+            <td>${day}</td>
+            </tr>
             </c:forEach>
           </tbody>
         </table>
