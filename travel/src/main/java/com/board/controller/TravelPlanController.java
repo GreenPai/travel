@@ -158,11 +158,10 @@ import com.board.mapper.UserMapper;
 		        dailyVo.setPlan_date(plan);
 		        dailyVo.setToday_date(days);
 		        dailyVo.setUserid(userid);
-		        
+		          
 		        userMapper.dailyListInsert(dailyVo);
 		        }
-				// System.out.println("실험입니다"+dayList);
-				
+
 				//userMapper.dailyListInsert(dayList);
 				//userMapper.dailyDelete(userid);
 				ModelAndView mv = new ModelAndView();
