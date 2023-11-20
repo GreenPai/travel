@@ -4,12 +4,12 @@
 <section>	
 <style>
 #weather {
-    margin: 20px;
-    padding: 10px;
+    margin: 10px;
+    padding: 5px;
     border: 1px solid white;
-    border-radius: 5px;
+    border-radius: 3px;
     background-color: aliceblue;
-    width: 25%;
+    width: 50%;
 }
 
 .weather-info {
