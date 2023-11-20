@@ -31,7 +31,7 @@
 	        initialView: 'dayGridMonth',
 	        dateClick: function(info) {
 	            var date = info.dateStr; // 클릭한 날짜를 가져옵니다.
-	            var url = 'https://api.openweathermap.org/data/2.5/forecast/daily?q=busan&lang=kr&appid=32c9e2ef977a4ebfaedd69cc117bb42a&units=metric&cnt=7';
+	            var url = 'http://api.openweathermap.org/data/2.5/forecast/daily?q=busan&appid=6420f5c6c9c24587b163f1d71f86daf9&units=metric&cnt=7';
 
 	            $.getJSON(url, function(data) {
 	                var list = data.list;
