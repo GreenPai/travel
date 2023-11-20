@@ -44,10 +44,31 @@
 	                    var formattedDate = year + '-' + (month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day);
 
 	                    if (formattedDate === date && hour === 12) {
-	                    	var tempMax = (Math.round(list[i].main.temp_max) - 273) + "˚C"; // 최대 기온
-	                    	var tempMin = (Math.round(list[i].main.temp_min) - 273) + "˚C"; // 최저 기온
+	                        var tempMax = (Math.round(list[i].main.temp_max) - 273); // 최대 기온
+	                        var tempMin = (Math.round(list[i].main.temp_min) - 273); // 최저 기온
 	                        var description = list[i].weather[0].description; // 날씨 설명
-	                        alert('선택한 날짜: ' + date + ', 최대 기온: ' + tempMax + ', 최저 기온: ' + tempMin + ', 날씨: ' + description);
+
+	                        // 서버에 데이터 전송
+	                        $.ajax({
+	                            url: '/insertWeather', // 서버에서 데이터를 처리할 URL
+	                            type: 'POST', // HTTP 메소드 (GET, POST 등)
+	                            data: { // 서버에 전송할 데이터
+	                                dt_txt: formattedDate,
+	                                description: description,
+	                                temp_max: tempMax,
+	                                temp_min: tempMin
+	                            },
+	                            success: function(response) {
+	                                // 서버에서 응답을 받았을 때의 처리
+	                                alert('데이터 저장 성공');
+	                            },
+	                            error: function(error) {
+	                                // 에러가 발생했을 때의 처리
+	                                alert('데이터 저장 실패: ' + error);
+	                            }
+	                        });
+
+	                        alert('선택한 날짜: ' + date + ', 최대 기온: ' + tempMax + '˚C' + ', 최저 기온: ' + tempMin + '˚C' + ', 날씨: ' + description);
 	                        break;
 	                    }
 	                }
@@ -162,35 +183,6 @@
 </div>
 
 
-
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

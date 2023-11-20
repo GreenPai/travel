@@ -1,6 +1,5 @@
 package com.board.controller;
 		
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,21 +7,21 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 		import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.board.domain.BoardVo;
-import com.board.domain.CommentVo;
 import com.board.domain.DailyVo;
-import com.board.domain.FileVo;
-import com.board.domain.TripVo;
+import com.board.domain.WeatherVo;
 import com.board.mapper.DailyMapper;
 import com.board.mapper.TripMapper;
 import com.board.mapper.UserMapper;
+import com.board.mapper.WeatherMapper;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 		
 		@Controller
 		public class TravelPlanController {
@@ -35,6 +34,9 @@ import com.board.mapper.UserMapper;
 		    
 			@Autowired
 			private DailyMapper dailyMapper;
+			
+			@Autowired
+			private WeatherMapper weatherMapper;
 			
 			// 경상남도 레저 상세정보
 			@RequestMapping("/TravelPlan")
@@ -56,23 +58,36 @@ import com.board.mapper.UserMapper;
 
 			@RequestMapping("/P3")
 			public ModelAndView p3(HttpServletRequest request) {
-				
-				ModelAndView mv = new ModelAndView();
-				mv.setViewName("plan/daily");
-				return mv;
+			    ModelAndView mv = new ModelAndView();
+
+			    // OpenWeatherMap API 호출
+			    RestTemplate restTemplate = new RestTemplate();
+			    String url = "https://api.openweathermap.org/data/2.5/forecast?lat=35.1578&lon=129.0600&lang=kr&appid=32c9e2ef977a4ebfaedd69cc117bb42a";
+			    String response = restTemplate.getForObject(url, String.class);
+
+			    try {
+			        // JSON 파싱 및 DB 저장
+			        ObjectMapper objectMapper = new ObjectMapper();
+			        JsonNode root = objectMapper.readTree(response);
+			        JsonNode list = root.path("list");
+			        for (JsonNode node : list) {
+			            String dt_txt = node.path("dt_txt").asText();
+			            String description = node.path("weather").get(0).path("description").asText();
+			            double temp_max = node.path("main").path("temp_max").asDouble();
+			            double temp_min = node.path("main").path("temp_min").asDouble();
+
+			            if (weatherMapper.countByDtTxt(dt_txt) == 0) {
+			                WeatherVo weather = new WeatherVo(dt_txt, description, temp_max, temp_min);
+			                weatherMapper.insertWeather(weather);
+			            }
+			        }
+			    } catch (JsonProcessingException e) {
+			        e.printStackTrace();
+			    }
+
+			    mv.setViewName("plan/daily");
+			    return mv;
 			}
-			
-			/*
-			@RequestMapping("/DailyUpdate")
-		    public String handleDailyUpdate(@RequestParam("date") String date) {
-		        // 여기서 할 일: 전달된 날짜(date)를 이용한 작업 수행
-		        // 예를 들어, 특정 작업을 수행하고 나중에 다른 페이지로 리디렉션할 수 있습니다.
-                System.out.println(date);
-		        // 리디렉션할 페이지의 URL을 반환
-		        return "redirect:/P3";
-		    }
-			*/
-				
 			
 			
 			// 테이블에서 유저가 고른 날짜를 보여주기 위해서 
@@ -84,7 +99,6 @@ import com.board.mapper.UserMapper;
 				HttpSession session = request.getSession();
 		        DailyVo dailyVo = new DailyVo();
 		        String userid = (String) session.getAttribute("userid");
-		    //    System.out.println(userid);
 		        dailyVo.setUserid(userid);
 		        dailyVo.setPlan_date(date);
 			        
@@ -92,7 +106,6 @@ import com.board.mapper.UserMapper;
 
 				List<DailyVo> dayList = userMapper.dailyGet(dailyVo);
 				
-				// System.out.println(dayList);
 				 for (DailyVo daily : dayList) {
 				       
 					 String day = daily.getPlan_date();
@@ -151,7 +164,6 @@ import com.board.mapper.UserMapper;
 		        List<DailyVo> dayList = userMapper.dailyGet(dailyVo);
 				
 		        for (DailyVo daily : dayList) {
-		        //	userMapper.dailyListInsert(daily);
 		        String plan =daily.getPlan_date();
 		        String days =daily.getToday_date(); 
 		        String user =daily.getUserid(); 
@@ -162,8 +174,6 @@ import com.board.mapper.UserMapper;
 		        userMapper.dailyListInsert(dailyVo);
 		        }
 
-				//userMapper.dailyListInsert(dayList);
-				//userMapper.dailyDelete(userid);
 				ModelAndView mv = new ModelAndView();
 				mv.setViewName("plan/detaildaily");
 				return mv;
