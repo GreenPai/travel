@@ -57,7 +57,7 @@
 		<form action="/Write?menu_id=${menuid}" method="POST"  enctype="multipart/form-data" >
    <table id="table"> 
 	<div id="main">
-		<h2>게시물 쓰기</h2>	
+		<h2>계획 세우기</h2>	
 
 			<div class="mb-3">
 				<label for="formTitle" class="form-label"><b style="color:red">*</b>제목</label>

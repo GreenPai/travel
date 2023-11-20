@@ -8,9 +8,5 @@
 </head>
 <body>
 
-  <%@include file="/WEB-INF/views/map/loadmap.jsp" %>
-  <%@include file="/WEB-INF/views/weather/weatherpage.jsp" %>
-  <%@include file="/WEB-INF/views/weather/weather.jsp" %>
-  
 </body>
 </html>

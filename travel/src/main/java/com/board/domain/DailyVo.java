@@ -15,15 +15,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @RequiredArgsConstructor
 
-public class FileVo {
-	private String WRITER;
-	private String TITLE;
-
-	@NonNull     // NOT NULL
-	private int FILE_NUM;
-	private int IDX;
-	private String FILENAME;
-	private String FILEEXT;
-	private String SFILENAME;
+public class DailyVo {
 	
+	private String today_date;
+	@NonNull     // NOT NULL
+	private String plan_date;	
+	private String userid;
+
 }

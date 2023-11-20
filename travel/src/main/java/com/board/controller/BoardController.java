@@ -34,6 +34,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.board.domain.BoardVo;
 import com.board.domain.CommentVo;
+import com.board.domain.DailyVo;
 import com.board.domain.FileVo;
 import com.board.mapper.BoardMapper;
 
@@ -245,7 +246,6 @@ public class BoardController {
    @RequestMapping("/View")
    public  ModelAndView   view(BoardVo vo) {
       
-	  
       // 조회수 증가 (hit = hit + 1)
       boardMapper.boardHitUpdate( vo );
       List<FileVo> filevoList = boardMapper.boardFileList(vo);
@@ -467,8 +467,7 @@ public class BoardController {
 	   }
 	  
 	  
-	  
-	
+
 }
 
 

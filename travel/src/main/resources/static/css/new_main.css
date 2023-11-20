@@ -164,7 +164,7 @@ body {
 }
 
 .menu > li:hover .submenu2 {
-    height: 150px;
+    height: 200px;
     transition-duration: 1s;
 }
 
@@ -362,6 +362,7 @@ body {
     padding-right: 40px;
     box-sizing: border-box;
 }
+
 .container {
     min-width: 1200px;
     margin: 0 auto;

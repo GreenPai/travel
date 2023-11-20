@@ -96,8 +96,25 @@ form button[type="submit"] {
   <br><br>
   <div id="main">
     <h2>${menuname}</h2>
-  
    <br>
+  
+   <c:choose>
+            <c:when test="${menuid eq 'MENU03'}">
+               <div style="display: flex; gap: 10px;">
+                <a href="/List?menu_id=MENU03" class="btn btn-dark">QNA 질문 게시판</a><br>
+                <a href="/QNA" 	class="btn btn-dark">자주하는 질문</a><br>
+               </div> <br>            
+            </c:when>
+            <c:otherwise>
+            </c:otherwise>
+   </c:choose>
+  
+  
+  
+  
+  
+  
+  
   
 <c:choose>
     <c:when test="${not empty sessionScope['admin']}">

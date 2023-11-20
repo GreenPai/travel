@@ -55,6 +55,7 @@
 		<li><a href=#><h2>일정</h2></a>
 
 			<ul class="submenu2"> 
+				<li><a href="/TravelPlan">일정 세우기</a></li>
 				<li><a href="/Recom">부산 시장투어</a></li>
 				<li><a href="/Tema">부산 테마일정</a></li>
 				<li><a href="/Festa">부산 축제투어</a></li>
@@ -64,7 +65,7 @@
 			<ul class="submenu3">
 				<li><a href="/Park">부산 공영주차장 정보</a></li>
 				<li><a href="/Handi">부산 편의시설 정보</a></li>
-				<li><a href="#">부산 기상정보</a></li>
+				<li><a href="/Weather">부산 기상정보</a></li>
 				<li><a href="/Leis">경남 레저정보</a></li>				
 			</ul></li>
 		<li><a href=#><h2>안내</h2></a>
