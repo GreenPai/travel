@@ -3,8 +3,8 @@
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <section>
 
-    <h2>부산날씨지도</h2>
-	<div id="map" style="width:100%;height:800px;"></div>
+    <h2>부산 날씨 지도</h2>
+	<div id="map" style="width:95%;height:800px;"></div>
 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3240aeba4cebfd38087dd3298693d91c"></script>
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -12,7 +12,7 @@
 		var mapContainer = document.getElementById('map'), 
 		    mapOption = { 
 		        center: new kakao.maps.LatLng(35.1578, 129.0600), // 변경된 부산의 중심좌표
-		        level: 3 // 지도의 확대 레벨
+		        level: 5 // 지도의 확대 레벨
 		    };
 		
 		var map = new kakao.maps.Map(mapContainer, mapOption);
