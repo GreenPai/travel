@@ -55,6 +55,22 @@
 		)
 	</insert>
 
+<insert id="dailyWeatherInsert">
+		INSERT INTO TRAVEL_DAY(
+		    PLAN_DATE, 
+			USERID,
+			TEMPMAX,
+			TEMPMIN,
+			DESCRIPTION
+			) VALUES (
+			#{plan_date},
+			#{userid},
+			#{tempMax},
+			#{tempMin},
+			#{description} 
+		)
+	</insert>
+
 <insert id="dailyListInsert">
 		INSERT INTO TRAVEL_DAY_FINAL(
 		    PLAN_DATE, 
@@ -74,6 +90,7 @@
   	 SELECT  *
      FROM TRAVEL_DAY
      WHERE USERID = #{userid}
+     ORDER BY PLAN_DATE ASC
   	 
 </select>
 
@@ -90,6 +107,15 @@
   	 WHERE   PLAN_DATE = #{date} 
   
   </delete>
+
+ <select id="dailyListGet">
+  
+   	 SELECT  *
+     FROM TRAVEL_DAY_FINAL
+     WHERE USERID = #{userid}
+     ORDER BY PLAN_DATE ASC
+  
+  </select>
   
 </mapper>
 

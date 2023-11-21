@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.board.mapper.WeatherMapper">
+
+
+
+
+	<insert id="insertWeather">
+		INSERT INTO WEATHER(
+		    DT_TXT,
+			DESCRIPTION,
+			TEMP_MAX,
+			TEMP_MIN
+			) VALUES (
+		    #{dt_txt},
+			#{description},
+			(#{temp_max}-273),
+			(#{temp_min}-273)
+		)
+	</insert>
+	
+	<select id="countByDtTxt" resultType="int">
+    SELECT COUNT(*)
+    FROM WEATHER
+    WHERE DT_TXT = #{dt_txt}
+	</select>
+    
+</mapper>
+    

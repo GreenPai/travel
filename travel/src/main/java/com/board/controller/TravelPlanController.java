@@ -85,7 +85,6 @@ import com.board.mapper.UserMapper;
 				HttpSession session = request.getSession();
 		        DailyVo dailyVo = new DailyVo();
 		        String userid = (String) session.getAttribute("userid");
-		    //    System.out.println(userid);
 		        dailyVo.setUserid(userid);
 		        dailyVo.setPlan_date(date);
 			        
@@ -130,7 +129,10 @@ import com.board.mapper.UserMapper;
 					 }
 
 				 }
-				 
+				System.out.println(date);
+				
+				
+				
 		        userMapper.dailyInsert(dailyVo);
 		        
 		        dayList = userMapper.dailyGet(dailyVo);
@@ -151,8 +153,90 @@ import com.board.mapper.UserMapper;
                 return mv;
 		    }
 			
+			// 데일리의 날짜 정보를 등록 
+						@RequestMapping("/UpdateWeather")
+						public ModelAndView UpdateWeather(HttpServletRequest request,
+								@RequestParam("date") String date,
+                                @RequestParam("tempMax") String tempMax,
+                                @RequestParam("tempMin") String tempMin,
+                                @RequestParam("description") String description) {
+							
+							HttpSession session = request.getSession();
+					        DailyVo dailyVo = new DailyVo();
+					        String userid = (String) session.getAttribute("userid");
+					        dailyVo.setUserid(userid);
+					        dailyVo.setPlan_date(date);
+					        dailyVo.setTempMax(tempMax);
+					        dailyVo.setTempMin(tempMin);
+					        dailyVo.setDescription(description);
+						        
+					   //     System.out.println(dailyVo);
+							session.setAttribute("selectedDate", date);
+
+							List<DailyVo> dayList = userMapper.dailyGet(dailyVo);
+
+							// dayList의 형태가 시, 분, 초가 나옴으로서 
+							// dateList에서 일까지 자름
+							List<String> dateList2 = new ArrayList<>(); // 새로운 배열을 저장할 리스트 생성
+							
+							String day= "";
+							String[] parts = null;
+							String datePart = "";
+							
+							 for (DailyVo daily : dayList) {
+							   					 			 
+								day = daily.getPlan_date();
+								parts = day.split(" "); // 공백을 기준으로 문자열 분할
+								datePart = parts[0]; // 날짜 부분
+								
+								 if (date.equals(datePart)) {
+									 System.out.println("1");
+									 userMapper.dailyDateDelete(date);	
+									
+									 dayList = userMapper.dailyGet(dailyVo);
+							
+									 for (DailyVo daily2 : dayList) {
+										 day = daily2.getPlan_date();
+										 parts = day.split(" "); // 공백을 기준으로 문자열 분할
+										 datePart = parts[0]; // 날짜 부분
+									
+										 dateList2.add(datePart); // 새로운 배열에 날짜 부분을 추가
+									 }
+									 
+									 ModelAndView mv = new ModelAndView();
+						             mv.addObject("date", date);
+						             mv.addObject("dayList", dayList);
+						             mv.addObject("dateList", dateList2);
+						             mv.setViewName("plan/daily");
+						             return mv;
+								 }
+
+							 }
+							 
+					        userMapper.dailyWeatherInsert(dailyVo);
+					        
+					        dayList = userMapper.dailyGet(dailyVo);
+			                System.out.println(dayList);
+					        for (DailyVo daily2 : dayList) {
+								 day = daily2.getPlan_date();
+								 parts = day.split(" "); // 공백을 기준으로 문자열 분할
+								 datePart = parts[0]; // 날짜 부분
+							
+								 dateList2.add(datePart); // 새로운 배열에 날짜 부분을 추가
+							 }
+					        
+			                ModelAndView mv = new ModelAndView();
+			                mv.addObject("date", date);
+			                mv.addObject("dayList", dayList);
+			                mv.addObject("dateList", dateList2);
+			                mv.setViewName("plan/daily");
+			                return mv;
+						}
 			
-			
+						
+						
+						
+						
 			// 임시 데일리 테이블의 일자를 최종 데일리 테이블로 옭기면서 임시는 지움
 			@RequestMapping("/DeleteDaily")
 			public ModelAndView DeleteDaily(HttpServletRequest request) {
@@ -188,10 +272,28 @@ import com.board.mapper.UserMapper;
 		        userMapper.dailyListInsert(dailyVo);
 		        }
 
-				//userMapper.dailyListInsert(dayList);
+		        List<DailyVo> dayListFinal = userMapper.dailyListGet(dailyVo);
+		        
+		        List<String> dateList2 = new ArrayList<>();
+		        
+		        for (DailyVo daily2 : dayListFinal) {
+					 String day = daily2.getPlan_date();
+					 
+					 dateList2.add(day); // 새로운 배열에 날짜 부분을 추가
+				 }
+		        
+		        System.out.println(dateList2);
+		        
+		        
+		        //userMapper.dailyListInsert(dayList);
 				//userMapper.dailyDelete(userid);
-				ModelAndView mv = new ModelAndView();
-				mv.setViewName("plan/detaildaily");
+				//System.out.println(dayListFinal);
+				//System.out.println(dayListFinal.size());
+		        ModelAndView mv = new ModelAndView();
+				mv.addObject( "dateList"  , dayListFinal);
+				mv.addObject( "dateList2" , dateList2);
+				mv.addObject("dateListSize", dayListFinal.size());
+		        mv.setViewName("plan/detaildaily");
 				return mv;
 			}
 			

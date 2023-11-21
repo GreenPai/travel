@@ -135,6 +135,7 @@
       <a href="/" class="btn btn-dark" id="Detail">HOME</a>
       <a href="/DeleteDaily" class="btn btn-dark" id="delete">날짜 초기화</a>
       <a href="/DetailDaily" class="btn btn-dark" id="Detail">일정 세우기</a>
+     
     </div>            
     <tr>
       <th class="thead-dark" id="daytable">날짜</th>   

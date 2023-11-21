@@ -17,6 +17,9 @@ import lombok.ToString;
 
 public class DailyVo {
 	
+	private String tempMax; 
+	private String tempMin;
+	private String description;
 	private String today_date;
 	@NonNull     // NOT NULL
 	private String plan_date;	

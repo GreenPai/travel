@@ -27,6 +27,10 @@ public interface UserMapper {
 	void dailyListInsert(DailyVo daily);
 
 	void dailyDateDelete(String date);
+
+	void dailyWeatherInsert(DailyVo dailyVo);
+
+	List<DailyVo> dailyListGet(DailyVo dailyVo);
 	
 	
 }
