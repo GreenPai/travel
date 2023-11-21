@@ -21,6 +21,7 @@ public class DailyVo {
 	private String tempMin;
 	private String description;
 	private String today_date;
+	private String main;
 	@NonNull     // NOT NULL
 	private String plan_date;	
 	private String userid;

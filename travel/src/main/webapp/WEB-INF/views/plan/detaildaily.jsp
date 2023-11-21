@@ -8,11 +8,5 @@
 </head>
 <body>
 
-
-<c:forEach var="index" begin="1" end="${dateListSize}">
-  <label>Day ${index}</label>
-  <input type="text" name="day${index}" placeholder="입력하세요">
-</c:forEach>
-
 </body>
 </html>

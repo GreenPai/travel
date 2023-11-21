@@ -190,32 +190,23 @@
             
             
              <c:choose>
-             <c:when test="${day.description == 'clear sky'}">
-             <td><img src="img/맑음.png" alt="이미지 설명">맑은 하늘</td>
+             <c:when test="${day.main == 'Clear'}">
+             <td><img src="img/clear.png" alt="이미지 설명" width="60" height="60">맑은 하늘</td>
              </c:when>
-             <c:when test="${day.description == 'few clouds'}">
-             <td><img src="img/fewcloud.png" alt="이미지 설명">구름이 조금 있는 상태</td>
+             <c:when test="${day.main == 'Clouds'}">
+             <td><img src="img/fewcloud.png" alt="이미지 설명" width="60" height="60">구름이 조금 있는 상태</td>
+             </c:when>       
+             <c:when test="${day.main == 'rain'}">
+             <td><img src="img/rain.png" alt="이미지 설명" width="60" height="60">비</td>
              </c:when>
-             <c:when test="${day.description == 'scattered clouds'}">
-             <td><img src="img/scattered clouds.png" alt="이미지 설명">흩어진 구름</td>
+             <c:when test="${day.main == 'thunderstorm'}">
+             <td><img src="img/thunderstorm.png" alt="이미지 설명" width="60" height="60">천둥번개</td>
              </c:when>
-             <c:when test="${day.description == 'broken clouds'}">
-             <td><img src="img/broken clouds.png" alt="이미지 설명">부서진 구름</td>
+             <c:when test="${day.main == 'Snow'}">
+             <td><img src="img/snow.png" alt="이미지 설명" width="60" height="60">눈</td>
              </c:when>
-             <c:when test="${day.description == 'shower rain'}">
-             <td><img src="img/shower rain.png" alt="이미지 설명">소나기 비</td>
-             </c:when>
-             <c:when test="${day.description == 'rain'}">
-             <td><img src="img/rain.png" alt="이미지 설명">비</td>
-             </c:when>
-             <c:when test="${day.description == 'thunderstorm'}">
-             <td><img src="img/thunderstorm.png" alt="이미지 설명">천둥번개</td>
-             </c:when>
-             <c:when test="${day.description == 'snow'}">
-             <td><img src="img/snow.png" alt="이미지 설명">눈</td>
-             </c:when>
-             <c:when test="${day.description == 'mist'}">
-             <td><img src="img/mist.png" alt="이미지 설명">안개</td>
+             <c:when test="${day.main == 'mist'}">
+             <td><img src="img/mist.png" alt="이미지 설명" width="60" height="60">안개</td>
              </c:when>           
             <c:otherwise>
             <td>          

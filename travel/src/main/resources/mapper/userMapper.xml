@@ -51,15 +51,16 @@
 			USERID,
 			TEMPMAX,
 			TEMPMIN,
-			DESCRIPTION
+			DESCRIPTION,
+		    MAIN
 			
 			) VALUES (
 			#{plan_date},
 			#{userid},
 			#{tempMax},
 			#{tempMin},
-			#{description}
-			 
+			#{description},
+			#{main}		 
 		)
 	</insert>
 

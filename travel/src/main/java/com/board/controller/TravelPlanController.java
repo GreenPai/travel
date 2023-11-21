@@ -44,25 +44,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 			@RequestMapping("/TravelPlan")
 			public ModelAndView travelPlan() {
 				
-				ModelAndView mv = new ModelAndView();
-				mv.setViewName("plan/travel_plan");
-				return mv;
-			}
-
-			// 경상남도 레저 상세정보
-			@RequestMapping("/PlanWriteForm")
-			public ModelAndView planWriteForm(HttpServletRequest request) {
 				
-				ModelAndView mv = new ModelAndView();
-				mv.setViewName("plan/writeplan");
-				return mv;
-			}
-
-			@RequestMapping("/P3")
-			public ModelAndView p3(HttpServletRequest request) {
-			    ModelAndView mv = new ModelAndView();
-
-			    // OpenWeatherMap API 호출
+				   // OpenWeatherMap API 호출
 			    RestTemplate restTemplate = new RestTemplate();
 			    String url = "https://api.openweathermap.org/data/2.5/forecast?lat=35.1578&lon=129.0600&lang=en&appid=32c9e2ef977a4ebfaedd69cc117bb42a";
 			    String response = restTemplate.getForObject(url, String.class);
@@ -87,6 +70,24 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 			    } catch (JsonProcessingException e) {
 			        e.printStackTrace();
 			    }
+		
+				ModelAndView mv = new ModelAndView();
+				mv.setViewName("plan/travel_plan");
+				return mv;
+			}
+
+			// 경상남도 레저 상세정보
+			@RequestMapping("/PlanWriteForm")
+			public ModelAndView planWriteForm(HttpServletRequest request) {
+				
+				ModelAndView mv = new ModelAndView();
+				mv.setViewName("plan/writeplan");
+				return mv;
+			}
+
+			@RequestMapping("/P3")
+			public ModelAndView p3(HttpServletRequest request) {
+			    ModelAndView mv = new ModelAndView();
 
 			    mv.setViewName("plan/daily");
 			    return mv;
@@ -112,18 +113,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 				WeatherVo weatherVo = weatherMapper.weatherGet(date);
 				// WeatherVo weatherVo = new WeatherVo() ;
 				
-				System.out.println(weatherVo);
+				// System.out.println(weatherVo);
 
 				if (weatherVo != null) {
 					dailyVo.setDescription(weatherVo.getDescription());
 					dailyVo.setTempMax(Double.toString(weatherVo.getTemp_max()));
 					dailyVo.setTempMin(Double.toString(weatherVo.getTemp_min()));
-
+					dailyVo.setMain(weatherVo.getMain());
 				}
 				else {
 					dailyVo.setDescription("정보 없음");
 					dailyVo.setTempMax("정보 없음");
 					dailyVo.setTempMin("정보 없음");
+					dailyVo.setMain("정보 없음");
 					
 				}
 				
@@ -152,7 +154,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 					datePart = parts[0]; // 날짜 부분
 					
 					 if (date.equals(datePart)) {
-						 System.out.println("1");
+				
 						 userMapper.dailyDateDelete(date);	
 						
 						 dayList = userMapper.dailyGet(dailyVo);
@@ -187,9 +189,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 				//	 dateList2.add(datePart); // 새로운 배열에 날짜 부분을 추가
 				 }
 		        
-		        System.out.println(dateList2);
-		        
-		        
                 ModelAndView mv = new ModelAndView();
                 mv.addObject("date", date);
                 mv.addObject("dayList", dayList);
@@ -217,11 +216,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 							// 날씨 정보 추가
 							WeatherVo weatherVo = weatherMapper.weatherGet(date);
-							System.out.println("??");
-						//	System.out.println(weatherVo);
-					        
-					        
-					   //     System.out.println(dailyVo);
+
 							session.setAttribute("selectedDate", date);
 
 							List<DailyVo> dayList = userMapper.dailyGet(dailyVo);
@@ -241,7 +236,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 								datePart = parts[0]; // 날짜 부분
 								
 								 if (date.equals(datePart)) {
-									 System.out.println("1");
+									
 									 userMapper.dailyDateDelete(date);	
 									
 									 dayList = userMapper.dailyGet(dailyVo);
@@ -283,10 +278,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 			                mv.setViewName("plan/daily");
 			                return mv;
 						}
-			
-						
-						
-						
+				
 						
 			// 임시 데일리 테이블의 일자를 최종 데일리 테이블로 옭기면서 임시는 지움
 			@RequestMapping("/DeleteDaily")
@@ -301,6 +293,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 				return mv;
 			}
 
+			
+			// 일정 세우기 눌렀을때 데이터를 넘기면서 이동 
 			@RequestMapping("/DetailDaily")
 			public ModelAndView DetailDaily(HttpServletRequest request) {
                				
@@ -333,14 +327,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 					 dateList2.add(day); // 새로운 배열에 날짜 부분을 추가
 				 }
 		        
-		        System.out.println(dateList2);
-		        
-		        
-		        //userMapper.dailyListInsert(dayList);
-				//userMapper.dailyDelete(userid);
-				//System.out.println(dayListFinal);
-				//System.out.println(dayListFinal.size());
-		        ModelAndView mv = new ModelAndView();
+		         ModelAndView mv = new ModelAndView();
 				mv.addObject( "dateList"  , dayListFinal);
 				mv.addObject( "dateList2" , dateList2);
 				mv.addObject("dateListSize", dayListFinal.size());
