@@ -48,10 +48,18 @@
 <insert id="dailyInsert">
 		INSERT INTO TRAVEL_DAY(
 		    PLAN_DATE, 
-			USERID
+			USERID,
+			TEMPMAX,
+			TEMPMIN,
+			DESCRIPTION
+			
 			) VALUES (
 			#{plan_date},
-			#{userid} 
+			#{userid},
+			#{tempMax},
+			#{tempMin},
+			#{description}
+			 
 		)
 	</insert>
 

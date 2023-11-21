@@ -25,5 +25,13 @@
     WHERE DT_TXT = #{dt_txt}
 	</select>
     
+    <select id="weatherGet"
+          resultType="com.board.domain.WeatherVo">
+  	 
+  	 SELECT *
+     FROM WEATHER
+     WHERE DT_TXT LIKE CONCAT(#{date}, ' 00%')
+  	 
+</select>
 </mapper>
     

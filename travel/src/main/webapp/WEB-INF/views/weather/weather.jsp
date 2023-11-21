@@ -92,7 +92,7 @@ $(document).ready(function(){
                 var iconUrl = getWeatherIcon(iconCode); // 날씨 아이콘 URL
 
                 // 시간을 체크하여 3시간 간격으로 데이터 출력
-                if(time === '00' || time === '03' || time === '06' || time === '09' || time === '12' || time === '15' || time === '18' || time === '21'){
+                if(time === '00' || time === '06' || time === '12' || time === '18' ){
                     $("#weatherTable").append("<tr><td>" + date + "</td><td>" + time + "시</td><td><img src='" + iconUrl + "' alt='weather icon'></td><td>" + max + "</td><td>" + min + "</td></tr>");
                 }
             });

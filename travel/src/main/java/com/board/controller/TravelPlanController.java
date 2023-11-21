@@ -9,21 +9,21 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 		import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.board.domain.BoardVo;
-import com.board.domain.CommentVo;
 import com.board.domain.DailyVo;
-import com.board.domain.FileVo;
-import com.board.domain.TripVo;
+import com.board.domain.WeatherVo;
 import com.board.mapper.DailyMapper;
 import com.board.mapper.TripMapper;
 import com.board.mapper.UserMapper;
+import com.board.mapper.WeatherMapper;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 		
 		@Controller
 		public class TravelPlanController {
@@ -36,6 +36,9 @@ import com.board.mapper.UserMapper;
 		    
 			@Autowired
 			private DailyMapper dailyMapper;
+			
+			@Autowired
+			private WeatherMapper weatherMapper;
 			
 			// 경상남도 레저 상세정보
 			@RequestMapping("/TravelPlan")
@@ -57,23 +60,36 @@ import com.board.mapper.UserMapper;
 
 			@RequestMapping("/P3")
 			public ModelAndView p3(HttpServletRequest request) {
-				
-				ModelAndView mv = new ModelAndView();
-				mv.setViewName("plan/daily");
-				return mv;
+			    ModelAndView mv = new ModelAndView();
+
+			    // OpenWeatherMap API 호출
+			    RestTemplate restTemplate = new RestTemplate();
+			    String url = "https://api.openweathermap.org/data/2.5/forecast?lat=35.1578&lon=129.0600&lang=kr&appid=32c9e2ef977a4ebfaedd69cc117bb42a";
+			    String response = restTemplate.getForObject(url, String.class);
+
+			    try {
+			        // JSON 파싱 및 DB 저장
+			        ObjectMapper objectMapper = new ObjectMapper();
+			        JsonNode root = objectMapper.readTree(response);
+			        JsonNode list = root.path("list");
+			        for (JsonNode node : list) {
+			            String dt_txt = node.path("dt_txt").asText();
+			            String description = node.path("weather").get(0).path("description").asText();
+			            double temp_max = node.path("main").path("temp_max").asDouble();
+			            double temp_min = node.path("main").path("temp_min").asDouble();
+
+			            if (weatherMapper.countByDtTxt(dt_txt) == 0) {
+			                WeatherVo weather = new WeatherVo(dt_txt, description, temp_max, temp_min);
+			                weatherMapper.insertWeather(weather);
+			            }
+			        }
+			    } catch (JsonProcessingException e) {
+			        e.printStackTrace();
+			    }
+
+			    mv.setViewName("plan/daily");
+			    return mv;
 			}
-			
-			/*
-			@RequestMapping("/DailyUpdate")
-		    public String handleDailyUpdate(@RequestParam("date") String date) {
-		        // 여기서 할 일: 전달된 날짜(date)를 이용한 작업 수행
-		        // 예를 들어, 특정 작업을 수행하고 나중에 다른 페이지로 리디렉션할 수 있습니다.
-                System.out.println(date);
-		        // 리디렉션할 페이지의 URL을 반환
-		        return "redirect:/P3";
-		    }
-			*/
-				
 			
 			
 			// 테이블에서 유저가 고른 날짜를 보여주기 위해서 
@@ -89,10 +105,38 @@ import com.board.mapper.UserMapper;
 		        dailyVo.setPlan_date(date);
 			        
 				session.setAttribute("selectedDate", date);
-
+				
+				//날씨 넣기
 				List<DailyVo> dayList = userMapper.dailyGet(dailyVo);
+				WeatherVo weatherVo = weatherMapper.weatherGet(date);
+				// WeatherVo weatherVo = new WeatherVo() ;
+				
+				System.out.println(weatherVo);
 
-				// dayList의 형태가 시, 분, 초가 나옴으로서 
+				if (weatherVo != null) {
+					dailyVo.setDescription(weatherVo.getDescription());
+					dailyVo.setTempMax(Double.toString(weatherVo.getTemp_max()));
+					dailyVo.setTempMin(Double.toString(weatherVo.getTemp_min()));
+
+				}
+				else {
+					dailyVo.setDescription("정보 없음");
+					dailyVo.setTempMax("정보 없음");
+					dailyVo.setTempMin("정보 없음");
+					
+				}
+				
+								
+				 for (DailyVo daily : dayList) {
+				       
+					 String day = daily.getPlan_date();
+					 String[] parts = day.split(" "); // 공백을 기준으로 문자열 분할
+					 String datePart = parts[0]; // 날짜 부분
+					 String timePart = parts[1]; // 시간 부분
+
+				 }
+
+				 // dayList의 형태가 시, 분, 초가 나옴으로서 
 				// dateList에서 일까지 자름
 				List<String> dateList2 = new ArrayList<>(); // 새로운 배열을 저장할 리스트 생성
 				
@@ -129,10 +173,7 @@ import com.board.mapper.UserMapper;
 					 }
 
 				 }
-				System.out.println(date);
-				
-				
-				
+						
 		        userMapper.dailyInsert(dailyVo);
 		        
 		        dayList = userMapper.dailyGet(dailyVo);
@@ -144,6 +185,9 @@ import com.board.mapper.UserMapper;
 				
 					 dateList2.add(datePart); // 새로운 배열에 날짜 부분을 추가
 				 }
+		        
+		        System.out.println(dateList2);
+		        
 		        
                 ModelAndView mv = new ModelAndView();
                 mv.addObject("date", date);
@@ -169,7 +213,13 @@ import com.board.mapper.UserMapper;
 					        dailyVo.setTempMax(tempMax);
 					        dailyVo.setTempMin(tempMin);
 					        dailyVo.setDescription(description);
-						        
+
+							// 날씨 정보 추가
+							WeatherVo weatherVo = weatherMapper.weatherGet(date);
+							System.out.println("??");
+						//	System.out.println(weatherVo);
+					        
+					        
 					   //     System.out.println(dailyVo);
 							session.setAttribute("selectedDate", date);
 
@@ -213,10 +263,10 @@ import com.board.mapper.UserMapper;
 
 							 }
 							 
-					        userMapper.dailyWeatherInsert(dailyVo);
-					        
+							 
+					        userMapper.dailyWeatherInsert(dailyVo);				        
 					        dayList = userMapper.dailyGet(dailyVo);
-			                System.out.println(dayList);
+			          //      System.out.println(dayList);
 					        for (DailyVo daily2 : dayList) {
 								 day = daily2.getPlan_date();
 								 parts = day.split(" "); // 공백을 기준으로 문자열 분할
@@ -261,7 +311,6 @@ import com.board.mapper.UserMapper;
 		        List<DailyVo> dayList = userMapper.dailyGet(dailyVo);
 				
 		        for (DailyVo daily : dayList) {
-		        //	userMapper.dailyListInsert(daily);
 		        String plan =daily.getPlan_date();
 		        String days =daily.getToday_date(); 
 		        String user =daily.getUserid(); 
@@ -271,6 +320,7 @@ import com.board.mapper.UserMapper;
 		          
 		        userMapper.dailyListInsert(dailyVo);
 		        }
+
 
 		        List<DailyVo> dayListFinal = userMapper.dailyListGet(dailyVo);
 		        
@@ -294,6 +344,7 @@ import com.board.mapper.UserMapper;
 				mv.addObject( "dateList2" , dateList2);
 				mv.addObject("dateListSize", dayListFinal.size());
 		        mv.setViewName("plan/detaildaily");
+
 				return mv;
 			}
 			

@@ -22,3 +22,4 @@ public class WeatherVo {
 	private Double temp_min;
 }
 
+

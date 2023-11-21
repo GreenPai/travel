@@ -15,4 +15,8 @@ public interface WeatherMapper {
 
     void insertWeather(@Param("dt_txt") String dt_txt, @Param("description") String description, @Param("temp_max") double temp_max, @Param("temp_min") double temp_min);
 
+	WeatherVo weatherGet(String date);
+
 }
+
+
