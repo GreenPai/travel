@@ -77,9 +77,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 			            String description = node.path("weather").get(0).path("description").asText();
 			            double temp_max = node.path("main").path("temp_max").asDouble();
 			            double temp_min = node.path("main").path("temp_min").asDouble();
+			            String main = node.path("weather").get(0).path("main").asText();
 
 			            if (weatherMapper.countByDtTxt(dt_txt) == 0) {
-			                WeatherVo weather = new WeatherVo(dt_txt, description, temp_max, temp_min);
+			                WeatherVo weather = new WeatherVo(dt_txt, description, temp_max, temp_min, main);
 			                weatherMapper.insertWeather(weather);
 			            }
 			        }
