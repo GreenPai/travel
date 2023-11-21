@@ -253,7 +253,7 @@
                     content : content,
                     bno     : ${ vo.bno }             
               })
-             )
+             )  
             .then(function (response) {
               let  commentList = response.data;
               let  tag  = '';
