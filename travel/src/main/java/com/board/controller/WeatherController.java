@@ -15,4 +15,13 @@ public class WeatherController {
 		return mv;
 
 	}
+	
+	@RequestMapping("/testmap")
+	public ModelAndView testmap() {
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("map/loadmap");
+		return mv;
+		
+	}
 }
