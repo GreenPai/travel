@@ -9,7 +9,7 @@
     border: 1px solid white;
     border-radius: 3px;
     background-color: aliceblue;
-    width: 50%;
+    width: 95%;
 }
 
 .weather-info {
@@ -81,10 +81,10 @@ $(document).ready(function(){
                 var todayLabel = week[yoil];			    
 
                 // 최고온도
-                var max = (Math.round(city.list[key].main.temp_max) - 273) + "˚C";
+                var max = (city.list[key].main.temp_max - 273).toFixed(2) + "˚C";
                 
                 // 최저온도
-                var min = (Math.round(city.list[key].main.temp_min) - 273) + "˚C";
+                var min = (city.list[key].main.temp_min - 273).toFixed(2) + "˚C";
 
                 // 날씨
                 var weath = city.list[key].weather[0].description;

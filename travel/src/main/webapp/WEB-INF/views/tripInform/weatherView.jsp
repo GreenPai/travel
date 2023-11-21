@@ -19,7 +19,7 @@
 	<br><br>
 	<!-- body start -->
 		<div id="content">
-		<div style="position: relative; width: 100%; height: 400px;">
+		<div style="position: relative; width: 100%; height: 400px; ">
 			<img alt="back_img" src="img/beach.jpg"
 				style="width: 100%; height: 100%;">
 			<div
@@ -29,11 +29,12 @@
 			</div>
 		</div>
 	</div>
+	<br><br>
 	<div style="display: flex;">
-	    <div style="flex: 1;"><%@include file="/WEB-INF/views/weather/weather.jsp" %></div>
-	    <div style="flex: 1;"><%@include file="/WEB-INF/views/map/weathermap.jsp" %></div>
+	    <div style="flex: 1; margin-top: 60px;"><%@include file="/WEB-INF/views/weather/weather.jsp" %></div>
+	    <div style="flex: 1; margin-top: 25px;"><%@include file="/WEB-INF/views/map/weathermap.jsp" %></div>
 	</div>
-
+    <br>
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
 </body> 
 </html>
