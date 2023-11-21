@@ -327,7 +327,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 					 dateList2.add(day); // 새로운 배열에 날짜 부분을 추가
 				 }
 		        
-		         ModelAndView mv = new ModelAndView();
+		        System.out.println(dayListFinal.size());
+		        
+		        ModelAndView mv = new ModelAndView();
 				mv.addObject( "dateList"  , dayListFinal);
 				mv.addObject( "dateList2" , dateList2);
 				mv.addObject("dateListSize", dayListFinal.size());
@@ -335,5 +337,25 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 				return mv;
 			}
+			
+			
+			
+			
+			
+			@RequestMapping("/Plan")
+			public ModelAndView Plan(HttpServletRequest request) {
+               				
+				System.out.println(1);
+				HttpSession session = request.getSession();
+		        DailyVo dailyVo = new DailyVo();
+		        String userid = (String) session.getAttribute("userid");
+		        dailyVo.setUserid(userid);
+		    		        
+		        ModelAndView mv = new ModelAndView();
+			    mv.setViewName("plan/detaildaily");
+
+				return mv;
+			}
+			
 			
 		}
