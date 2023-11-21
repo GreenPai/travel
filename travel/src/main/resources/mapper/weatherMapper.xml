@@ -10,12 +10,14 @@
 		    DT_TXT,
 			DESCRIPTION,
 			TEMP_MAX,
-			TEMP_MIN
+			TEMP_MIN,
+			MAIN
 			) VALUES (
 		    #{dt_txt},
 			#{description},
 			(#{temp_max}-273),
-			(#{temp_min}-273)
+			(#{temp_min}-273),
+			#{main}
 		)
 	</insert>
 	

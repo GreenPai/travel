@@ -62,7 +62,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 			    // OpenWeatherMap API 호출
 			    RestTemplate restTemplate = new RestTemplate();
-			    String url = "https://api.openweathermap.org/data/2.5/forecast?lat=35.1578&lon=129.0600&lang=kr&appid=32c9e2ef977a4ebfaedd69cc117bb42a";
+			    String url = "https://api.openweathermap.org/data/2.5/forecast?lat=35.1578&lon=129.0600&lang=en&appid=32c9e2ef977a4ebfaedd69cc117bb42a";
 			    String response = restTemplate.getForObject(url, String.class);
 
 			    try {
@@ -75,9 +75,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 			            String description = node.path("weather").get(0).path("description").asText();
 			            double temp_max = node.path("main").path("temp_max").asDouble();
 			            double temp_min = node.path("main").path("temp_min").asDouble();
+			            String main = node.path("weather").get(0).path("main").asText();
 
 			            if (weatherMapper.countByDtTxt(dt_txt) == 0) {
-			                WeatherVo weather = new WeatherVo(dt_txt, description, temp_max, temp_min);
+			                WeatherVo weather = new WeatherVo(dt_txt, description, temp_max, temp_min, main);
 			                weatherMapper.insertWeather(weather);
 			            }
 			        }

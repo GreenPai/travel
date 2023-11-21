@@ -13,6 +13,6 @@ public interface WeatherMapper {
 	
 	int countByDtTxt(@Param("dt_txt") String dt_txt);
 
-    void insertWeather(@Param("dt_txt") String dt_txt, @Param("description") String description, @Param("temp_max") double temp_max, @Param("temp_min") double temp_min);
+    void insertWeather(@Param("dt_txt") String dt_txt, @Param("description") String description, @Param("temp_max") double temp_max, @Param("temp_min") double temp_min, @Param("main") String main);
 
 }

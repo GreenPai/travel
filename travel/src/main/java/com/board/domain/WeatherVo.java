@@ -20,4 +20,5 @@ public class WeatherVo {
 	private String description;
 	private Double temp_max;
 	private Double temp_min;
+	private String main;
 }
