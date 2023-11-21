@@ -64,7 +64,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 			    // OpenWeatherMap API 호출
 			    RestTemplate restTemplate = new RestTemplate();
-			    String url = "https://api.openweathermap.org/data/2.5/forecast?lat=35.1578&lon=129.0600&lang=kr&appid=32c9e2ef977a4ebfaedd69cc117bb42a";
+			    String url = "https://api.openweathermap.org/data/2.5/forecast?lat=35.1578&lon=129.0600&lang=en&appid=32c9e2ef977a4ebfaedd69cc117bb42a";
 			    String response = restTemplate.getForObject(url, String.class);
 
 			    try {
@@ -160,8 +160,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 							 day = daily2.getPlan_date();
 							 parts = day.split(" "); // 공백을 기준으로 문자열 분할
 							 datePart = parts[0]; // 날짜 부분
-						
-							 dateList2.add(datePart); // 새로운 배열에 날짜 부분을 추가
+						     daily2.setPlan_date(datePart);
+						//	 dateList2.add(datePart); // 새로운 배열에 날짜 부분을 추가
 						 }
 						 
 						 ModelAndView mv = new ModelAndView();
@@ -182,8 +182,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 					 day = daily2.getPlan_date();
 					 parts = day.split(" "); // 공백을 기준으로 문자열 분할
 					 datePart = parts[0]; // 날짜 부분
-				
-					 dateList2.add(datePart); // 새로운 배열에 날짜 부분을 추가
+					 daily2.setPlan_date(datePart);
+				//	 dateList2.add(datePart); // 새로운 배열에 날짜 부분을 추가
 				 }
 		        
 		        System.out.println(dateList2);
