@@ -31,7 +31,7 @@
 	</div>
 	<div style="display: flex;">
 	    <div style="flex: 1;"><%@include file="/WEB-INF/views/weather/weather.jsp" %></div>
-	    <div style="flex: 1;"><%@include file="/WEB-INF/views/weather/weatherpage.jsp" %></div>
+	    <div style="flex: 1;"><%@include file="/WEB-INF/views/map/weathermap.jsp" %></div>
 	</div>
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
