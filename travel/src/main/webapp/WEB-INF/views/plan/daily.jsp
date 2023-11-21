@@ -187,7 +187,7 @@
             <td> </td>
             </c:otherwise>
             </c:choose>
-            
+               
             
              <c:choose>
              <c:when test="${day.main == 'Clear'}">
@@ -217,13 +217,7 @@
             
             
             
-            
-            
-            
-            
-
-            
-            
+   
 
             </tr>
             </c:forEach>
