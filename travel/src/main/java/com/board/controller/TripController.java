@@ -3,10 +3,12 @@
 		import org.springframework.beans.factory.annotation.Autowired;
 		import org.springframework.stereotype.Controller;
 		import org.springframework.web.bind.annotation.RequestMapping;
-		import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.board.domain.TripVo;
 		import com.board.mapper.TripMapper;
+import com.fasterxml.jackson.annotation.JacksonInject.Value;
 		
 		@Controller
 		public class TripController {
@@ -27,11 +29,11 @@ import com.board.domain.TripVo;
 			// 여행지 상세 정보
 			@RequestMapping("/TripView")
 			public ModelAndView tripView(TripVo vo) {
-		
-				TripVo tripVo = tripMapper.getTrip(vo);
-		
+				
+				TripVo tripVo   = tripMapper.getTrip(vo);
+				
 				ModelAndView mv = new ModelAndView();
-				mv.addObject("vo", tripVo);
+				mv.addObject("vo",tripVo);
 				mv.setViewName("tripInform/tripView");
 				return mv;
 			}
@@ -172,20 +174,20 @@ import com.board.domain.TripVo;
 			}
 		
 			// 경상남도 레저 정보
-			@RequestMapping("/Leis")
-			public ModelAndView leis() {
+			@RequestMapping("/Cult")
+			public ModelAndView cult() {
 				
 				ModelAndView mv = new ModelAndView();
-				mv.setViewName("inform/leis");
+				mv.setViewName("inform/cult");
 				return mv;
 			}
 			
 			// 경상남도 레저 상세정보
-			@RequestMapping("/LeisView")
+			@RequestMapping("/CultView")
 			public ModelAndView leisView() {
 				
 				ModelAndView mv = new ModelAndView();
-				mv.setViewName("tripInform/leisView");
+				mv.setViewName("tripInform/cultView");
 				return mv;
 			}
 			

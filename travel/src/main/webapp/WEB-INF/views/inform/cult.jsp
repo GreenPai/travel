@@ -14,7 +14,7 @@
 <script>
   window.onload = function() {
 	  
-		 let url = '/leis';   // servlet 사용
+		 let url = '/cult';   // servlet 사용
 		// let url = 'https://openapi.foodsafetykorea.go.kr/api/70e153f2e8f64995941b/COOKRCP01/xml/1/50';
 		 axios( {
 			 url    : url,
@@ -32,23 +32,23 @@
 		   .then(( obj ) => {
 			   //alert(obj.data);
 			   console.dir( obj.data );  // getGalmaetGilInfo -> body -> items
-			   let  arr =  obj.data.gyeongnamtourleisurelist.body.items.item; 
+			   let  arr =  obj.data.getTblClthrtStusInfo.body.items.item; 
 			   console.log(arr);
 			   let  html  = '';
 			   arr.forEach( (row) => {	
 				  // alert(JSON.stringify(row))
 				  console.log(row.MAIN_TITLE)
-				  const leisInform = '/LeisView?';
+				  const cultInform = '/CultView?';
 				   
 				   
 				   html += '<hr>'
 				   html += ' <div class="card">'
-				   html += '<a href="'    + leisInform + '">'
-				   html += ' <img src=" ' + row.fileurl2  + ' " alt="썸네일 이미지">'
-				   html += '</a>'
+				   html += '<a href="'    + cultInform + '">'
+				   html +=  row.cultHeritNm  
+				   html += '</a>' 
 				   html += ' <div class="card-content">'
-				   html += '<p><b>게시글 제목</b>: ' + row.data_title + '</p>'
-				   html += '<p><b>주소</b>: '        + row.user_address + '</p>'
+				   html += '<p><b>소재지</b>: '             + row.addr + '</p>'
+				   html += '<p><b>관련홈페이지주소</b>: '   + row.hompage + '</p>'
 				   html += '</div>'
 				   html += '</div>';
 			   })			   
@@ -84,7 +84,7 @@
 			<div
 				style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
 				<h1 style="color: #fff; font-size: 50px;">부산 여행지</h1>
-				<h2 style="color: black; font-size: 22px;">부산의 여러 여행지를 소개합니다.</h2>
+				<h2 style="color: black; font-size: 22px;">부산의 문화재를 소개합니다.</h2>
 			</div>
 		</div>
 	</div>
@@ -94,7 +94,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="page_num">
-				<h2 style="text-align: center;">경남 레저 정보</h2>
+				<h2 style="text-align: center;">부산 문화재 정보</h2>
 				<hr>
 				
 				<div class="col-md-3 mb-4" id="div1" style="width:1200px; display: flex; flex-wrap: wrap;">
