@@ -75,7 +75,6 @@ public class UserController {
 	public ModelAndView loginForm(@ModelAttribute UserVo vo, Model model) {
 		LocalDate indate = LocalDate.now();
 		vo.setIndate(indate.toString());
-		System.out.println(vo);
 		userMapper.loginForm(vo);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:/");

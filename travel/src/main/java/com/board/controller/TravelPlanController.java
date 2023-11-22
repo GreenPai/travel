@@ -486,9 +486,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 		        ModelAndView mv = new ModelAndView();
 			    mv.setViewName("/plan/daily");
 				return mv;
+
+		        //System.out.println(num);
+                //System.out.println(cont1);
+                //System.out.println(time1);
+    	        //System.out.println(titles);
+		        // 받아온 데이터를 처리하는 로직 추가
+		      	//System.out.println("User ID: " + userid);
+		      	//System.out.println("-----------");
+
+		        // 여기서 데이터를 사용하여 작업 수행
+		    }
+
 			
 			}
-		}	
 		
 			
 		

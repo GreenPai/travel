@@ -1,31 +1,69 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<section>
-		<div id="map" style="width:80%;height:500px;"></div>
-		
+<section style="width:90%; margin-left:65px;">
+        <br><br>
+		<div id="map" style="width:80%;height:500px;float:left; margin-right:10px;"></div>
+		<br>
 		<!-- 버튼 모음 -->
-		<label><input type="radio" name="district" value="중구"> 중구</label>
-		<label><input type="radio" name="district" value="서구"> 서구</label>
-		<label><input type="radio" name="district" value="동구"> 동구</label>
-		<label><input type="radio" name="district" value="영도구"> 영도구</label>
-		<label><input type="radio" name="district" value="부산진구"> 부산진구</label>
-		<label><input type="radio" name="district" value="동래구"> 동래구</label>
-		<label><input type="radio" name="district" value="남구"> 남구</label>
-		<label><input type="radio" name="district" value="북구"> 북구</label>
-		<label><input type="radio" name="district" value="해운대구"> 해운대구</label>
-		<label><input type="radio" name="district" value="사하구"> 사하구</label>
-		<label><input type="radio" name="district" value="금정구"> 금정구</label>
-		<label><input type="radio" name="district" value="강서구"> 강서구</label>
-		<label><input type="radio" name="district" value="연제구"> 연제구</label>
-		<label><input type="radio" name="district" value="수영구"> 수영구</label>
-		<label><input type="radio" name="district" value="사상구"> 사상구</label>
-		<label><input type="radio" name="district" value="기장군"> 기장군</label>
+		<div style="float:left;">
+		  <div>
+			<label><input type="radio" name="district" value="중구"> 중구</label>
+	      </div>
+	      <div>
+			<label><input type="radio" name="district" value="서구"> 서구</label>
+	      </div>
+		  <div>
+			<label><input type="radio" name="district" value="동구"> 동구</label>
+		  </div>
+		  <div>
+			<label><input type="radio" name="district" value="영도구"> 영도구</label>
+		  </div>
+		  <div>
+			<label><input type="radio" name="district" value="부산진구"> 부산진구</label>
+		  </div>
+		  <div>
+			<label><input type="radio" name="district" value="동래구"> 동래구</label>
+		  </div>
+		  <div>
+			<label><input type="radio" name="district" value="남구"> 남구</label>
+		  </div>
+	      <div>
+			<label><input type="radio" name="district" value="북구"> 북구</label>
+		  </div>
+		  <div>
+			<label><input type="radio" name="district" value="해운대구"> 해운대구</label>
+		  </div>
+	      <div>
+			<label><input type="radio" name="district" value="사하구"> 사하구</label>
+	      </div>
+		  <div>
+			<label><input type="radio" name="district" value="금정구"> 금정구</label>
+		  </div>
+		  <div>
+			<label><input type="radio" name="district" value="강서구"> 강서구</label>
+		  </div>
+		  <div>
+			<label><input type="radio" name="district" value="연제구"> 연제구</label>
+		  </div>
+		  <div>
+			<label><input type="radio" name="district" value="수영구"> 수영구</label>
+		  </div>
+		  <div>
+			<label><input type="radio" name="district" value="사상구"> 사상구</label>
+		  </div>
+	      <div>
+			<label><input type="radio" name="district" value="기장군"> 기장군</label>
+		  </div>
+		</div><div style="clear:both:"></div>
 
-
+        <hr>
+        
 		<!-- 검색창! -->
-		<input type="text" id="keyword" placeholder="검색어를 입력하세요">
-		<button id="search">검색</button>
+		<div>
+			<input type="text" id="keyword" placeholder="검색어를 입력하세요">
+			<button id="search">검색</button>
+		</div>
 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3240aeba4cebfd38087dd3298693d91c&libraries=services"></script>
 	<script>

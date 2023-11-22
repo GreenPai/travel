@@ -48,7 +48,7 @@ public class TestController {
 	public ModelAndView writerlist(String writer) {
 		
 		List<BoardVo>  writerList = boardMapper.getWriter(writer);
-		System.out.println( writerList );		
+		//System.out.println( writerList );		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("wList", writerList);
 		mv.setViewName("board/board");
@@ -66,7 +66,7 @@ public class TestController {
 	public List<BoardVo>   writer_get(BoardVo vo) {
 		
 		List<BoardVo> boardList = boardMapper.getWriter( vo.getWriter() );
-		System.out.println( boardList );
+		//System.out.println( boardList );
 		return boardList;  // jsp 아님, 조회한 결과 문자열(javascript data로 json)
 		
 	}
