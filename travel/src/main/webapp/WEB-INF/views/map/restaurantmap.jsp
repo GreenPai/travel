@@ -23,6 +23,9 @@
 		<label><input type="radio" name="district" value="기장군"> 기장군</label>
 
 
+		<!-- 검색창! -->
+		<input type="text" id="keyword" placeholder="검색어를 입력하세요">
+		<button id="search">검색</button>
 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3240aeba4cebfd38087dd3298693d91c&libraries=services"></script>
 	<script>
@@ -55,6 +58,13 @@
 		            ps.keywordSearch(keyword, placesSearchCB);
 		        }
 		    });
+		});
+		
+		// 검색 버튼을 클릭하면 입력한 키워드로 장소를 검색합니다
+		document.getElementById('search').addEventListener('click', function() {
+			deleteMarkers();
+		    var keyword = document.getElementById('keyword').value;
+		    ps.keywordSearch(keyword, placesSearchCB);
 		});
 		
 		// 키워드 검색 완료 시 호출되는 콜백함수 입니다
