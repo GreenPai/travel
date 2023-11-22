@@ -22,6 +22,11 @@ public class DailyVo {
 	private String description;
 	private String today_date;
 	private String main;
+	private int    tno;
+	private int    num;
+	private String titles;
+	private String time1;
+	private String cont1;
 	@NonNull     // NOT NULL
 	private String plan_date;	
 	private String userid;

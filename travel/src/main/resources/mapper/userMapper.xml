@@ -81,11 +81,13 @@
 	</insert>
 
 <insert id="dailyListInsert">
-		INSERT INTO TRAVEL_DAY_FINAL(
+		INSERT INTO TRAVEL_DAY_2(
+		    TNO,
 		    PLAN_DATE, 
 			USERID,
 			TODAY_DATE
 			) VALUES (
+			#{tno},
 			#{plan_date},
 			#{userid},
 			#{today_date} 
@@ -119,11 +121,20 @@
 
  <select id="dailyListGet">
   
-   	 SELECT  *
-     FROM TRAVEL_DAY_FINAL
+   	 SELECT *
+     FROM TRAVEL_DAY_2
      WHERE USERID = #{userid}
+     AND TNO = (SELECT MAX(TNO) FROM TRAVEL_DAY_2 WHERE USERID = #{userid})
      ORDER BY PLAN_DATE ASC
   
+  </select>
+
+
+ <select id="dailynumGet">
+  
+   	 SELECT  MAX(TNO)+1
+     FROM TRAVEL_DAY_2
+     
   </select>
   
 </mapper>

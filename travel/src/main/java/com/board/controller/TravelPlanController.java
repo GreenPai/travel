@@ -3,12 +3,15 @@ package com.board.controller;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 		import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -304,7 +307,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 		        dailyVo.setUserid(userid);
 		            				
 		        List<DailyVo> dayList = userMapper.dailyGet(dailyVo);
-				
+				int num = userMapper.dailynumGet();
 		        for (DailyVo daily : dayList) {
 		        String plan =daily.getPlan_date();
 		        String days =daily.getToday_date(); 
@@ -312,6 +315,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 		        dailyVo.setPlan_date(plan);
 		        dailyVo.setToday_date(days);
 		        dailyVo.setUserid(userid);
+		        dailyVo.setTno(num);
 		          
 		        userMapper.dailyListInsert(dailyVo);
 		        }
@@ -341,7 +345,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 			
 			
 			
-			
+			/*
 			@RequestMapping("/Plan")
 			public ModelAndView Plan(HttpServletRequest request) {
                				
@@ -356,6 +360,29 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 				return mv;
 			}
+			
+*/
+			
+			@RequestMapping("/Plan")
+		    public void Plan(HttpServletRequest request, 
+		    		@RequestParam("title") List<String> titles,
+		    		@RequestParam("cont1") List<String>  cont1,
+		    		@RequestParam("time1") List<String>  time1,
+		    		@RequestParam("num") List<String>  num
+		    		
+		    	) {
+		        HttpSession session = request.getSession();
+		        String userid = (String) session.getAttribute("userid");
+		        System.out.println(num);
+                System.out.println(cont1);
+                System.out.println(time1);
+    	        System.out.println(titles);
+		        // 받아온 데이터를 처리하는 로직 추가
+		      	System.out.println("User ID: " + userid);
+		      	System.out.println("-----------");
+
+		        // 여기서 데이터를 사용하여 작업 수행
+		    }
 			
 			
 		}

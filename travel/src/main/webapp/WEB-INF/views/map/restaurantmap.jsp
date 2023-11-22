@@ -3,19 +3,36 @@
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <section>
 		<div id="map" style="width:80%;height:500px;"></div>
-		<label><input type="checkbox" name="district" value="부산진구"> 부산진구</label>
-		<label><input type="checkbox" name="district" value="해운대구"> 해운대구</label>
+		
+		<!-- 버튼 모음 -->
+		<label><input type="radio" name="district" value="중구"> 중구</label>
+		<label><input type="radio" name="district" value="서구"> 서구</label>
+		<label><input type="radio" name="district" value="동구"> 동구</label>
+		<label><input type="radio" name="district" value="영도구"> 영도구</label>
+		<label><input type="radio" name="district" value="부산진구"> 부산진구</label>
+		<label><input type="radio" name="district" value="동래구"> 동래구</label>
+		<label><input type="radio" name="district" value="남구"> 남구</label>
+		<label><input type="radio" name="district" value="북구"> 북구</label>
+		<label><input type="radio" name="district" value="해운대구"> 해운대구</label>
+		<label><input type="radio" name="district" value="사하구"> 사하구</label>
+		<label><input type="radio" name="district" value="금정구"> 금정구</label>
+		<label><input type="radio" name="district" value="강서구"> 강서구</label>
+		<label><input type="radio" name="district" value="연제구"> 연제구</label>
+		<label><input type="radio" name="district" value="수영구"> 수영구</label>
+		<label><input type="radio" name="district" value="사상구"> 사상구</label>
+		<label><input type="radio" name="district" value="기장군"> 기장군</label>
+
 
 	
-		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3240aeba4cebfd38087dd3298693d91c&libraries=services"></script>
-		<script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3240aeba4cebfd38087dd3298693d91c&libraries=services"></script>
+	<script>
 		// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
 		var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 		
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		    mapOption = {
 		        center: new kakao.maps.LatLng(35.1578, 129.0600), // 지도의 중심좌표
-		        level: 4 // 지도의 확대 레벨
+		        level: 2 // 지도의 확대 레벨
 		    };  
 		
 		// 지도를 생성합니다    
@@ -24,10 +41,16 @@
 		// 장소 검색 객체를 생성합니다
 		var ps = new kakao.maps.services.Places(); 
 		
-		// 체크박스를 클릭하면 키워드로 장소를 검색합니다
+		// 마커를 담을 배열입니다
+		var markers = [];
+		
+		// 라디오 버튼을 클릭하면 키워드로 장소를 검색합니다
 		document.querySelectorAll('input[name="district"]').forEach(function(el) {
 		    el.addEventListener('change', function() {
 		        if (this.checked) {
+		            // 이전에 표시한 마커를 지우고
+		            deleteMarkers();
+		
 		            var keyword = '부산 ' + this.value + ' 맛집';
 		            ps.keywordSearch(keyword, placesSearchCB);
 		        }
@@ -61,6 +84,9 @@
 		        position: new kakao.maps.LatLng(place.y, place.x) 
 		    });
 		
+		    // 마커를 배열에 추가합니다
+		    markers.push(marker);
+		
 		    // 마커에 클릭이벤트를 등록합니다
 		    kakao.maps.event.addListener(marker, 'click', function() {
 		        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
@@ -68,5 +94,13 @@
 		        infowindow.open(map, marker);
 		    });
 		}
-		</script>
+		
+		// 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수입니다
+		function deleteMarkers() {
+		    for (var i = 0; i < markers.length; i++) {
+		        markers[i].setMap(null);
+		    }
+		    markers = [];
+		}
+	</script>
 </section>
