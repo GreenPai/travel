@@ -113,7 +113,7 @@
     btnWriteEl.addEventListener('click', function() {
     	location.href = '/P3'
     });
-  
+    
   </script>
 </body>
 </html>
