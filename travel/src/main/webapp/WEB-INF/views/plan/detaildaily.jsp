@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Travel</title>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <style>
     /* 레이블의 스타일을 변경합니다. */
     label {
@@ -15,7 +16,7 @@
     }
     
     .container{
-      height: 200px;
+      height: 300px;
       border-bottom: 1px solid #d4d4d4;
     
     }
@@ -33,6 +34,15 @@
         /* 추가적인 스타일을 필요에 따라 여기에 추가합니다. */
     }
     
+    #time1{
+     height: 25px;
+    }
+    
+    #cont{
+     height: 25px;
+     width: 200px;
+    
+    }
       #submitButton {
         background-color: #4CAF50; /* Green */
         border: none;
@@ -54,23 +64,11 @@
     int dateListSize = (int) request.getAttribute("dateListSize");
 %>
 <br><br>
-<script>
-  axios.post('/plansubmit',{
-	  day:'날짜 데이터',
-	  plan:'플랜 데이터'
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
 
-</script>
 
 
 <% for (int i = 1; i <= dateListSize; i++) { %>
-    <form class="form<%= i %>" action="/Plan" method="post" enctype="multipart/form-data">
+    <form id="form<%= i %>" action="/Plan" method="post" enctype="multipart/form-data">
         <div class="container">
             <label for="date<%= i %>">Date <%= i %> :</label>
             <br>
@@ -78,7 +76,13 @@
             <br><br>
             <div class="form-group">
                 <label for="title<%= i %>" id="plantitle">일정 이름:</label><br>
-                <input type="text" id="title" name="title<%= i %>" placeholder="예) 서면 여행">
+               <input type="hidden" name="num" value="<%= i %>">
+               <input type="text" id="title" name="title" placeholder="예) 서면 여행">
+               <br><br>
+               <label for="title<%= i %>" id="plantitle">일정:</label><br>
+                <label for="title<%= i %>" id="plantitle">STEP1:  </label>
+               <input type="text" id="time1" name="time1" placeholder="예) 09:00">
+               <input type="text" id="cont1" name="cont1" placeholder="예) 9:00 부산역 - 9:30 차이나타운 ~~"> <br>
             </div>
         </div>
         <br>
@@ -87,19 +91,34 @@
 <input type="submit" value="Submit" onclick="submitForms()">
 
 <script>
-    function submitForms() {
-        // 각 form 요소에 대해 submit() 함수를 호출하여 제출합니다.
-        <% for (int i = 1; i <= dateListSize; i++) { %>
-            document.querySelector(".form<%= i %>").submit();
-        <% } %>
+function submitForms() {
+    for (let i = 1; i <= <%= dateListSize %>; i++) {
+    	let form = document.getElementById("form" + i);
+        let formData = new FormData(form);
+        
+        axios.post('/Plan', formData)
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     }
-    
-    
+}
+
     function openNewWindow() {
         // 새 창을 엽니다.
         window.open("QNA", "_blank","width=1000, height=800");
       }
 </script>
+
+<% for (int i = 1; i <= dateListSize; i++) { %>
+    <form id="form<%= i %>" action="/Plan" method="post" enctype="multipart/form-data">
+        <!-- form 내용 -->
+    </form>
+<% } %>
+
+    
 
 
 </body>

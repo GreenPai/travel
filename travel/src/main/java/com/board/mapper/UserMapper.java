@@ -31,6 +31,8 @@ public interface UserMapper {
 	void dailyWeatherInsert(DailyVo dailyVo);
 
 	List<DailyVo> dailyListGet(DailyVo dailyVo);
+
+	int dailynumGet();
 	
 	
 }
