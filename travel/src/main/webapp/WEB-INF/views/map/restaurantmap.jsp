@@ -3,8 +3,9 @@
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <section>
 		<div id="map" style="width:80%;height:500px;"></div>
-		<input type="text" id="keyword" placeholder="검색어를 입력하세요">
-		<button id="search-btn">검색</button>
+		<label><input type="checkbox" name="district" value="부산진구"> 부산진구</label>
+		<label><input type="checkbox" name="district" value="해운대구"> 해운대구</label>
+
 	
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3240aeba4cebfd38087dd3298693d91c&libraries=services"></script>
 		<script>
@@ -23,10 +24,14 @@
 		// 장소 검색 객체를 생성합니다
 		var ps = new kakao.maps.services.Places(); 
 		
-		// 검색 버튼을 클릭하면 키워드로 장소를 검색합니다
-		document.getElementById('search-btn').addEventListener('click', function() {
-		    var keyword = '부산 ' + document.getElementById('keyword').value;
-		    ps.keywordSearch(keyword, placesSearchCB); 
+		// 체크박스를 클릭하면 키워드로 장소를 검색합니다
+		document.querySelectorAll('input[name="district"]').forEach(function(el) {
+		    el.addEventListener('change', function() {
+		        if (this.checked) {
+		            var keyword = '부산 ' + this.value + ' 맛집';
+		            ps.keywordSearch(keyword, placesSearchCB);
+		        }
+		    });
 		});
 		
 		// 키워드 검색 완료 시 호출되는 콜백함수 입니다
