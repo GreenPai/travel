@@ -137,6 +137,103 @@
      
   </select>
   
+ <select id="gettno">
+  
+   	 SELECT  MAX(TNO)
+     FROM TRAVEL_DAY_2
+     WHERE USERID = #{userid}
+     
+  </select>  
+
+ <select id="getDaily">
+  
+   	SELECT *
+    FROM TRAVEL_DAY_2
+    WHERE USERID = #{userid}
+    AND TNO = (
+    SELECT MAX(TNO)
+    FROM TRAVEL_DAY_2
+    WHERE USERID = #{userid}
+    )
+     
+  </select>  
+     
+   <select id="GetUserPlanList">
+  
+   	 SELECT  *
+     FROM TRAVEL_DAY3
+     WHERE NUM = 1 AND USERID = #{userid}
+     
+  </select>  
+  
+  
+  
+  
+  
+   <select id="GetPlanList">
+  
+   	 SELECT  *
+     FROM TRAVEL_DAY3
+     WHERE NUM = 1
+     
+  </select>  
+  
+     <select id="getName">
+  
+   	 SELECT  NICKNAME
+     FROM TRAVEL_USER
+     WHERE USERID = #{userid}
+     
+  </select>  
+  
+  
+  <insert id="planInsert">
+		INSERT INTO TRAVEL_DAY3(
+		    NUM,
+		    TNO,
+		    TITLES, 
+			TIME1,
+			CONT1,
+			TIME2,
+			CONT2,
+			TIME3,
+			CONT3,
+			TIME4,
+			CONT4,
+			TIME5,
+			CONT5,
+			TIME6,
+			CONT6,
+			USERID,
+			PLAN,
+			TODAY_DATE,
+            PLAN_DATE
+			) VALUES (
+			#{num},
+			#{tno},
+			#{titles},
+			#{time1},
+			#{cont1},
+			#{time2},
+			#{cont2},
+			#{time3},
+			#{cont3},
+			#{time4},
+			#{cont4},
+			#{time5},
+			#{cont5},
+			#{time6},
+			#{cont6},			
+			#{userid},
+			#{plan},
+			#{today_date},
+			#{plan_date}
+		)
+	</insert>
+  
+  
+  
+  
 </mapper>
 
 

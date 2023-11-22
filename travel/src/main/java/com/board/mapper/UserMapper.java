@@ -33,6 +33,18 @@ public interface UserMapper {
 	List<DailyVo> dailyListGet(DailyVo dailyVo);
 
 	int dailynumGet();
+
+	void planInsert(DailyVo dailyVo);
+
+	int gettno(String userid);
+
+	List<DailyVo> getDaily(String userid);
+
+	List<DailyVo> GetPlanList();
+
+	String getName(String userid);
+
+	List<DailyVo> GetUserPlanList(String userid);
 	
 	
 }

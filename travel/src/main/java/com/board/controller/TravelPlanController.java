@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.board.domain.BoardVo;
 import com.board.domain.DailyVo;
 import com.board.domain.WeatherVo;
 import com.board.mapper.DailyMapper;
@@ -43,10 +44,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 			@Autowired
 			private WeatherMapper weatherMapper;
 			
-			// 경상남도 레저 상세정보
+			//일정 잡기 초기화면
 			@RequestMapping("/TravelPlan")
 			public ModelAndView travelPlan() {
-				
+			
 				
 				   // OpenWeatherMap API 호출
 			    RestTemplate restTemplate = new RestTemplate();
@@ -74,12 +75,55 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 			        e.printStackTrace();
 			    }
 		
+			    
+			    List<DailyVo> planList = userMapper.GetPlanList();
+			    
+			    for (DailyVo daily : planList) {
+				       
+					 String day = daily.getToday_date();
+					 String[] parts = day.split(" "); // 공백을 기준으로 문자열 분할
+					 String datePart = parts[0]; // 날짜 부분
+					 daily.setToday_date(datePart);
+				
+			         String username = userMapper.getName(daily.getUserid()); 
+			         daily.setUserid(username);
+			    }
+			    
+			    
 				ModelAndView mv = new ModelAndView();
+				mv.addObject("planList", planList);
 				mv.setViewName("plan/travel_plan");
 				return mv;
 			}
 
-			// 경상남도 레저 상세정보
+
+			//일정 잡기 나의 페이지
+			@RequestMapping("/TravelMyPlan")
+			public ModelAndView travelMyPlan(HttpServletRequest request) {
+			
+				HttpSession session = request.getSession();
+		        String userid = (String) session.getAttribute("userid");
+		        
+			    List<DailyVo> planList = userMapper.GetUserPlanList(userid);
+			    
+			    for (DailyVo daily : planList) {
+				       
+					 String day = daily.getToday_date();
+					 String[] parts = day.split(" "); // 공백을 기준으로 문자열 분할
+					 String datePart = parts[0]; // 날짜 부분
+					 daily.setToday_date(datePart);
+				
+			         String username = userMapper.getName(daily.getUserid()); 
+			         daily.setUserid(username);
+			    }
+			    
+			    
+				ModelAndView mv = new ModelAndView();
+				mv.addObject("planList", planList);
+				mv.setViewName("plan/travel_plan");
+				return mv;
+			}
+
 			@RequestMapping("/PlanWriteForm")
 			public ModelAndView planWriteForm(HttpServletRequest request) {
 				
@@ -364,25 +408,87 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 */
 			
 			@RequestMapping("/Plan")
-		    public void Plan(HttpServletRequest request, 
-		    		@RequestParam("title") List<String> titles,
-		    		@RequestParam("cont1") List<String>  cont1,
-		    		@RequestParam("time1") List<String>  time1,
-		    		@RequestParam("num") List<String>  num
+		    public ModelAndView Plan(HttpServletRequest request, 
+		    		@RequestParam(value ="title") List<String> titles,
+		    		@RequestParam(value ="cont1", defaultValue = " ") List<String>  cont1,
+		    		@RequestParam(value ="time1", defaultValue = " ") List<String>  time1,
+		    		@RequestParam(value ="cont2", defaultValue = " ") List<String>  cont2,
+		    		@RequestParam(value ="time2", defaultValue = " ") List<String>  time2,	    	
+		    		@RequestParam(value ="cont3", defaultValue = " ") List<String>  cont3,
+		    		@RequestParam(value ="time3", defaultValue = " ") List<String>  time3,	    	
+		    		@RequestParam(value ="cont4", defaultValue = " ") List<String>  cont4,
+		    		@RequestParam(value ="time4", defaultValue = " ") List<String>  time4,	    	
+		    		@RequestParam(value ="cont5", defaultValue = " ") List<String>  cont5,
+		    		@RequestParam(value ="time5", defaultValue = " ") List<String>  time5,	    	
+		    		@RequestParam(value ="cont6", defaultValue = " ") List<String>  cont6,
+		    		@RequestParam(value ="time6", defaultValue = " ") List<String>  time6,	    	
+		    		@RequestParam(value ="plan", defaultValue = " ") List<String>  plan,	    	
+		    		@RequestParam("num")   List<Integer>  num
 		    		
 		    	) {
+						
 		        HttpSession session = request.getSession();
 		        String userid = (String) session.getAttribute("userid");
-		        System.out.println(num);
-                System.out.println(cont1);
-                System.out.println(time1);
-    	        System.out.println(titles);
-		        // 받아온 데이터를 처리하는 로직 추가
-		      	System.out.println("User ID: " + userid);
-		      	System.out.println("-----------");
-
-		        // 여기서 데이터를 사용하여 작업 수행
-		    }
+		
+    	        int tnum = userMapper.gettno(userid);
+    	        List<DailyVo> volist = userMapper.getDaily(userid);   	        
+    	        
+    	        DailyVo dailyVo = new DailyVo();
+    	 
+		      	 // 데이터를 순서대로 매핑하여 DailyVo에 설정
+		        for (int i = 0; i < titles.size(); i++) {
+		        	int j = num.get(i) - 1;
+		        	DailyVo vo = volist.get(j);
+		        	System.out.println(vo);
+		        	dailyVo.setPlan_date(vo.getPlan_date());
+		        	dailyVo.setToday_date(vo.getToday_date());
+		            dailyVo.setTitles(titles.get(i)); // title 설정
+		            dailyVo.setNum(num.get(i));     // num 설정
+		            dailyVo.setCont1(cont1.get(i)); // cont1 설정
+		            dailyVo.setTime1(time1.get(i)); // time1 설정
+		            dailyVo.setCont2(cont2.get(i)); // cont2 설정
+		            dailyVo.setTime2(time2.get(i)); // time2 설정
+		            dailyVo.setCont3(cont3.get(i)); // cont3 설정
+		            dailyVo.setTime3(time3.get(i)); // time3 설정
+		            dailyVo.setCont4(cont4.get(i)); // cont4 설정
+		            dailyVo.setTime4(time4.get(i)); // time4 설정
+		            dailyVo.setCont5(cont5.get(i)); // cont5 설정
+		            dailyVo.setTime5(time5.get(i)); // time5 설정
+		            dailyVo.setCont6(cont6.get(i)); // cont6 설정
+		            dailyVo.setTime6(time6.get(i)); // time6 설정
+		            dailyVo.setPlan(plan.get(i));
+		            dailyVo.setUserid(userid);
+		            dailyVo.setTno(tnum);
+		            // DailyVo에 설정된 값을 확인하거나 사용할 수 있습니다.
+		            /*
+		            System.out.println("User ID: " + userid);
+		            System.out.println("Title: " + dailyVo.getTitles());
+		            System.out.println("Cont1: " + dailyVo.getCont1());
+		            System.out.println("Time1: " + dailyVo.getTime1());
+		            System.out.println("Cont2: " + dailyVo.getCont2());
+		            System.out.println("Time2: " + dailyVo.getTime2());
+		            System.out.println("Cont3: " + dailyVo.getCont3());
+		            System.out.println("Time3: " + dailyVo.getTime3());
+		            System.out.println("Cont4: " + dailyVo.getCont4());
+		            System.out.println("Time4: " + dailyVo.getTime4());
+		            System.out.println("Cont5: " + dailyVo.getCont5());
+		            System.out.println("Time5: " + dailyVo.getTime5());
+		            System.out.println("Cont6: " + dailyVo.getCont6());
+		            System.out.println("Time6: " + dailyVo.getTime6());
+		            System.out.println("Num: " + dailyVo.getNum());
+		            System.out.println("Plan: " + dailyVo.getPlan());
+		            System.out.println("-----------");
+		        */    
+		            
+		            userMapper.planInsert(dailyVo);
+		        }
+		        
+		        ModelAndView mv = new ModelAndView();
+			    mv.setViewName("/plan/daily");
+				return mv;
 			
+			}
+		}	
+		
 			
-		}
+		

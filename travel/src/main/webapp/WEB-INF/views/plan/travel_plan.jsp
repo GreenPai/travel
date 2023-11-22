@@ -32,6 +32,13 @@
     cursor: pointer;
     margin: 0 10px;
   }
+  
+  .page_1{
+    padding-bottom: 12px;
+    border-bottom: 1px solid #d2d2d2;
+    font-size: 16px;
+    color: #545454;
+  }
 
 </style>
 </head>
@@ -59,20 +66,42 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="page_num">
+			<div class="page_1">
 				<h2 style="text-align: center;">일정잡기</h2>
 				<hr>
 				
 				<div class="col-md-3 mb-4" id="div1" style="width:1200px; display: flex; flex-wrap: wrap;">
 				 <div style="display: flex; gap: 10px;">
-                    <a href="/List?menu_id=MENU03" class="btn btn-dark">유저 계획</a><br>
-                    <a href="/QNA" 	class="btn btn-dark">추천 계획</a><br>
-                    <a href="/QNA" 	class="btn btn-dark">나의 계획</a><br>
+                    <a href="/TravelPlan" class="btn btn-dark">유저 계획</a><br>
+                    <a href="/TravelMyPlan"  class="btn btn-dark">나의 계획</a><br>
                     <br>
                  </div>
 				</div>
                   <button id="btnWrite" class="btn btn-dark" style="float:right; margin-bottom:20px;">계획 세우기</button>	
 			</div>
+			
+			<table class="table">
+  <thead class="thead-dark">
+    <tr id="list">
+      <th scope="col">번호</th>
+      <th scope="col">제목</th>
+      <th scope="col">작성</th>
+      <th scope="col">날짜</th>
+    </tr>
+  </thead>
+  <tbody>
+    <c:forEach var="plan" items="${ planList }">
+    <tr>
+      <th scope="row">${ plan.tno }</th>
+      <td><a href="/View?bno=${ plan.tno }">${ plan.titles   }</a></td>
+      <td>${ plan.userid  }</td>
+      <td>${ plan.today_date }</td>
+    </tr>
+    </c:forEach>
+  </tbody>
+</table>
+
+
 		</div>
 	</div>
 
