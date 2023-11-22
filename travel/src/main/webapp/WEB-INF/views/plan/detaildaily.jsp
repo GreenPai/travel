@@ -97,7 +97,7 @@
     
     function openNewWindow() {
         // 새 창을 엽니다.
-        window.open("QNA", "_blank","width=1000, height=800");
+        window.open("testmap", "_blank","width=1000, height=800");
       }
 </script>
 
