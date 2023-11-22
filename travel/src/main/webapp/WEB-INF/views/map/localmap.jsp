@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <section>
-	<div id="map" style="width: 800px;height:600px;"></div>
+	<div id="map" style="width: 80%;height:500px;"></div>
 	
 	<script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=3240aeba4cebfd38087dd3298693d91c"></script>
 	<script>

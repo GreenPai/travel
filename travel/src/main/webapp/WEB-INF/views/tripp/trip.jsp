@@ -90,6 +90,11 @@
 	</div>
 	<!-- body end -->
 	
+	
+	<div style="margin: 0 auto;">
+		<%@include file="/WEB-INF/views/map/localmap.jsp"%>
+	</div>
+	
 
 	<div class="container">
 		<div class="row">
