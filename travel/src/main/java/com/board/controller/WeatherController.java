@@ -24,4 +24,13 @@ public class WeatherController {
 		return mv;
 		
 	}
+	
+	@RequestMapping("/restaurantmap")
+	public ModelAndView restaurantmap() {
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("map/restaurantmap");
+		return mv;
+		
+	}
 }

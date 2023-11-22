@@ -123,6 +123,7 @@
             <label for="date<%= i %>">Date <%= i %> :</label>
             <br>
             <input type="button" value="지역 검색" onclick="openNewWindow()" id="submitButton">
+            <input type="button" value="맛집 검색" onclick="openNewWindow2()" id="submitButton">
             <br><br>
             <div class="form-group">
                 <label for="title<%= i %>" id="plantitle">일정 이름:</label><br>
@@ -206,7 +207,12 @@ function submitForms() {
 
     function openNewWindow() {
         // 새 창을 엽니다.
-        window.open("QNA", "_blank","width=1000, height=800");
+        window.open("testmap", "_blank","width=1000, height=800");
+      }
+    
+    function openNewWindow2() {
+        // 새 창을 엽니다.
+        window.open("restaurantmap", "_blank","width=1000, height=800");
       }
 </script>
 
