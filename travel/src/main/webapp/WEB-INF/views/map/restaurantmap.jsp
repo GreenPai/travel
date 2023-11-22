@@ -56,13 +56,13 @@
 			<label><input type="radio" name="district" value="기장군"> 기장군</label>
 		  </div>
 		</div><div style="clear:both:"></div>
-
-        <hr>
         
 		<!-- 검색창! -->
-		<div>
-			<input type="text" id="keyword" placeholder="검색어를 입력하세요">
-			<button id="search">검색</button>
+		<div style="float:bottom:">
+			<div>
+				<input type="text" id="keyword" placeholder="검색어를 입력하세요">
+				<button id="search">검색</button>
+			</div>
 		</div>
 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3240aeba4cebfd38087dd3298693d91c&libraries=services"></script>
