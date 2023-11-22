@@ -74,6 +74,7 @@
             <br>
             <input type="button" value="지역 검색" onclick="openNewWindow()" id="submitButton">
             <input type="button" value="맛집 검색" onclick="openNewWindow2()" id="submitButton">
+            <input type="button" value="명소 보기" onclick="openNewWindow3()" id="submitButton">
             <br><br>
             <div class="form-group">
                 <label for="title<%= i %>" id="plantitle">일정 이름:</label><br>
@@ -115,6 +116,11 @@ function submitForms() {
     function openNewWindow2() {
         // 새 창을 엽니다.
         window.open("restaurantmap", "_blank","width=1000, height=800");
+      }
+    
+    function openNewWindow3() {
+        // 새 창을 엽니다.
+        window.open("localmap", "_blank","width=1000, height=800");
       }
 </script>
 
