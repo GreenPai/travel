@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/new_main.css" />
 
+
 </head>
 <body>
 	<header class="header" style="display: flex;">
@@ -18,6 +19,13 @@
 			<br> <a href="/"><img src="/img/logo.png" alt="logo"
 				style="width: 300px; height: 60px;"></a>
 		</div>
+		
+		<form action="/TripView?" method="GET" style="display: flex;">
+					<input type="text" name="q" placeholder="여행지를 입력하세요"
+						style="flex: 1; padding: 10px; margin-top:25px; border-radius: 10px; width: 550px; height: 43px;">
+					<button type="submit"
+						style="padding: 10px 20px; border-radius: 10px; margin-top:25px; height: 43px;">검색</button>
+				</form>
 
 		<div class="header_login">
 			<ul>
@@ -65,8 +73,8 @@
 			<ul class="submenu3">
 				<li><a href="/Park">부산 공영주차장 정보</a></li>
 				<li><a href="/Handi">부산 편의시설 정보</a></li>
+				<li><a href="/Cult">부산 문화재 정보</a></li>				
 				<li><a href="/Weather">부산 기상정보</a></li>
-				<li><a href="/Leis">경남 레저정보</a></li>				
 			</ul></li>
 		<li><a href=#><h2>안내</h2></a>
 

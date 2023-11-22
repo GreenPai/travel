@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/new_main.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
 </head>
 <body>
@@ -22,18 +23,14 @@
 			<img alt="back_img" src="img/busan.jpg"
 				style="width: 100%; height: 100%;">
 			<div
-				style="position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-				<h1 style="color: #fff; font-size: 50px;">내가 만드는 부산 이야기</h1>
-				<h2 style="color: black; font-size: 20px;">
+				style="position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+				<h1 style="color: #fff; font-size: 60px;">내가 만드는 부산 이야기</h1>
+				<br>
+				<h2 style="color: black; font-size: 25px;">
 					대한민국 항구도시 부산!! <br> 이곳에서 좋은 추억 만들어 보세요
 				</h2>
 				<br> <br> <br> <br>
-				<form action="/검색결과페이지" method="GET" style="display: flex;">
-					<input type="text" name="q" placeholder="여행지를 입력하세요"
-						style="flex: 1; padding: 10px; border-radius: 10px;">
-					<button type="submit"
-						style="padding: 10px 20px; border-radius: 10px;">검색</button>
-				</form>
+				
 			</div>
 		</div>
 		<!-- 이미지끝 -->

@@ -53,7 +53,7 @@
 				   html += ' <img src=" ' + row.MAIN_IMG_THUMB  + ' " alt="썸네일 이미지">'
 				   html += '</a>'
 				   html += ' <div class="card-content">'
-				   html += '<p><b>여행지</b>: '   + row.PLACE + '</p>'
+				   html += '<p><b>식당</b>: '   + row.PLACE + '</p>'
 				   html += '<p><b>주소</b>: '     + row.ADDR1 + '</p>'
 				   html += '</div>'
 				   html += '</div>';

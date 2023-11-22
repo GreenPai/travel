@@ -434,22 +434,23 @@ import org.springframework.web.bind.annotation.RestController;
 			
 			// 경상남도 레저 관광 정보
 			@RequestMapping(
-					value   = "/leis",
+					value   = "/cult",
 					method  = RequestMethod.GET,
 					headers = "Accept=application/json")	 
-				public  String  leis(
+				public  String  cult(
 				@RequestParam  HashMap<String, Object> map,
 				HttpServletRequest request, HttpServletResponse response) throws IOException {
 				
-				String json = getLeis( request, response);
+				String json = getCult( request, response);
 				return json;
 				
 			}
-			private String getLeis(HttpServletRequest request, HttpServletResponse response) throws IOException {
-				StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/6480000/gyeongnamtourleisure/gyeongnamtourleisurelist"); /*URL*/
+			private String getCult(HttpServletRequest request, HttpServletResponse response) throws IOException {
+				StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/6260000/BusanTblClthrtStusService/getTblClthrtStusInfo"); /*URL*/
 		        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=X5Ow2Q7%2F1YLN6F2IGV2I9%2F1G9A5aZ2eNuiJnwQvTm8m7w%2FDEh2jJsBMatEA%2FFBy2dM5%2FoJASYTxYqsoEukRzvQ%3D%3D"); /*Service Key*/
 		        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
-		        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("40", "UTF-8")); /*한 페이지 결과 수*/
+		        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과 수*/
+		        //urlBuilder.append("&" + URLEncoder.encode("cultHeritNm","UTF-8") + "=" + URLEncoder.encode("낙동 강하류 철새 도래지", "UTF-8")); /*문화재명*/
 		        urlBuilder.append("&" + URLEncoder.encode("resultType","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); /*JSON방식으로 호출 시 파라미터 resultType=json 입력*/
 		        URL url = new URL(urlBuilder.toString());
 		        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -460,7 +461,7 @@ import org.springframework.web.bind.annotation.RestController;
 		            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		        } else {
 		            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-		        } 
+		        }
 		        StringBuilder sb = new StringBuilder();
 		        String line;
 		        while ((line = rd.readLine()) != null) {

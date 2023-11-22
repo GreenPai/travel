@@ -20,7 +20,7 @@
 <script> 
   window.onload = function() { 
 	 
-		 let url = '/leis';   // servlet 사용
+		 let url = '/cult';   // servlet 사용
 		// let url = 'https://openapi.foodsafetykorea.go.kr/api/70e153f2e8f64995941b/COOKRCP01/xml/1/50';
 		 axios( {
 			 url    : url,
@@ -38,40 +38,35 @@
 		   .then(( obj ) => {
 			   //alert(obj.data);
 			   console.dir( obj.data );  // getGalmaetGilInfo -> body -> items
-			   let  arr =  obj.data.gyeongnamtourleisurelist.body.items.item; 
+			   let  arr =  obj.data.getTblClthrtStusInfo.body.items.item; 
 			   console.log(arr);
 			   let  html  = '';		
 			   
-				   if (arr.length > 0) {
-			            let row = arr[0];
 			            
-			            for (let i = 0; i < arr.length; i++) {
-			                if (arr[i].UC_SEQ === 'row.UC_SEQ') { // UC_SEQ가 '0'과 일치하는 경우에만 출력
-			                    row = arr[i];
-			                    break;
-			                }
-			            }
-					   
-				    html += '<h3 class="title">' + row.data_title + '</h3>';   
+			           
+			   arr.forEach( (row) => {
+				    html += '<h3 class="title">' + row.cultHeritNm + '</h3>';   
 					html += '<div class="main_body" id="div1">'
 					html += '<div class="photo">'
-					html += '<img src="' + row.fileurl1  + '" alt="여행명소 사진" style="width:1200px; height:540px;">'
+					
 					html += '<hr>'
 					html += '</div>'
 					html += '<div class="comment">'
-					html += '레저구분: '    + row.category_name1 +'<br>'
-					html += '시군명: '      + row.category_name2 + '<br>'
-					html += '주소: '        + row.user_address + '<br>'
-					html += '연락처: '      + row.telno + '<br>'
-					html += '교통편:'     + row.traffic
+					html += '소재지: '       + row.addr           + '<br>'
+					html += '관리주체: '     + row.organManage    + '<br>'
+					html += '지정번호: '     + row.number         + '<br>'
+					html += '지정일자: '     + row.dates          + '<br>'
+					html += '시대: '         + row.era            + '<br>'
+					html += '종별: '         + row.kind           + '<br>'
+					html += '건립주체: '     + row.mainAgent      + '<br>'
+					html += '건립연도: '     + row.installedYear  + '<br>'
+					html += '주요내용: '     + row.majorContents  + '<br>'
 					
 					html += '</div>'
-					html += '<div class="comment_1">'
-					html += '게시글 내용:' + row.data_content
-					html += '</div>'
+		
 					
 					
-			   }
+			   })
 			   
 				  
 						   
