@@ -6,7 +6,7 @@
 		<div id="map" style="width:80%;height:500px;float:left; margin-right:10px;"></div>
 		<br>
 		<!-- 버튼 모음 -->
-		<div style="float:left;">
+		<div style=" float:left; border: white 1px;">
 		  <div>
 			<label><input type="radio" name="district" value="중구"> 중구</label>
 	      </div>
@@ -55,13 +55,14 @@
 	      <div>
 			<label><input type="radio" name="district" value="기장군"> 기장군</label>
 		  </div>
-		</div><div style="clear:both:"></div>
+		</div>
         
 		<!-- 검색창! -->
-		<div style="float:bottom:">
-			<div>
-				<input type="text" id="keyword" placeholder="검색어를 입력하세요">
-				<button id="search">검색</button>
+		<div>
+			<div style="width:30%;">
+			    <br>
+				<input type="text" id="keyword" placeholder="검색어를 입력하세요" style="width:100%; height:40px;">
+				<button id="search" style="width:15%; height:30px;">검색</button>
 			</div>
 		</div>
 	
