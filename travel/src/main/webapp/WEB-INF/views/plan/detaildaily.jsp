@@ -182,7 +182,7 @@
 	</div>
 <script>
 function submitForms() {
-	
+	  
 	let requests = [];
 	
 	 for (let i = 1; i <= <%= dateListSize %>; i++) {
