@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 		import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -144,8 +145,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 			@RequestMapping("/PlanView")
 			public ModelAndView planView(HttpServletRequest request, DailyVo vo) {
 				
-				List<DailyVo> dailyVo = userMapper.GetTnoPlanList(vo); 
-				
+ 				List<DailyVo> dailyVo = userMapper.GetTnoPlanList(vo); 
+                int num= 0;				
 				  for (DailyVo daily : dailyVo) {
 				       
 						 String day = daily.getPlan_date();
@@ -157,7 +158,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 						 String[] todayparts = today.split(" "); // 공백을 기준으로 문자열 분할
 						 String todatePart = todayparts[0]; // 날짜 부분
 						 daily.setToday_date(todatePart);
-						 
+						 num = daily.getTno();
 				         String username = userMapper.getName(daily.getUserid()); 
 				         daily.setUserid(username);
 				    }
@@ -165,6 +166,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 				
 				ModelAndView mv = new ModelAndView();
 			    mv.addObject("planList", dailyVo);
+			    mv.addObject("tno", num);
 			    mv.setViewName("plan/view");
 			    
 			    return mv;
@@ -414,42 +416,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 				return mv;
 			}
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			/*
-			@RequestMapping("/Plan")
-			public ModelAndView Plan(HttpServletRequest request) {
-               				
-				System.out.println(1);
-				HttpSession session = request.getSession();
-		        DailyVo dailyVo = new DailyVo();
-		        String userid = (String) session.getAttribute("userid");
-		        dailyVo.setUserid(userid);
-		    		        
-		        ModelAndView mv = new ModelAndView();
-			    mv.setViewName("plan/detaildaily");
-
-				return mv;
-			}
-			
-*/
-			
+	
 			@RequestMapping("/Plan")
 		    public ModelAndView Plan(HttpServletRequest request, 
 		    		@RequestParam(value ="title") List<String> titles,
@@ -502,27 +469,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 		            dailyVo.setPlan(plan.get(i));
 		            dailyVo.setUserid(userid);
 		            dailyVo.setTno(tnum);
-		            // DailyVo에 설정된 값을 확인하거나 사용할 수 있습니다.
-		            /*
-		            System.out.println("User ID: " + userid);
-		            System.out.println("Title: " + dailyVo.getTitles());
-		            System.out.println("Cont1: " + dailyVo.getCont1());
-		            System.out.println("Time1: " + dailyVo.getTime1());
-		            System.out.println("Cont2: " + dailyVo.getCont2());
-		            System.out.println("Time2: " + dailyVo.getTime2());
-		            System.out.println("Cont3: " + dailyVo.getCont3());
-		            System.out.println("Time3: " + dailyVo.getTime3());
-		            System.out.println("Cont4: " + dailyVo.getCont4());
-		            System.out.println("Time4: " + dailyVo.getTime4());
-		            System.out.println("Cont5: " + dailyVo.getCont5());
-		            System.out.println("Time5: " + dailyVo.getTime5());
-		            System.out.println("Cont6: " + dailyVo.getCont6());
-		            System.out.println("Time6: " + dailyVo.getTime6());
-		            System.out.println("Num: " + dailyVo.getNum());
-		            System.out.println("Plan: " + dailyVo.getPlan());
-		            System.out.println("-----------");
-		        */    
-		            
+		
 		            userMapper.planInsert(dailyVo);
 		        }
 		        
@@ -530,17 +477,74 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 			    mv.setViewName("/plan/daily");
 				return mv;
 
-		        //System.out.println(num);
-                //System.out.println(cont1);
-                //System.out.println(time1);
-    	        //System.out.println(titles);
-		        // 받아온 데이터를 처리하는 로직 추가
-		      	//System.out.println("User ID: " + userid);
-		      	//System.out.println("-----------");
-
-		        // 여기서 데이터를 사용하여 작업 수행
 		    }
 
+			
+			// 플랜 삭제
+			@RequestMapping("/PlanDelete")
+			public ModelAndView PlanDelte(HttpServletRequest request, DailyVo vo) {
+			
+				userMapper.deletePlan(vo);
+				
+				ModelAndView mv = new ModelAndView();
+
+			    mv.setViewName("redirect:/TravelPlan");
+			    return mv;
+			}
+			
+             // 플랜 수정
+			
+			// 일정 세우기 눌렀을때 데이터를 넘기면서 이동 
+			@RequestMapping("/UpdatePlan")
+			public ModelAndView UpdatePlan(HttpServletRequest request) {
+               				
+				HttpSession session = request.getSession();
+		        DailyVo dailyVo = new DailyVo();
+		        String userid = (String) session.getAttribute("userid");
+		        dailyVo.setUserid(userid);
+		            				
+		        List<DailyVo> dayList = userMapper.dailyGet(dailyVo);
+				int num = userMapper.dailynumGet();
+		        for (DailyVo daily : dayList) {
+		        String plan =daily.getPlan_date();
+		        String days =daily.getToday_date(); 
+		        String user =daily.getUserid(); 
+		        dailyVo.setPlan_date(plan);
+		        dailyVo.setToday_date(days);
+		        dailyVo.setUserid(userid);
+		        dailyVo.setTno(num);
+		          
+		        userMapper.dailyListInsert(dailyVo);
+		        }
+
+
+		        List<DailyVo> dayListFinal = userMapper.dailyListGet(dailyVo);
+		        
+		        List<String> dateList2 = new ArrayList<>();
+		        
+		        for (DailyVo daily2 : dayListFinal) {
+					 String day = daily2.getPlan_date();
+					 
+					 dateList2.add(day); // 새로운 배열에 날짜 부분을 추가
+				 }
+		        
+		        System.out.println(dayListFinal.size());
+		        
+		        ModelAndView mv = new ModelAndView();
+				mv.addObject( "dateList"  , dayListFinal);
+				mv.addObject( "dateList2" , dateList2);
+				mv.addObject("dateListSize", dayListFinal.size());
+		        mv.setViewName("plan/detaildaily");
+
+				return mv;
+			}
+			
+			
+			
+			
+			
+			
+			
 			
 			}
 		

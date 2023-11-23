@@ -241,7 +241,12 @@
 		)
 	</insert>
   
+   <delete id="deletePlan">
   
+  	DELETE   FROM   TRAVEL_DAY3
+  	 WHERE   TNO = #{tno} 
+  
+  </delete>
   
   
 </mapper>

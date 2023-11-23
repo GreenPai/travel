@@ -47,6 +47,8 @@ public interface UserMapper {
 	List<DailyVo> GetUserPlanList(String userid);
 
 	List<DailyVo> GetTnoPlanList(DailyVo vo);
+
+	void deletePlan(DailyVo vo);
 	
 	
 }

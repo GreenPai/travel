@@ -83,7 +83,13 @@ font-weight: bold;
     /* 내용 스타일 지정 */
 }
 
-
+.buttons{
+  display: flex;
+    justify-content: flex-end;
+    gap: 10px; 
+    margin-right: 250px; 
+    margin-bottom: 30px; 
+}
 </style>
 </head>
 <body>
@@ -106,7 +112,11 @@ font-weight: bold;
    <br>
    <br>
    
-   
+    <div class = buttons>  
+      <a href="/PlanDelete?tno=${tno}" 	class="btn btn-dark">삭제</a>
+      <a href="/UpdatePlan" 	class="btn btn-dark">수정</a>
+      <a href="/" 	class="btn btn-dark">홈</a>   
+   </div>
    <c:forEach var="plan" items="${ planList }">
    
   <div id="main">
@@ -213,14 +223,11 @@ font-weight: bold;
     <br>
     <div class="mb-3">
         <label for="formContent" class="form-label">상세일정:</label>
-         <div style="text-align: center;">
-     
-        </div>
-   
         <textarea class="form-control" id="formContent" name="content" readonly rows="10">${ plan.plan }</textarea>
         
     </div>
     
+       
    </div>
    <br><br>
      </c:forEach>
