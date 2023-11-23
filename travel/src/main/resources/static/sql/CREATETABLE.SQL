@@ -1,0 +1,27 @@
+CREATE TABLE TRAVEL_PLANUSERDATA(
+    TNO            NUMBER(6)         PRIMARY KEY,
+    USERID         VARCHAR2(50)      NOT NULL,
+    TODAY_DATE     DATE              DEFAULT  SYSDATE,
+    REPLY          VARCHAR2(300)     NOT NULL,
+    FOREIGN KEY(USERID) REFERENCES TRAVEL_USER(USERID));
+    
+CREATE TABLE TRAVEL_PLANBOARD(
+    TNO            NUMBER(6),
+    NUM            NUMBER(5),
+    TITLES         VARCHAR2(200),
+    HIT            NUMBER(10),
+    TIME1          VARCHAR2(200),
+    CONT1          VARCHAR2(300),
+    TIME2          VARCHAR2(200),
+    CONT2          VARCHAR2(300),
+    TIME3          VARCHAR2(200),
+    CONT3          VARCHAR2(300),
+    TIME4          VARCHAR2(200),
+    CONT4          VARCHAR2(300),
+    TIME5          VARCHAR2(200),
+    CONT5          VARCHAR2(300),
+    TIME6          VARCHAR2(200),
+    CONT6          VARCHAR2(300),
+    PLAN           VARCHAR2(2000),
+    PLAN_DATE      VARCHAR2(100),
+    FOREIGN KEY(TNO) REFERENCES TRAVEL_PLANUSERDATA(TNO));

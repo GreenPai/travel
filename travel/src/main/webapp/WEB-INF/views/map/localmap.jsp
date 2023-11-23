@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <section>
-	<div id="map" style="width: 80%;height:500px;"></div>
+	<div id="map" style="width: 100%;height:100%;"></div>
 	
 	<script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=3240aeba4cebfd38087dd3298693d91c"></script>
 	<script>
@@ -78,15 +78,15 @@
 	    },
 	    {
 	        content: '<div>대변항<br><img src="/img/map/Deab.jpg" sytle="width:352px; height:220px;"></div>',
-	        latlng: new kakao.maps.LatLng(35.169163, 129.230860)
+	        latlng: new kakao.maps.LatLng(35.22505, 129.2284)
 	    },
 	    {
 	        content: '<div>연화리 해녀촌<br><img src="/img/map/yeunhwa.jpg" sytle="width:352px; height:220px;"></div>',
-	        latlng: new kakao.maps.LatLng(35.046543, 129.228200)
+	        latlng: new kakao.maps.LatLng(35.1524, 129.0606)
 	    },
 	    {
 	        content: '<div>다대포해수욕장<br><img src="/img/map/dadaepo.jpg" sytle="width:352px; height:220px;"></div>',
-	        latlng: new kakao.maps.LatLng(35.169163, 128.962724)
+	        latlng: new kakao.maps.LatLng(35.04767, 128.9662)
 	    },
 	    {
 	        content: '<div>을숙도 철새공원<br><img src="/img/map/bird.jpg" sytle="width:352px; height:220px;"></div>',
@@ -162,7 +162,7 @@
 	    },
 	    {
 	        content: '<div>더무빙-카라반<br><img src="/img/map/kraban.jpg" sytle="width:352px; height:220px;"></div>',
-	        latlng: new kakao.maps.LatLng(35.098423, 129.270077)
+	        latlng: new kakao.maps.LatLng(35.3226, 129.2700)
 	    },
 	    {
 	        content: '<div>다대포 꿈의 낙조분수<br><img src="/img/map/nacjoo.jpg" sytle="width:352px; height:220px;"></div>',

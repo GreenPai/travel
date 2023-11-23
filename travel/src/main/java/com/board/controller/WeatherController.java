@@ -33,4 +33,13 @@ public class WeatherController {
 		return mv;
 		
 	}
+	
+	@RequestMapping("/localmap")
+	public ModelAndView localmap() {
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("map/localmap");
+		return mv;
+		
+	}
 }
