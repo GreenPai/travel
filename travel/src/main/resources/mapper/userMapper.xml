@@ -165,6 +165,15 @@
      WHERE NUM = 1 AND USERID = #{userid}
      
   </select>  
+
+   <select id="GetTnoPlanList">
+  
+   	 SELECT  *
+     FROM TRAVEL_DAY3
+     WHERE TNO = #{tno}
+     ORDER BY PLAN_DATE ASC
+     
+  </select>  
   
   
   
@@ -175,6 +184,7 @@
    	 SELECT  *
      FROM TRAVEL_DAY3
      WHERE NUM = 1
+     ORDER BY TNO DESC
      
   </select>  
   

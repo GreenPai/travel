@@ -45,6 +45,8 @@ public interface UserMapper {
 	String getName(String userid);
 
 	List<DailyVo> GetUserPlanList(String userid);
+
+	List<DailyVo> GetTnoPlanList(DailyVo vo);
 	
 	
 }

@@ -93,7 +93,8 @@
     <c:forEach var="plan" items="${ planList }">
     <tr>
       <th scope="row">${ plan.tno }</th>
-      <td><a href="/View?bno=${ plan.tno }">${ plan.titles   }</a></td>
+     <td><a href="/PlanView?tno=${plan.tno}">${plan.titles}</a></td>
+     <td><a href="/View?bno=${ board.bno }">${ board.title   }</a></td>
       <td>${ plan.userid  }</td>
       <td>${ plan.today_date }</td>
     </tr>

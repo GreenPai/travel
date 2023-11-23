@@ -19,7 +19,7 @@
 
 
 	<div id="content">
-		<div style="position: relative; width: 100%; height: 700px;">
+		<div style="position: relative; width: 100%; height: 400px;">
 			<img alt="back_img" src="img/busan.jpg"
 				style="width: 100%; height: 100%;">
 			<div
@@ -366,11 +366,7 @@
 
 
 
-  <%@include file="/WEB-INF/views/map/localmap.jsp" %>
-  <%@include file="/WEB-INF/views/map/addressmap.jsp" %>
-  <%@include file="/WEB-INF/views/weather/weatherpage.jsp" %>
-  <%@include file="/WEB-INF/views/weather/weather.jsp" %>
-
+ 
 
 
 </body>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 		import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -140,7 +141,34 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 			    return mv;
 			}
 			
-			
+			@RequestMapping("/PlanView")
+			public ModelAndView planView(HttpServletRequest request, DailyVo vo) {
+				
+				List<DailyVo> dailyVo = userMapper.GetTnoPlanList(vo); 
+				
+				  for (DailyVo daily : dailyVo) {
+				       
+						 String day = daily.getPlan_date();
+						 String[] parts = day.split(" "); // 공백을 기준으로 문자열 분할
+						 String datePart = parts[0]; // 날짜 부분
+						 daily.setPlan_date(datePart);
+					
+						 String today = daily.getToday_date();
+						 String[] todayparts = today.split(" "); // 공백을 기준으로 문자열 분할
+						 String todatePart = todayparts[0]; // 날짜 부분
+						 daily.setToday_date(todatePart);
+						 
+				         String username = userMapper.getName(daily.getUserid()); 
+				         daily.setUserid(username);
+				    }
+				
+				
+				ModelAndView mv = new ModelAndView();
+			    mv.addObject("planList", dailyVo);
+			    mv.setViewName("plan/view");
+			    
+			    return mv;
+			}
 			// 테이블에서 유저가 고른 날짜를 보여주기 위해서 
 			// 테이블에 날짜를 저장하고 데이터를 들고오는것.
 			// 같은 날짜를 눌렀을때 삭제
@@ -385,6 +413,21 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 				return mv;
 			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
