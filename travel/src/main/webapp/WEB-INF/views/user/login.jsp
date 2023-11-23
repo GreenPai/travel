@@ -38,16 +38,19 @@
 				<c:if test="${loginError == '비밀번호가 일치하지 않습니다.'}">
 					<div style="color: red;">비밀번호가 일치하지 않습니다.</div>
 				</c:if>
-				<div id="login-btn-box">
-					<div style="margin-right: 10px;">
-						<input type="submit" id="btnLogin" value="로그인"
-							class="btn btn-danger btn-sm">
-					</div>
-					<div style="">
-						<input type="button" id="btnNewLogin" value="회원가입"
-							class="btn btn-danger">
-					</div>
-				</div>
+				<div id="login-btn-box" style="display: flex; justify-content: space-between; align-items: center;">
+                 <div style="order: -1;">
+                  <input type="button" id="home" value="Home" class="btn btn-danger">
+                 </div>
+                 <div style="display: flex;">
+                  <div style="margin-right: 10px;">
+                   <input type="button" id="btnNewLogin" value="회원가입" class="btn btn-danger">
+                  </div>
+                  <div>
+                   <input type="submit" id="btnLogin" value="로그인" class="btn btn-danger btn-sm">
+                  </div>
+                 </div>
+                </div>
 				<div></div>
 			</div>
 			<!-- login Box //-->
@@ -68,6 +71,11 @@
 	const NewLoginEl = document.querySelector('#btnNewLogin');
 	NewLoginEl.addEventListener('click',(e) => {
 		location.href='LoginAgree';
+	})
+	
+	const NewHomeEl = document.querySelector('#home');
+	NewHomeEl.addEventListener('click',(e) => {
+		location.href='/';
 	})
 	
 	</script>

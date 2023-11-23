@@ -248,6 +248,29 @@
   
   </delete>
   
+  <update id="dailyUpdate">
+    
+    UPDATE  TRAVEL_DAY3
+    SET        
+    TITLES = #{ titles   },
+	TIME1 = #{ time1   },
+	CONT1 = #{ cont1   },
+	TIME2 = #{ time2   },
+	CONT2 = #{ cont2   },
+	TIME3 = #{ time3   },
+	CONT3 = #{ cont3   },
+	TIME4 = #{ time4   },
+	CONT4 = #{ cont4   },
+	TIME5 = #{ time5   },
+	CONT5 = #{ cont5   },
+	TIME6 = #{ time6   },
+	CONT6 = #{ cont6   },
+	PLAN  = #{ plan   }
+	WHERE TNO=#{tno} AND NUM=#{num}
+     
+    
+  </update>
+  
   
 </mapper>
 

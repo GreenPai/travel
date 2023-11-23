@@ -496,51 +496,78 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 			
 			// 일정 세우기 눌렀을때 데이터를 넘기면서 이동 
 			@RequestMapping("/UpdatePlan")
-			public ModelAndView UpdatePlan(HttpServletRequest request) {
+			public ModelAndView UpdatePlan(HttpServletRequest request, DailyVo vo) {
                				
 				HttpSession session = request.getSession();
-		        DailyVo dailyVo = new DailyVo();
+
 		        String userid = (String) session.getAttribute("userid");
-		        dailyVo.setUserid(userid);
+		        vo.setUserid(userid);
 		            				
-		        List<DailyVo> dayList = userMapper.dailyGet(dailyVo);
-				int num = userMapper.dailynumGet();
-		        for (DailyVo daily : dayList) {
-		        String plan =daily.getPlan_date();
-		        String days =daily.getToday_date(); 
-		        String user =daily.getUserid(); 
-		        dailyVo.setPlan_date(plan);
-		        dailyVo.setToday_date(days);
-		        dailyVo.setUserid(userid);
-		        dailyVo.setTno(num);
-		          
-		        userMapper.dailyListInsert(dailyVo);
-		        }
+		        List<DailyVo> dayList = userMapper.GetTnoPlanList(vo);
 
-
-		        List<DailyVo> dayListFinal = userMapper.dailyListGet(dailyVo);
-		        
 		        List<String> dateList2 = new ArrayList<>();
 		        
-		        for (DailyVo daily2 : dayListFinal) {
-					 String day = daily2.getPlan_date();
-					 
-					 dateList2.add(day); // 새로운 배열에 날짜 부분을 추가
-				 }
+		        int num=0;
+		        for (DailyVo daily : dayList) {
+	            if(num< daily.getNum()) {
+	            	num=daily.getNum();
+	            }  
+		        }
 		        
-		        System.out.println(dayListFinal.size());
+	
+		     // 새로운 리스트들을 만들어서 요소를 분배
+		        DailyVo list1 = new DailyVo();
+		        DailyVo list2 = new DailyVo();
+		        DailyVo list3 = new DailyVo();
+		        DailyVo list4 = new DailyVo();
 		        
-		        ModelAndView mv = new ModelAndView();
-				mv.addObject( "dateList"  , dayListFinal);
-				mv.addObject( "dateList2" , dateList2);
-				mv.addObject("dateListSize", dayListFinal.size());
-		        mv.setViewName("plan/detaildaily");
+
+		        
+		        // 각 리스트에 해당하는 요소를 추가
+		        if (dayList.size() >= 4) {
+		            list1=dayList.get(0);
+		            list2=dayList.get(1);
+		            list3=dayList.get(2);
+		            list4=dayList.get(3);
+		        } else if (dayList.size() >= 3) {
+		            list1=dayList.get(0);
+		            list2=dayList.get(1);
+		            list3=dayList.get(2);
+		        } else if (dayList.size() >= 2) {
+		            list1=dayList.get(0);
+		            list2=dayList.get(1);
+		        } else if (dayList.size() >= 1) {
+				    list1=dayList.get(0);
+			}
+              ModelAndView mv = new ModelAndView();
+		        mv.addObject("list1", list1);
+		        mv.addObject("list2", list2);
+		        mv.addObject("list3", list3);
+		        mv.addObject("list4", list4);
+		        mv.addObject("li1", list1.getTime1());
+		        mv.addObject("li2", list2.getTime1());
+		        mv.addObject("li3", list3.getTime1());
+		        mv.addObject("li4", list4.getTime1());
+				mv.addObject( "dateList"  , dayList);
+				mv.addObject("dateListSize", num);
+		        mv.setViewName("plan/updatedaily");
 
 				return mv;
 			}
 			
 			
+			@RequestMapping("/UpdatePlanList")
+			public ModelAndView UpdatePlanList(HttpServletRequest request, DailyVo vo) {
 			
+			    System.out.println(vo);	
+			    System.out.println("---------------------");	
+				userMapper.dailyUpdate(vo);
+	
+    			ModelAndView mv = new ModelAndView();
+
+			    mv.setViewName("redirect:/TravelPlan");
+			    return mv;
+			}
 			
 			
 			

@@ -32,8 +32,11 @@
 				<li><c:choose>
 						<c:when test="${not empty sessionScope['nickname']}">
 							<div class="left-content">
-								<img src="/img/user.jpg" alt="" class="left-image" width="40"
-									height="40">
+								<img src="/img/user.jpg" alt="" class="left-image" width="40" height="40" onclick="toggleInformation()">
+								<div id="information" style="display: none;">
+                                 <p>정보 수정</p>
+                                 <p>나의 일정</p>
+                                </div>
 								<c:set var="userName" value="${sessionScope['nickname']}" />
 								<p>${userName}</p>
 							</div>
@@ -63,7 +66,15 @@
 		<li><a href=#><h2>일정</h2></a>
 
 			<ul class="submenu2"> 
+			  <c:choose>
+				<c:when test="${not empty sessionScope['nickname']}">  
 				<li><a href="/TravelPlan">일정 세우기</a></li>
+				</c:when>
+				<c:otherwise>
+			    <li><a href="/Login">일정 세우기</a></li>
+				</c:otherwise>
+			</c:choose>
+				
 				<li><a href="/Recom">부산 시장투어</a></li>
 				<li><a href="/Tema">부산 테마일정</a></li>
 				<li><a href="/Festa">부산 축제투어</a></li>
@@ -86,7 +97,15 @@
 	</ul>
 	<!-- header end -->
 	
-	
-
+<script>	
+function toggleInformation() {
+    var infoDiv = document.getElementById('information');
+    if (infoDiv.style.display === 'none') {
+        infoDiv.style.display = 'block';
+    } else {
+        infoDiv.style.display = 'none';
+    }
+}
+</script>
 </body>
 </html>
