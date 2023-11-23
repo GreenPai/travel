@@ -39,7 +39,7 @@
 			<div class="mb-3">
 				<label for="formBno" class="form-label"><b
 					style="color: red"></b>글번호</label>
-			   <input type="text" class="form-control"
+			   <input type="text" class="form-control"   
 					readonly name="bno" id="formBno" value="${ vo.bno }">
 			</div>
 			<div class="mb-3">

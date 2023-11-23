@@ -114,7 +114,7 @@ font-weight: bold;
    
     <div class = buttons>  
       <a href="/PlanDelete?tno=${tno}" 	class="btn btn-dark">삭제</a>
-      <a href="/UpdatePlan" 	class="btn btn-dark">수정</a>
+      <a href="/UpdatePlan?tno=${tno}" 	class="btn btn-dark">수정</a>
       <a href="/" 	class="btn btn-dark">홈</a>   
    </div>
    <c:forEach var="plan" items="${ planList }">
