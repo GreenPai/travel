@@ -418,9 +418,9 @@ function removeHyphen() {
 
                         cell1.innerHTML = items[i].getElementsByTagName('trainno')[0].textContent;  // 기차번호
                         cell2.innerHTML = items[i].getElementsByTagName('traingradename')[0].textContent;  // 기차명
-                        cell3.innerHTML = "출발지: " + items[i].getElementsByTagName('depplacename')[0].textContent;  // 출발지
+                        cell3.innerHTML = "출발지: " + items[i].getElementsByTagName('depplacename')[0].textContent +"역";  // 출발지
                         cell4.innerHTML = formatDateTime(items[i].getElementsByTagName('depplandtime')[0].textContent);  // 출발시간
-                        cell5.innerHTML = "도착지: " + items[i].getElementsByTagName('arrplacename')[0].textContent;  // 도착지
+                        cell5.innerHTML = "도착지: " + items[i].getElementsByTagName('arrplacename')[0].textContent +"역";  // 도착지
                         cell6.innerHTML = formatDateTime(items[i].getElementsByTagName('arrplandtime')[0].textContent);  // 도착시간
                     }
                 }
