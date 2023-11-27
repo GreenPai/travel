@@ -38,6 +38,7 @@ public class DailyVo {
 	private String time6;
 	private String cont6;
     private String plan;
+    private String maintitle;
 	@NonNull     // NOT NULL
 	private String plan_date;	
 	private String userid;

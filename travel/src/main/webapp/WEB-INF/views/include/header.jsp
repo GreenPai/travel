@@ -30,18 +30,20 @@
 		<div class="header_login">
 			<ul>
 				<li><c:choose>
-						<c:when test="${not empty sessionScope['nickname']}">
-							<div class="left-content">
-								<img src="/img/user.jpg" alt="" class="left-image" width="40" height="40" onclick="toggleInformation()">
-								<div id="information" style="display: none;">
-                                 <p>정보 수정</p>
-                                 <p>나의 일정</p>
-                                </div>
-								<c:set var="userName" value="${sessionScope['nickname']}" />
-								<p>${userName}</p>
-							</div>
-							<a href="/Logout" class="right-logout">로그아웃</a>
-						</c:when>
+						 <c:when test="${not empty sessionScope['nickname']}">
+                    <div class="left-content">
+                        <img src="/img/user.jpg" alt="" class="left-image" width="40" height="40" onclick="toggleInformation(event)">
+                        <div id="information" class="information-container" style="display: none;">
+                            <a href="/User/MyPage"><p>정보 수정</p></a>
+                            <a href="/TravelPlan"><p>나의 일정</p></a>
+                        </div>
+                        <div id="info" class="information-container" style="display: none;">
+                        <c:set var="userName" value="${sessionScope['nickname']}" />
+                        <p>${userName}</p>
+                        </div>
+                        <a href="/Logout" class="right-logout">로그아웃</a>
+                    </div>
+                </c:when>
 						<c:otherwise>
 							<!-- 세션이 없을 때, 로그인 링크 -->
 							<a href="/Login">로그인</a>
@@ -98,14 +100,15 @@
 	<!-- header end -->
 	
 <script>	
-function toggleInformation() {
-    var infoDiv = document.getElementById('information');
-    if (infoDiv.style.display === 'none') {
-        infoDiv.style.display = 'block';
-    } else {
-        infoDiv.style.display = 'none';
-    }
-}
+	function toggleInformation(event) {
+	    var infoDiv = event.currentTarget.nextElementSibling;
+	    var userNameDiv = event.currentTarget.nextElementSibling.nextElementSibling;
+	    if (infoDiv.style.display === 'none') {
+	        infoDiv.style.display = 'block';
+	    } else {
+	        infoDiv.style.display = 'none';
+	    }
+	}
 </script>
 </body>
 </html>

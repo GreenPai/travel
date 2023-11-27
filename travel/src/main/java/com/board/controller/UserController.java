@@ -144,5 +144,15 @@ public class UserController {
 	    return "/home"; 
 	}	
 	
+	@RequestMapping("/User/MyPage")
+	public ModelAndView Mypage(UserVo vo) {
+
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("user/mypage");
+		return mv;
+
+	}
+	
+	
 
 }

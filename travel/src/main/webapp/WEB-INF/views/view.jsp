@@ -173,7 +173,7 @@
             switch(btn.id) {	
             case "formUpdate": location.href = '/UpdateForm/${vo.bno}';  break;
             case "formDelete": location.href = '/Delete/${vo.bno}';  break;
-            case "formWrite":  location.href = '/WriteForm';         break;
+            case "formWrite":  location.href = '/WriteForm?menu_id=${ vo.menu_id }';         break;
             case "formHome":   location.href = '/';                  break;
             default:  break;        
             }             

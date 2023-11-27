@@ -39,6 +39,11 @@
      height: 25px;
     }
     
+    #title1{
+     height: 40px;
+     width: 400px;
+    
+    }
     #cont1{
      height: 25px;
      width: 200px;
@@ -105,6 +110,13 @@
 }
 
 
+  #title1 {
+        font-size: 18px; 
+        font-family: Arial, sans-serif; 
+        font-weight: bold;   
+        color: #595959;   
+        
+    }
 </style>
 </head>
 <body>
@@ -114,8 +126,14 @@
 %>
 <br><br>
 
-
-
+ <div class="container">
+<form id="form">
+  <label for="title1">일정 이름:</label><br>
+  <input type="text" id="title1" name="title1" placeholder="예) 나의 즐거운 서면 여행">
+  <br><br>
+</form>
+</div>
+<br><br>
 
 <% for (int i = 1; i <= dateListSize; i++) { %>
     <form id="form<%= i %>" action="/Plan" method="post" enctype="multipart/form-data">
@@ -129,6 +147,7 @@
             <div class="form-group">
                 <label for="title<%= i %>" id="plantitle">일정 이름:</label><br>
                <input type="hidden" name="num" value="<%= i %>">
+               <input type="hidden" id="maintitle<%= i %>" name="maintitle" value="음냐" placeholder="예) 서면 여행">
                <input type="text" id="title" name="title" placeholder="예) 서면 여행">
                <br><br>
                <label for="title<%= i %>" id="plantitle">일정:</label><br>
@@ -184,13 +203,25 @@
 function submitForms() {
 	  
 	let requests = [];
-	
+	/*
+	 var title1 = document.getElementById("title1").value;
+     var maintitle = document.getElementById("maintitle");
+     maintitle.value = title1;
+     */
+     
 	 for (let i = 1; i <= <%= dateListSize %>; i++) {
-	        let form = document.getElementById("form" + i);
-	        let formData = new FormData(form);
+	     
+	     let titleElement = document.getElementById("title1");
+	     let titleValue = titleElement.value;
 
-	        let request = axios.post('/Plan', formData);
-	        requests.push(request);
+	     let maintitle = document.getElementById("maintitle"+ i);
+	     maintitle.value = titleValue;
+	      
+	     let form = document.getElementById("form" + i);
+	     let formData = new FormData(form);
+	
+	     let request = axios.post('/Plan', formData);
+	     requests.push(request);
 	    }
 
 	    // 모든 axios 요청이 완료된 후에 페이지 이동

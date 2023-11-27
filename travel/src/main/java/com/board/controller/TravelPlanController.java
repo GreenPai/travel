@@ -136,7 +136,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 			@RequestMapping("/P3")
 			public ModelAndView p3(HttpServletRequest request) {
-			    ModelAndView mv = new ModelAndView();
+			   
+				HttpSession session = request.getSession();
+		        String userid = (String) session.getAttribute("userid");
+				userMapper.dailyDelete(userid);
+				ModelAndView mv = new ModelAndView();
 
 			    mv.setViewName("plan/daily");
 			    return mv;
@@ -374,7 +378,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 			// 일정 세우기 눌렀을때 데이터를 넘기면서 이동 
 			@RequestMapping("/DetailDaily")
 			public ModelAndView DetailDaily(HttpServletRequest request) {
-               				
+               	
 				HttpSession session = request.getSession();
 		        DailyVo dailyVo = new DailyVo();
 		        String userid = (String) session.getAttribute("userid");
@@ -393,7 +397,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 		          
 		        userMapper.dailyListInsert(dailyVo);
 		        }
-
 
 		        List<DailyVo> dayListFinal = userMapper.dailyListGet(dailyVo);
 		        
@@ -432,14 +435,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 		    		@RequestParam(value ="time5", defaultValue = " ") List<String>  time5,	    	
 		    		@RequestParam(value ="cont6", defaultValue = " ") List<String>  cont6,
 		    		@RequestParam(value ="time6", defaultValue = " ") List<String>  time6,	    	
-		    		@RequestParam(value ="plan", defaultValue = " ") List<String>  plan,	    	
+		    		@RequestParam(value ="plan", defaultValue = " ") List<String>  plan,		    		
+		    		@RequestParam(value ="maintitle", defaultValue = " ") String  maintitle,		    		
 		    		@RequestParam("num")   List<Integer>  num
 		    		
 		    	) {
-						
+			    System.out.println("main: "+maintitle);			
 		        HttpSession session = request.getSession();
 		        String userid = (String) session.getAttribute("userid");
-		
+		       
     	        int tnum = userMapper.gettno(userid);
     	        List<DailyVo> volist = userMapper.getDaily(userid);   	        
     	        
@@ -469,7 +473,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 		            dailyVo.setPlan(plan.get(i));
 		            dailyVo.setUserid(userid);
 		            dailyVo.setTno(tnum);
-		
+		            dailyVo.setMaintitle(maintitle);
 		            userMapper.planInsert(dailyVo);
 		        }
 		        

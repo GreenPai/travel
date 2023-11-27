@@ -217,7 +217,8 @@
 			USERID,
 			PLAN,
 			TODAY_DATE,
-            PLAN_DATE
+            PLAN_DATE,
+			MAINTITLE
 			) VALUES (
 			#{num},
 			#{tno},
@@ -237,7 +238,8 @@
 			#{userid},
 			#{plan},
 			#{today_date},
-			#{plan_date}
+			#{plan_date},
+			#{maintitle}
 		)
 	</insert>
   
