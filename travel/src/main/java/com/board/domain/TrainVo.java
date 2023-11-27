@@ -21,7 +21,12 @@ public class TrainVo {
 	private String arrplandtime;
 	private String depplacename;
 	private String arrplacename;
+	private String citycode;
 	private int adultcharge;
+	private String nodename;
 	@NonNull
 	private String trainno;
+	@NonNull
+	private String nodeid;
+	
 }
