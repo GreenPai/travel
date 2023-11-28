@@ -23,7 +23,7 @@
 
 # 기술 스택
 - Front-end: HTML, CSS, JavaScript, jQuery, bootstrap, Ajax
-- Back-end: Springboot, JAVA
+- Back-end: Springboot(STS3), JAVA
 - DB: Oracle, mybatis
 - Tool: gradle, github, kakao oven
   
@@ -36,6 +36,7 @@
 - 부산의 주요 관광 명소, 도보여행지 및 맛집정보 제공
 - 지도에 표시하여 위치 확인
 - 부산의 테마 일정 정보 제공
+  
   예) 옛백제병원 - 남선창고터 - 초량교회 - 168계단 -김민부 전망대 - 이바구공작소 - 장기려더나눔센터 - 유치환우체통 전망대
 - 공영주차장에 대한 정보, 부산 편의시설, 문화재 정보 제공
 - 부산의 실시간 날씨 정보와 6시간 간격으로 날씨정보를 제공
@@ -57,6 +58,55 @@
  - 로그인은 세션을 로그인 여부 판단
 
 
-----------------
+
+
+# 일정 세우기(사진)
+
+### 캘린더
+![일정잡기2](https://github.com/GreenPai/travel/assets/145432813/c5196717-6486-4d02-8d82-1a420da22eac)
+
+### 날씨정보
+![일정잡기3](https://github.com/GreenPai/travel/assets/145432813/9116db94-d41e-4516-b3c0-34095828acee)
+
+### 일정 폼
+![일정잡기4](https://github.com/GreenPai/travel/assets/145432813/c4688d81-c6ad-4caa-b07a-030ca2e2d3c4)
+
+### 일정 세부 페이지
+![일정잡기 5](https://github.com/GreenPai/travel/assets/145432813/dfe135fa-597a-46d3-acb0-7664de691cfc)
+
+
+# 지도 
+
+### 지도 검색
+![image](https://github.com/GreenPai/travel/assets/145432813/731b18bc-1739-4988-a670-489b84340c4a)
+
+### 명소정보
+![명소정보](https://github.com/GreenPai/travel/assets/145432813/0cc84040-862b-45a0-8f10-39018b28e11a)
+
+### 구 검색기능
+![구 검색기능](https://github.com/GreenPai/travel/assets/145432813/05f20977-26a7-45a6-9f4c-490a33b9f7c0)
+
+
+
+
+# 열차 정보 
+![열차정보](https://github.com/GreenPai/travel/assets/145432813/fae3d445-0d0b-4983-b5e1-fe093f5fe6b2)
+
+
+
+# 정보 출력 (맛집정보, 도보여행)
+
+### 맛집정보
+
+![맛집정보](https://github.com/GreenPai/travel/assets/145432813/c31db06f-77c8-4675-8f5c-350433d8e329)
+
+### 도보여행
+![도보여행](https://github.com/GreenPai/travel/assets/145432813/3f362a83-4282-41bc-b9a8-ce87836bb75b)
+
+### 상세페이지
+![image](https://github.com/GreenPai/travel/assets/145432813/499d092d-a320-431b-9acd-01e0f65b707d)
+
+
+
 
 
