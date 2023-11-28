@@ -11,6 +11,12 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
+function openNewWindow() {
+    // 새 창을 엽니다.
+    window.open("parkmap", "_blank","width=1000, height=800");
+  }
+</script>
+<script>
   window.onload = function() {
 	 
 		 let url = '/park';   // servlet 사용
@@ -54,7 +60,8 @@
 						   html += '<p><b>주차기본시간</b>: '          + row.pkBascTime     + '</p>'
 						   html += '<p><b>추가단위시간</b>: '          + row.pkAddTime      + '</p>'
 						   html += '<p><b>1일주차권요금적용시간</b>: ' + row.ftDayApplytime + '</p>'
-						   html += '<p><b>추가단위요금</b>: '          + row.feeAdd         + '</p>'						   
+						   html += '<p><b>추가단위요금</b>: '          + row.feeAdd         + '</p>'	
+						   html += '<input type="button" value="주차장 지도" onclick="openNewWindow()" id="submitButton">'
 						   html += '</div>'
 						   html += '</div>';
  
@@ -88,8 +95,6 @@
 			</div>
 		</div>
 	</div>
-	
-	<%@include file="/WEB-INF/views/map/parkmap.jsp"%>
 	
 	<!-- body end -->
 	

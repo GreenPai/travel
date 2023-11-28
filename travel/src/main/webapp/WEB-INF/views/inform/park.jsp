@@ -12,6 +12,12 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
+function openNewWindow() {
+    // 새 창을 엽니다.
+    window.open("parkmap", "_blank","width=1000, height=800");
+  }
+</script>
+<script>
   window.onload = function() {
 	   
 		 let url = '/park';   // servlet 사용
@@ -22,8 +28,6 @@
 			 params : {
 		//       encoding 서버스키는 cors 발생 - 자바를 이용해야한다
 				 serviceKey : 'X5Ow2Q7/1YLN6F2IGV2I9/1G9A5aZ2eNuiJnwQvTm8m7w/DEh2jJsBMatEA/FBy2dM5/oJASYTxYqsoEukRzvQ==',
-		//       decoding 서버스키는 cors 발생하지 않음
-		//		 serviceKey : 'HPG/iUcz/t/Q8HAFjrKL9sP2JYkLOIIgbnEzvj9enzRYy+jXWDidxABqUgD85CcU/UhqdtU2SPY+tq97nfbRxw==',  //decoding
 				 numOfRows  : 30,
 				 pageNo     : 1,
 				 resultType : 'json'
@@ -46,6 +50,7 @@
 				   html += '<p><b>주차장명</b>: '    + row.pkNam   + '</p>'
 				   html += '</a>'
 				   html += '<p><b>주차장구분</b>: '  + row.pkGubun + '</p>'
+				   html += '<input type="button" value="주차장 지도" onclick="openNewWindow()" id="submitButton">'
 				   html += '</div>'
 				   html += '</div>';
 			   })			   
