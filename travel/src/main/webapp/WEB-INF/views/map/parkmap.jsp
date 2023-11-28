@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <section>
 	<!-- 지도가 표시될 div -->
-	<div id="map" style="width:320px;height:240px;"></div>
+	<div id="map" style="width:1000px;height:800px;"></div>
 	
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -10,12 +10,71 @@
 	<script>
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = {
-	        center: new kakao.maps.LatLng(35.1578, 129.0600), // 지도의 중심좌표
+	        center: new kakao.maps.LatLng(35.15429, 128.9791), // 지도의 중심좌표
 	        level: 3 // 지도의 확대 레벨
 	    };  
 	
 	// 지도를 생성합니다    
 	var map = new kakao.maps.Map(mapContainer, mapOption); 
+	
+	var positions = [
+	    {
+	        title: '감전동주차장', 
+	        latlng: new kakao.maps.LatLng(35.15429, 128.9791)
+	    },
+	    {
+	        title: '서감남길주변주차장', 
+	        latlng: new kakao.maps.LatLng(35.15490, 128.9786)
+	    },
+	    {
+	        title: '장성주차장', 
+	        latlng: new kakao.maps.LatLng(35.1548993, 128.9786172)
+	    },
+	    {
+	        title: '엄궁초등학교지하주차장',
+	        latlng: new kakao.maps.LatLng(35.129, 128.974)
+	    },
+	    {
+	        title: '일신주택주차장', 
+	        latlng: new kakao.maps.LatLng(35.14527, 129.0027)
+	    },
+	    {
+	        title: '삼락재첩거리주변', 
+	        latlng: new kakao.maps.LatLng(35.19352, 128.9858)
+	    },
+	    {
+	        title: '주례중학교 근변 주차장',
+	        latlng: new kakao.maps.LatLng(35.1452739, 129.0026705)
+	    },
+	    {
+	        title: '모라1동행정복지센터주변', 
+	        latlng: new kakao.maps.LatLng(35.18675, 128.9900)
+	    },
+	    {
+	        title: '학장동행정복지센터주변',
+	        latlng: new kakao.maps.LatLng(35.14414, 128.9873)
+	    }
+	];
+
+	
+	var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+    
+	for (var i = 0; i < positions.length; i ++) {
+	    
+	    // 마커 이미지의 이미지 크기 입니다
+	    var imageSize = new kakao.maps.Size(24, 35); 
+	    
+	    // 마커 이미지를 생성합니다    
+	    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+	    
+	    // 마커를 생성합니다
+	    var marker = new kakao.maps.Marker({
+	        map: map, // 마커를 표시할 지도
+	        position: positions[i].latlng, // 마커를 표시할 위치
+	        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+	        image : markerImage // 마커 이미지 
+	    });
+	}
 	
 	axios({
 	    url    : '/park',

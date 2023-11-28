@@ -25,6 +25,15 @@ public class WeatherController {
 		
 	}
 	
+	@RequestMapping("/parkmap")
+	public ModelAndView parkmap() {
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("map/parkmap");
+		return mv;
+		
+	}
+	
 	@RequestMapping("/restaurantmap")
 	public ModelAndView restaurantmap() {
 		
