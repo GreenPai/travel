@@ -36,7 +36,7 @@
 			   let  html  = '';
 			   
 			   if (arr.length > 0) {
-		            let row = arr[0];
+		            let row = arr[4];
 		            
 		            for (let i = 0; i < arr.length; i++) {
 		                if (arr[i].UC_SEQ === 'row.UC_SEQ') { // UC_SEQ가 '0'과 일치하는 경우에만 출력

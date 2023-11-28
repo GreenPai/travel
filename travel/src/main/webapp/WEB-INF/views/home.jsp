@@ -38,7 +38,7 @@
 
 
 
-		<div class="slideshow-container">
+		<div class="slideshow-container" style="height: 350px;" >
 			<a href="/View?bno=102"><img class="slide" src="img/img1.jpg" alt="이미지 1"></a> 
 			<a href="/View?bno=104"><img class="slide" src="img/img2.jpg" alt="이미지 2"></a> 
 			<a href="/View?bno=106"><img class="slide" src="img/img3.jpg" alt="이미지 3"></a>  
