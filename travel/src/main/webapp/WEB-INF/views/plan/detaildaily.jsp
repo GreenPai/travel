@@ -154,38 +154,38 @@
                <label for="title<%= i %>" id="plantitle">일정:</label><br>
                <div id=step>
                <label for="title<%= i %>" id="plantitle">STEP1:  </label>
-               <input type="text" id="time1" name="time1" placeholder="예) 09:00">
-               <input type="text" id="cont1" name="cont1" placeholder="예) 9:00 부산역 - 9:30 차이나타운 ~~"> <br>
+               <input type="text" id="time1" name="time1" placeholder="예) 일정 시간: 09:00 - 9:30 ">
+               <input type="text" id="cont1" name="cont1" placeholder="예) 여행 장소를 적어주세요: 부산역"> <br>
                </div>
                
                <div id=step>
                <label for="title<%= i %>" id="plantitle">STEP2:  </label>
-               <input type="text" id="time1" name="time2" placeholder="예) 09:00">
-               <input type="text" id="cont1" name="cont2" placeholder="예) 9:00 부산역 - 9:30 차이나타운 ~~"> <br>
+               <input type="text" id="time1" name="time2" placeholder="예) 일정 시간: 09:00 - 9:30  ">
+               <input type="text" id="cont1" name="cont2" placeholder="예) 여행 장소를 적어주세요: 부산역"> <br>
                </div>
                
                <div id=step>
                <label for="title<%= i %>" id="plantitle">STEP3:  </label>
-               <input type="text" id="time1" name="time3" placeholder="예) 09:00">
-               <input type="text" id="cont1" name="cont3" placeholder="예) 9:00 부산역 - 9:30 차이나타운 ~~"> <br>
+               <input type="text" id="time1" name="time3" placeholder="예) 일정 시간: 09:00 - 9:30">
+               <input type="text" id="cont1" name="cont3" placeholder="예) 여행 장소를 적어주세요: 부산역"> <br>
                </div>
                
                <div id=step>
                <label for="title<%= i %>" id="plantitle">STEP4:  </label>
-               <input type="text" id="time1" name="time4" placeholder="예) 09:00">
-               <input type="text" id="cont1" name="cont4" placeholder="예) 9:00 부산역 - 9:30 차이나타운 ~~"> <br>
+               <input type="text" id="time1" name="time4" placeholder="예) 일정 시간: 09:00 - 9:30">
+               <input type="text" id="cont1" name="cont4" placeholder="예) 여행 장소를 적어주세요: 차이나타운 ~~"> <br>
                </div>
                
                <div id=step>
                <label for="title<%= i %>" id="plantitle">STEP5:  </label>
-               <input type="text" id="time1" name="time5" placeholder="예) 09:00">
-               <input type="text" id="cont1" name="cont5" placeholder="예) 9:00 부산역 - 9:30 차이나타운 ~~"> <br>
+               <input type="text" id="time1" name="time5" placeholder="예) 일정 시간: 09:00 - 9:30">
+               <input type="text" id="cont1" name="cont5" placeholder="예) 여행 장소를 적어주세요: 차이나타운 ~~"> <br>
                </div>
                
                <div id=step>
                <label for="title<%= i %>" id="plantitle">STEP6:  </label>
-               <input type="text" id="time1" name="time6" placeholder="예) 09:00">
-               <input type="text" id="cont1" name="cont6" placeholder="예) 9:00 부산역 - 9:30 차이나타운 ~~"> <br>
+               <input type="text" id="time1" name="time6" placeholder="예) 일정 시간: 09:00 - 9:30">
+               <input type="text" id="cont1" name="cont6" placeholder="예) 여행 장소를 적어주세요: 차이나타운 ~~"> <br>
                </div>
 
                <div id=step>
