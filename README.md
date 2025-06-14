@@ -1,7 +1,6 @@
 # 🌴 TRAVEL - 부산 여행 일정 플래너
 
 [👉 시연 영상 보러가기](https://www.youtube.com/watch?v=IwTeRRH26yo)  
-[👉 GitHub 레포지토리](https://github.com/GreenPai/travel)
 
 ---
 
